@@ -10,7 +10,7 @@ import { TestTAIComponent } from './test-tai/test-tai.component';
 const routes: Routes = [
   {path: 'inicio', component:InicioComponent},
   {path: 'testAtencion', component:TestAtencionComponent},
-  {path: 'testTAI/enable', component:TestTAIComponent},
+  {path: 'testTAI', component:TestTAIComponent},
   
   {path: '**', redirectTo:'inicio', pathMatch:'full'}
 ];
