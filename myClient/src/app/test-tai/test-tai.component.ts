@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener} from '@angular/core';
 
 @Component({
   selector: 'app-test-tai',
@@ -7,9 +7,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TestTAIComponent implements OnInit {
 
+
+  ifase:Number;
+  nfase:Number;
+  myVar:boolean;
+  
+
   constructor() { }
 
   ngOnInit() {
+    this.ifase = 0;
+    this.nfase = 9;
+    this.myVar = true;
+  }
+
+
+  @HostListener('document:keypress', ['$event'])
+  handleKeyboardEvent(event: KeyboardEvent) { 
+    console.log("Evento --> " + event.view);
+    this.myVar = !this.myVar;
   }
 
 }
