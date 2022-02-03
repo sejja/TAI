@@ -10,13 +10,10 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 export class TestAtencionComponent implements OnInit {
 
-  modalElement;
-
   //constructor() { }
   constructor(private ruta: ActivatedRoute, private router: Router) {}
 
   ngOnInit() {
-    this.modalElement = document.getElementById('exampleModal');
 
   }
 
