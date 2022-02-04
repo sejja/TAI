@@ -5,10 +5,8 @@ import java.util.Optional;
 
 import com.uva.orders.exception.PedidoException;
 import com.uva.orders.model.Estado;
-import com.uva.orders.model.Imagen;
-import com.uva.orders.model.Palabra;
-
-import com.uva.orders.model.Tai;
+import com.uva.orders.model.LineaPedido;
+import com.uva.orders.model.Pedido;
 import com.uva.orders.repository.LineaPedidoRepository;
 import com.uva.orders.repository.PedidoRepository;
 
@@ -21,44 +19,35 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.GetMapping;
-//import org.springframework.web.bind.annotation.PutMapping;
-//import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.DeleteMapping;
 
 @RestController
-@RequestMapping("/tai")
+@RequestMapping("/orders")
 @CrossOrigin(origins = "*")
 public class PedidoController {
 
     private final PedidoRepository pedidoRepository;
-   // private final LineaPedidoRepository lineaPedidoRepository;
+    private final LineaPedidoRepository lineaPedidoRepository;
 
-    PedidoController(PedidoRepository pedidoRepository) {
+    PedidoController(PedidoRepository pedidoRepository, LineaPedidoRepository lineaPedidoRepository) {
         this.pedidoRepository = pedidoRepository;
-     //   this.lineaPedidoRepository = lineaPedidoRepository;
+        this.lineaPedidoRepository = lineaPedidoRepository;
     }
 
     /**
-     * Crea una nuevo pedido apartir de una paricion POST a /tai
+     * Crea una nuevo pedido apartir de una paricion POST a /orders
      * mediante el json recibido
      * 
-     * @param newTai
+     * @param newPedido
      * @return
      */
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public String newPedido(@RequestBody Tai newTai) {
+    public String newPedido(@RequestBody Pedido newPedido) {
         try {
-            List<Imagen> imagenes1 = newTai.getImagenes1();
-            List<Imagen> imagenes2 = newTai.getImagenes2();
-
-            List<Palabra> palabrasPositivas = newTai.getPalabrasPositivas();
-            List<Palabra> palabrasNegativas = newTai.getPalabrasNegativas();
-
-            for (Imagen product : imagenes1) product.setTai(newTai);
-            for (Imagen product : imagenes2) product.setTai(newTai);
-            for (Palabra product : palabrasPositivas) product.setTai(newTai);
-            for (Palabra product : palabrasNegativas) product.setTai(newTai);
-
-            pedidoRepository.saveAndFlush(newTai);
+            List<LineaPedido> products = newPedido.getProducts();
+            for (LineaPedido product : products) product.setPedido(newPedido);
+            pedidoRepository.saveAndFlush(newPedido);
             return "Nuevo registro creado";
         } catch (Exception e) {
             // Se deja esta parte comentada como alternativa a la gestion de errores
@@ -80,8 +69,8 @@ public class PedidoController {
      * @return
      */
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE, value = { "/{id}" })
-    public Tai getPedidoById(@PathVariable int id) {
-        Tai pedido = pedidoRepository.findById(id).orElseThrow(() -> new PedidoException("Sin resultado"));
+    public Pedido getPedidoById(@PathVariable int id) {
+        Pedido pedido = pedidoRepository.findById(id).orElseThrow(() -> new PedidoException("Sin resultado"));
         return pedido;
     }
 
@@ -91,30 +80,30 @@ public class PedidoController {
      * 
      * @param id
      * @return
-     
+     */
     @PutMapping("/{id}")
-    public String putPedido(@PathVariable("id") Integer identificador, @RequestBody Tai pedido) {
-        Optional<Tai> existePedido = pedidoRepository.findById(identificador);
+    public String putPedido(@PathVariable("id") Integer identificador, @RequestBody Pedido pedido) {
+        Optional<Pedido> existePedido = pedidoRepository.findById(identificador);
         if (!existePedido.isPresent())
             throw new PedidoException("No exite el pedido modificado");
         
-        Tai pedidoModificable = existePedido.get();
+        Pedido pedidoModificable = existePedido.get();
         switch(pedidoModificable.getStatus()){
             case Delivered:
             case In_transit:
                 break;
             case Ordered:
-                List<Palabra> products = lineaPedidoRepository.findByPedidoId(identificador);
+                List<LineaPedido> products = lineaPedidoRepository.findByPedidoId(identificador);
                 try {
                     lineaPedidoRepository.deleteAll(products);
-     //               List<Palabra> newProducts = pedido.getProducts();
-     //               for (Palabra product : newProducts) product.setPedido(pedidoModificable);
-     //               lineaPedidoRepository.saveAll(newProducts);
+                    List<LineaPedido> newProducts = pedido.getProducts();
+                    for (LineaPedido product : newProducts) product.setPedido(pedidoModificable);
+                    lineaPedidoRepository.saveAll(newProducts);
                 } catch (Exception e){
                     lineaPedidoRepository.saveAll(products);
                     throw new PedidoException("Error al modificar los nuevos productos.");
                 }
-     //           pedidoModificable.setProducts(pedido.getProducts());
+                pedidoModificable.setProducts(pedido.getProducts());
             case Processing:
                 pedidoModificable.setDeliveryAddress(pedido.getDeliveryAddress());
                 pedidoModificable.setDeliveryCity(pedido.getDeliveryCity());
@@ -137,14 +126,14 @@ public class PedidoController {
      * 
      * @param id
      * @return
-    
+     */
     @DeleteMapping("/{id}")
     public String deletePedido(@PathVariable Integer id) {
         try {
             if(pedidoRepository.existsById(id)){
-                Optional<Tai> pedido = pedidoRepository.findById(id);
+                Optional<Pedido> pedido = pedidoRepository.findById(id);
                 if(pedido.get().getStatus().equals(Estado.Ordered)){
-                    List<Palabra> products = lineaPedidoRepository.findByPedidoId(id);
+                    List<LineaPedido> products = lineaPedidoRepository.findByPedidoId(id);
                     lineaPedidoRepository.deleteAll(products);
                     pedidoRepository.deleteById(id);
                     return "Pedido eliminado: " + id;
@@ -168,8 +157,8 @@ public class PedidoController {
      * @return
      */
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<Tai> getPedidos() {
-        List<Tai> list = pedidoRepository.findAll();
+    public List<Pedido> getPedidos() {
+        List<Pedido> list = pedidoRepository.findAll();
         return list;
     }
 }
