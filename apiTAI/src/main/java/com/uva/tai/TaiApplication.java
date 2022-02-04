@@ -1,13 +1,13 @@
-package com.uva.orders;
+package com.uva.tai;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class PedidoApplication {
+public class TaiApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(PedidoApplication.class, args);
+		SpringApplication.run(TaiApplication.class, args);
 	}
 
 }

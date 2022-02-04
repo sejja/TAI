@@ -1,10 +1,10 @@
-package com.uva.orders;
+package com.uva.tai;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class PedidoApplicationTests {
+class TaiApplicationTests {
 
 	@Test
 	void contextLoads() {

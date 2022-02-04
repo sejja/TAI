@@ -1,4 +1,4 @@
-package com.uva.orders.model;
+package com.uva.tai.model;
 
 public enum Tipo {
     Imagen1, 

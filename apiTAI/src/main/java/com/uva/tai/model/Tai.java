@@ -1,4 +1,4 @@
-package com.uva.orders.model;
+package com.uva.tai.model;
 
 import java.sql.Date;
 import java.time.LocalDate;

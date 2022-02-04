@@ -1,14 +1,11 @@
-package com.uva.orders.controller;
+package com.uva.tai.controller;
 
 import java.util.List;
 
-
-import com.uva.orders.exception.PedidoException;
-
-import com.uva.orders.model.Concepto;
-import com.uva.orders.model.Tai;
-///import com.uva.orders.repository.ConceptoRepository;
-import com.uva.orders.repository.TaiRepository;
+import com.uva.tai.exception.TaiException;
+import com.uva.tai.model.Concepto;
+import com.uva.tai.model.Tai;
+import com.uva.tai.repository.TaiRepository;
 
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,12 +21,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 @RestController
 @RequestMapping("/tai")
 @CrossOrigin(origins = "*")
-public class PedidoController {
+public class TaiController {
 
     private final TaiRepository pedidoRepository;
     //private final ConceptoRepository lineaPedidoRepository;
 
-    PedidoController(TaiRepository pedidoRepository /*ConceptoRepository lineaPedidoRepositor*/) {
+    TaiController(TaiRepository pedidoRepository /*ConceptoRepository lineaPedidoRepositor*/) {
         this.pedidoRepository = pedidoRepository;
        // this.lineaPedidoRepository = lineaPedidoRepository;
     }
@@ -47,7 +44,6 @@ public class PedidoController {
         try {
             List<Concepto> concepts = newTai.getConcepts();
             for (Concepto concept : concepts) concept.setTai(newTai);
-            System.out.print(concepts.size()+" "+concepts.get(0).getStatus());
             pedidoRepository.saveAndFlush(newTai);
             return "Nuevo registro creado";
         } catch (Exception e) {
@@ -58,7 +54,7 @@ public class PedidoController {
             // Se usa este sistema de gestión de errores porque es mas sencillo hacer que el
             // cliente reciba el mensaje de error
             e.printStackTrace();
-            throw new PedidoException("Error al crear el nuevo registro.");
+            throw new TaiException("Error al crear el nuevo registro.");
         }
     }
     
@@ -71,7 +67,7 @@ public class PedidoController {
      */
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE, value = { "/{id}" })
     public Tai getPedidoById(@PathVariable int id) {
-        Tai pedido = pedidoRepository.findById(id).orElseThrow(() -> new PedidoException("Sin resultado"));
+        Tai pedido = pedidoRepository.findById(id).orElseThrow(() -> new TaiException("Sin resultado"));
         return pedido;
     }
 

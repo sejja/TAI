@@ -1,4 +1,4 @@
-package com.uva.orders.model;
+package com.uva.tai.model;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
