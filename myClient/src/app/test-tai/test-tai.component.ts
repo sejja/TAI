@@ -8,8 +8,8 @@ import { Component, OnInit, HostListener} from '@angular/core';
 export class TestTAIComponent implements OnInit {
 
 
-  ifase:Number;
-  nfase:Number;
+  ifase:any;
+  nfase:any;
   myVar:boolean;
   
 
@@ -24,8 +24,29 @@ export class TestTAIComponent implements OnInit {
 
   @HostListener('document:keypress', ['$event'])
   handleKeyboardEvent(event: KeyboardEvent) { 
-    console.log("Evento --> " + event.view);
-    this.myVar = !this.myVar;
+
+    console.log("Evento --> " + this.ifase);
+    
+    if (event.key == " " && event.target == document.body) {
+      event.preventDefault();
+      if (this.ifase == 5){//reonocimento de imagenes
+
+        this.ifase = (this.ifase + 1) % this.nfase;
+      } else if (this.ifase == 6) {//reonocimento de palabras
+
+        this.ifase = (this.ifase + 1) % this.nfase;
+      } else if (this.ifase == 7) {//test 1
+
+        this.ifase = (this.ifase + 1) % this.nfase;
+      } else if (this.ifase == 8) {//test 2
+
+        this.ifase = (this.ifase + 1) % this.nfase;
+      } else{
+        
+        this.ifase = (this.ifase + 1) % this.nfase;
+      }
+    }
+
   }
 
 }

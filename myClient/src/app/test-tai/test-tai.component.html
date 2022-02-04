@@ -36,7 +36,7 @@
 <!-- Test TAI -->
 
 <!-- FASE 1-->
-  <section class="bg-primary bg-secondary text-white" [hidden]="!myVar">
+  <section class="bg-primary bg-secondary text-white" [hidden]="ifase != 0">
     <div class="container px-4 text-center">    
       <div class="row">
         <div class="col-sm-12 my-2 bg-secondary">
@@ -51,7 +51,7 @@
   </section>
 
 <!-- FASE 2-->
-<section class="bg-primary bg-secondary text-white" style="display: inerit;">
+<section class="bg-primary bg-secondary text-white" [hidden]="ifase != 1">
   <div class="container px-4 text-center">    
     <div class="row">
       <div class="col-sm-12 my-2 bg-secondary">
@@ -78,7 +78,7 @@
 </section>
 
 <!-- FASE 3-->
-<section class="bg-primary bg-secondary text-white" style="display: inerit;">
+<section class="bg-primary bg-secondary text-white" [hidden]="ifase != 2">
   <div class="container px-4 text-center">    
     <div class="row">
       <div class="col-sm-12 my-2 bg-secondary">
@@ -106,7 +106,7 @@
 
 
 <!-- FASE 4-->
-<section class="bg-primary bg-secondary text-white" style="display: inerit;">
+<section class="bg-primary bg-secondary text-white" [hidden]="ifase != 3">
   <div class="container px-4 text-center">    
     <div class="row">
       <div class="col-sm-12 my-2 bg-secondary">
@@ -133,7 +133,7 @@
 </section>
 
 <!-- FASE 5-->
-<section class="bg-primary bg-secondary text-white" style="display: inerit;">
+<section class="bg-primary bg-secondary text-white" [hidden]="ifase != 4">
   <div class="container px-4 text-center">    
     <div class="row">
       <div class="col-sm-12 my-2 bg-secondary">
@@ -162,7 +162,7 @@
 
 <!--cartegorizar Imagenes-->
 <!-- FASE 6-->
-<section class="bg-primary bg-secondary text-white" style="display: inerit;">
+<section class="bg-primary bg-secondary text-white" [hidden]="ifase != 5">
   <div class="container px-4 text-center">    
     <div class="row">
       <div class="col-sm-6 bg-secondary">
@@ -180,7 +180,7 @@
 
 <!--cartegorizar Palabras-->
 <!-- FASE 7-->
-<section class="bg-primary bg-secondary text-white" style="display: inerit;">
+<section class="bg-primary bg-secondary text-white" [hidden]="ifase != 6">
   <div class="container px-4 text-center">    
     <div class="row">
       <div class="col-sm-6 bg-secondary">
@@ -200,7 +200,7 @@
 
 <!--Test 1-->
 <!-- FASE 8-->
-<section class="bg-primary bg-secondary text-white" style="display: inerit;">
+<section class="bg-primary bg-secondary text-white" [hidden]="ifase != 7">
   <div class="container px-4 text-center">    
     <div class="row">
       <div class="col-sm-6 bg-secondary">
@@ -225,7 +225,7 @@
 
 <!--Test 2-->
 <!-- FASE 9-->
-<section class="bg-primary bg-secondary text-white" style="display: inerit;">
+<section class="bg-primary bg-secondary text-white" [hidden]="ifase != 8">
   <div class="container px-4 text-center">    
     <div class="row">
       <div class="col-sm-6 bg-secondary">
