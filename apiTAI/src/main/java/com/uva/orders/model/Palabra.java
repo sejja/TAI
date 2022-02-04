@@ -19,29 +19,29 @@ import javax.persistence.ManyToOne;
  */
 @Entity
 @Table(name = "LineasPedido")
-public class LineaPedido {
+public class Palabra {
     @Id
     @GeneratedValue
     @JsonIgnore
     private Integer sku;
     @Size(max = 50) // si no se pone esta anotación lo creo por defecto con size=255
     private String name;
-    private Float price;
-    private Integer units;
+ //   private Float price;
+ //   private Integer units;
     
-    @JoinColumn(name="pedido_id", nullable = false)
+    @JoinColumn(name="tai_id", nullable = false)
     @ManyToOne(optional=false, fetch=FetchType.EAGER, cascade=CascadeType.MERGE)
     @JsonIgnore
-    private Pedido pedido;
+    private Tai tai;
 
-    LineaPedido() {
+    Palabra() {
     }
 
-    public LineaPedido(String name, Float price, Integer units, Pedido pedido) {
+    public Palabra(String name, Tai tai) {
         this.name = name;
-        this.price = price;
-        this.units = units;
-        this.pedido = pedido;
+  //      this.price = price;
+  //      this.units = units;
+        this.tai = tai;
     }
 
     public Integer getSku() {
@@ -59,7 +59,7 @@ public class LineaPedido {
     public void setName(String name) {
         this.name = name;
     }
-
+/*
     public Float getPrice() {
         return this.price;
     }
@@ -75,13 +75,13 @@ public class LineaPedido {
     public void setUnits(Integer units) {
         this.units = units;
     }
-
-    public Pedido getPedido(){
-        return this.pedido;
+*/
+    public Tai getTai(){
+        return this.tai;
     }
 
-    public void setPedido(Pedido pedido){
-        this.pedido = pedido;
+    public void setTai(Tai tai){
+        this.tai = tai;
     }
 
 }

@@ -1,0 +1,58 @@
+{
+    "imagenes1": [
+        {
+            "index": 0,
+            "name": "CocaCola1" 
+        },
+        {
+            "index": 1,
+            "name": "CocaCola2"
+        },
+        {
+            "index": 2,
+            "name": "CocaCola3"
+        }
+    ],
+    "imagenes2": [
+        {
+            "index": 0,
+            "name": "CocaCola1"
+        },
+        {
+            "index": 1,
+            "name": "CocaCola2"
+        },
+        {
+            "index": 2,
+            "name": "CocaCola3"
+        }
+    ],
+    "palabras1": [
+        {
+            "index": 0,
+            "name": "bueno"
+        },
+        {
+            "index": 1,
+            "name": "agradable"
+        },
+        {
+            "index": 2,
+            "name": "rico"
+        }
+    ],
+    "palabras2": [
+        {
+            "index": 0,
+            "name": "malo"
+        },
+        {
+            "index": 1,
+            "name": "desagadeabla"
+        },
+        {
+            "index": 2,
+            "name": "asqueroso"
+        }
+    ],
+}

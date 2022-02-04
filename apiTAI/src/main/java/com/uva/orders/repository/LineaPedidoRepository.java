@@ -4,9 +4,9 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
-import com.uva.orders.model.LineaPedido;
+import com.uva.orders.model.Palabra;
 
-public interface LineaPedidoRepository extends JpaRepository<LineaPedido, Integer> {
+public interface LineaPedidoRepository extends JpaRepository<Palabra, Integer> {
     
-    List<LineaPedido> findByPedidoId(Integer pedidoId);
+    List<Palabra> findByPedidoId(Integer pedidoId);
 }
