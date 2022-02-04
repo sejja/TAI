@@ -4,8 +4,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 //import java.util.List;
 
-import com.uva.orders.model.Pedido;
+import com.uva.orders.model.Tai;
 
-public interface PedidoRepository extends JpaRepository<Pedido, Integer> {
+public interface TaiRepository extends JpaRepository<Tai, Integer> {
 
 }

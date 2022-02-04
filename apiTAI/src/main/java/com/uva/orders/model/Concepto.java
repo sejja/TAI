@@ -18,30 +18,28 @@ import javax.persistence.ManyToOne;
  * que se creara la tabla de la base de datos
  */
 @Entity
-@Table(name = "LineasPedido")
-public class LineaPedido {
+@Table(name = "Conceptos")
+public class Concepto {
     @Id
     @GeneratedValue
     @JsonIgnore
     private Integer sku;
     @Size(max = 50) // si no se pone esta anotación lo creo por defecto con size=255
     private String name;
-    private Float price;
-    private Integer units;
+    private Tipo status;
     
-    @JoinColumn(name="pedido_id", nullable = false)
+    @JoinColumn(name="tai_id", nullable = false)
     @ManyToOne(optional=false, fetch=FetchType.EAGER, cascade=CascadeType.MERGE)
     @JsonIgnore
-    private Pedido pedido;
+    private Tai tai;
 
-    LineaPedido() {
+    Concepto() {
     }
 
-    public LineaPedido(String name, Float price, Integer units, Pedido pedido) {
+    public Concepto(String name, Tipo status, Tai tai) {
         this.name = name;
-        this.price = price;
-        this.units = units;
-        this.pedido = pedido;
+        this.tai = tai;
+        this.status = status;
     }
 
     public Integer getSku() {
@@ -60,28 +58,20 @@ public class LineaPedido {
         this.name = name;
     }
 
-    public Float getPrice() {
-        return this.price;
+    public Tipo getStatus() {
+        return this.status;
     }
 
-    public void setPrice(Float price) {
-        this.price = price;
+    public void setStatus(Tipo status) {
+        this.status = status;
     }
 
-    public Integer getUnits() {
-        return this.units;
+    public Tai getTai(){
+        return this.tai;
     }
 
-    public void setUnits(Integer units) {
-        this.units = units;
-    }
-
-    public Pedido getPedido(){
-        return this.pedido;
-    }
-
-    public void setPedido(Pedido pedido){
-        this.pedido = pedido;
+    public void setTai(Tai tai){
+        this.tai = tai;
     }
 
 }
