@@ -25,6 +25,14 @@ public class Tai {
     private Integer id;
     @Size(max = 50)
     private String name;
+    @Size(max = 50)
+    private String palabra1;
+    @Size(max = 50) // si no se pone esta anotación lo creo por defecto con size=255
+    private String palabra2;
+    @Size(max = 50) // si no se pone esta anotación lo creo por defecto con size=255
+    private String imagen1;
+    @Size(max = 50) // si no se pone esta anotación lo creo por defecto con size=255
+    private String imagen2;
  
     @OneToMany(mappedBy = "tai", fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     private List<Concepto> concepts;//OJO
@@ -56,6 +64,38 @@ public class Tai {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getPalabra1() {
+        return this.palabra1;
+    }
+
+    public void setPalabra1(String palabra1) {
+        this.palabra1 = palabra1;
+    }
+
+    public String getPalabra2() {
+        return this.palabra2;
+    }
+
+    public void setPalabra2(String palabra2) {
+        this.palabra2 = palabra2;
+    }
+
+    public String getImagen1() {
+        return this.imagen1;
+    }
+
+    public void setImagen1(String imagen1) {
+        this.imagen1 = imagen1;
+    }
+
+    public String getImagen2() {
+        return this.imagen2;
+    }
+
+    public void setImagen2(String imagen2) {
+        this.imagen2 = imagen2;
     }
 
     public List<Concepto> getConcepts() {

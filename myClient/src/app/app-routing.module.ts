@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { InicioComponent } from './inicio/inicio.component';
+import { TaiEditarComponent } from './tai-editar/tai-editar.component';
 
 
 import { TestAtencionComponent } from './test-atencion/test-atencion.component';
@@ -11,7 +12,7 @@ const routes: Routes = [
   {path: 'inicio', component:InicioComponent},
   {path: 'testAtencion', component:TestAtencionComponent},
   {path: 'testTAI', component:TestTAIComponent},
-  
+  {path: 'testTAI/new', component: TaiEditarComponent },
   {path: '**', redirectTo:'inicio', pathMatch:'full'}
 ];
 

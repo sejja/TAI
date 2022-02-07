@@ -1,31 +1,37 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-//import { HttpModule } from '@angular/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
-import { RouterModule } from '@angular/router';
-
+//import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
+import { AppRoutingModule } from './app-routing.module';
+
 import { TestAtencionComponent } from './test-atencion/test-atencion.component';
 import { TestTAIComponent } from './test-tai/test-tai.component';
 import { InicioComponent } from './inicio/inicio.component';
-import { AppRoutingModule } from './app-routing.module'; // CLI 
+import { TaiEditarComponent } from './tai-editar/tai-editar.component'; // CLI 
+import { ClienteApiOrdersService } from './shared/api-tai/cliente-api-tai.service';
+
+
 
 @NgModule({
   declarations: [
     AppComponent,
     TestAtencionComponent,
     TestTAIComponent,
-    InicioComponent
+    InicioComponent,
+    TaiEditarComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule,
-    //HttpModule,
-    RouterModule
+    HttpClientModule,
+    FormsModule
   ],
-  providers: [],
+  providers: [
+    ClienteApiOrdersService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
