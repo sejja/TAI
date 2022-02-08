@@ -1,5 +1,8 @@
 package com.uva.tai.controller;
 
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.IOException;
 import java.util.List;
 
 import com.uva.tai.exception.TaiException;
@@ -9,13 +12,24 @@ import com.uva.tai.repository.TaiRepository;
 
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.GetMapping;
+
+
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.logging.Logger;
+
+import org.springframework.http.HttpStatus;
 
 
 @RestController
@@ -56,6 +70,73 @@ public class TaiController {
             e.printStackTrace();
             throw new TaiException("Error al crear el nuevo registro.");
         }
+    }
+
+
+    private static final Logger logger = Logger.getLogger(TaiController.class.getName());
+    private final Path root = Paths.get("uploads");
+
+    @PostMapping("/upload")
+    public ResponseEntity<String> uploadData(@RequestParam("file") MultipartFile file) throws Exception {
+        if (file == null) {
+            throw new RuntimeException("You must select the a file for uploading");
+        }
+        InputStream inputStream = file.getInputStream();
+        String originalName = file.getOriginalFilename();
+        String name = file.getName();
+        String contentType = file.getContentType();
+        long size = file.getSize();
+        logger.info("inputStream: " + inputStream);
+        logger.info("originalName: " + originalName);
+        logger.info("name: " + name);
+        logger.info("contentType: " + contentType);
+        logger.info("size: " + size);
+        // Do processing with uploaded file data in Service layer
+
+        //servicio
+        if(!Files.exists(root)){
+            try {
+                Files.createDirectory(root);
+            } catch (IOException e) {
+                throw new RuntimeException("Could not initialize folder for upload!");
+            }
+        }
+
+        try {
+            Files.copy(file.getInputStream(), this.root.resolve(file.getOriginalFilename()));
+            System.out.println(this.root.resolve(file.getOriginalFilename()));
+        } catch (Exception e) {
+            throw new RuntimeException("Could not store the file. Error: " + e.getMessage());
+        }
+
+        return new ResponseEntity<String>(originalName, HttpStatus.OK);
+    }
+
+    
+
+
+
+
+
+    /**
+     * Crea una nuevo pedido apartir de una paricion POST a /orders
+     * mediante el json recibido
+     * 
+     * @param newTai
+     * @return
+  
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, value = "/image")
+    public String newImage(@RequestParam("file") MultipartFile file) {
+
+        if(file.isEmpty()){
+            return "Archivo no seleccionado";
+        }
+        try{
+            uploadFileService.saveFile(file);
+        }catch(IOException e){
+            e.printStackTrace();
+        }
+        return "archivo subido";
     }
     
     /**

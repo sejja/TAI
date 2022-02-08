@@ -1,4 +1,4 @@
-import { HttpClient, HttpResponse } from '@angular/common/http';
+import { HttpClient, HttpEvent, HttpRequest, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Tai } from './app.tai-model';
@@ -62,4 +62,24 @@ export class ClienteApiOrdersService {
         let url = ClienteApiOrdersService.BASE_URI + id;
         return this.http.delete(url, { observe: 'response', responseType: 'text' });
     }
+
+
+
+
+    
+
+    upload(file: File): Observable<HttpEvent<any>> {
+        const formData: FormData = new FormData();
+        formData.append('file', file);
+        const req = new HttpRequest('POST', ClienteApiOrdersService.BASE_URI + "/upload", formData, {
+            reportProgress: true,
+            responseType: 'json'
+        });
+        return this.http.request(req);
+    }
+
+    getFiles(): Observable<any> {
+        return this.http.get(ClienteApiOrdersService.BASE_URI + "/files");
+    }
+
 }

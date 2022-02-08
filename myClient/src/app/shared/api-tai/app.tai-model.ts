@@ -4,10 +4,10 @@ export interface Tai {
 
     id: Number,
     name: String,
-    Palabra1: String,
-    Palabra2: String,
-    Imagen1: String,
-    Imagen2: String,
+    palabra1: String,
+    palabra2: String,
+    imagen1: String,
+    imagen2: String,
     concepts: Concept[]
 
 }

@@ -5,6 +5,7 @@ import { Tai } from '../shared/api-tai/app.tai-model';
 import { Concept } from '../shared/api-tai/app.concept-model';
 
 import { ClienteApiOrdersService } from '../shared/api-tai/cliente-api-tai.service';
+import { HttpEventType, HttpResponse } from '@angular/common/http';
 
 
 @Component({
@@ -14,15 +15,17 @@ import { ClienteApiOrdersService } from '../shared/api-tai/cliente-api-tai.servi
 })
 export class TaiEditarComponent implements OnInit {
 
+  selectedFile:File;
+  image:string;
 
   newTai = {
 
     id: 0,
     name: "",
-    Palabra1: "",
-    Palabra2: "",
-    Imagen1: "",
-    Imagen2: "",
+    palabra1: "",
+    palabra2: "",
+    imagen1: "",
+    imagen2: "",
     concepts: []
 
   };
@@ -64,8 +67,6 @@ export class TaiEditarComponent implements OnInit {
     )
   }
 
-  
-  
 
   onImagenSubmit() {
 
@@ -74,6 +75,7 @@ export class TaiEditarComponent implements OnInit {
       name: "",
       status: ""
     };
+
   }
 
   onPalabraSubmit() { 
@@ -85,7 +87,38 @@ export class TaiEditarComponent implements OnInit {
     };
   }
 
+  onChange(event:Event) {
+    const element = event.currentTarget as HTMLInputElement;
+    let fileList: FileList | null = element.files;
+    if (fileList) {
+      console.log("FileUpload -> files", fileList);
+      Array.from(fileList).forEach(file => this.selectedFile = file);
+    }
+  }
+/*
+  selectFile(event: Event) {
+    this.selectedFiles = event.target.files;
+  }
 
+*/
+
+  upload() {
+    this.clienteApiRest.upload(this.selectedFile).subscribe(
+      event => {
+        if (event.type === HttpEventType.UploadProgress) {
+          //this.progress = Math.round(100 * event.loaded / event.total);
+        } else if (event instanceof HttpResponse) {
+          //this.message = event.body.message;
+          //this.fileInfos = this.uploadService.getFiles();
+        }
+      },
+      err => {
+        //this.progress = 0;
+        //this.message = 'Could not upload the file!';
+        //this.currentFile = undefined;
+      });
+    //this.selectedFiles = undefined;
+  }
 
   deleteConcept(i: number) {
     this.tai.concepts.splice(i, 1);

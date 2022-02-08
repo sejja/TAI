@@ -21,7 +21,7 @@
     <div class="row p-4">
         <fieldset class="form-group ps-3 col-sm-5">
             <h5 class="control-label" for="name">Nombre de la CATEGORÍA POSITIVA</h5>
-            <input type="text" class="form-control" [(ngModel)]="tai.Palabra1" placeholder="¿Cual va a ser la palabra asociada a lo positivo?"
+            <input type="text" class="form-control" [(ngModel)]="tai.palabra1" placeholder="¿Cual va a ser la palabra asociada a lo positivo?"
             required name="palabra1"/>
             <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modalCatagoria" 
                 (click)="concept.status = 'Palabra1'"  >
@@ -31,7 +31,7 @@
         <div class="col-sm-1"></div>
         <fieldset class="form-group ms-5 ps-3 col-sm-5">
             <h5 class="control-label" for="firstName">Nombre del PRIMER CONCEPTO</h5>
-            <input type="text" class="form-control" [(ngModel)]="tai.Imagen1" placeholder="¿Cual va a ser el nombre del primer concepto?"
+            <input type="text" class="form-control" [(ngModel)]="tai.imagen1" placeholder="¿Cual va a ser el nombre del primer concepto?"
             required name="imagen1" />
             <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modalConcepto"
                 (click)="concept.status = 'Imagen1'">
@@ -43,7 +43,7 @@
     <div class="row p-4">
         <fieldset class="form-group ps-3 col-sm-5">
             <h5 class="control-label" for="name">Nombre de la CATEGORÍA NEGATIVA</h5>
-            <input type="text" class="form-control" [(ngModel)]="tai.Palabra2" placeholder="¿Cual va a ser la palabra asociada a lo negativo?"
+            <input type="text" class="form-control" [(ngModel)]="tai.palabra2" placeholder="¿Cual va a ser la palabra asociada a lo negativo?"
             required name="palabra2"/>
             <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modalCatagoria"
                 (click)="concept.status = 'Palabra2'">
@@ -53,7 +53,7 @@
         <div class="col-sm-1"></div>
         <fieldset class="form-group ms-5 ps-3 col-sm-5">
             <h5 class="control-label" for="firstName">Nombre del SEGUNDO CONCEPTO</h5>
-            <input type="text" class="form-control" [(ngModel)]="tai.Imagen2" placeholder="¿Cual va a ser el nombre del segundo concepto?"
+            <input type="text" class="form-control" [(ngModel)]="tai.imagen2" placeholder="¿Cual va a ser el nombre del segundo concepto?"
             required name="imagen2"/>
             <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modalConcepto"
                 (click)="concept.status = 'Imagen2'">
@@ -123,7 +123,7 @@
 
 <!-- Modal -->
 <form class="modal fade" id="modalConcepto" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"
-    (ngSubmit)="onImagenSubmit()" #preguntaForm="ngForm">
+    (ngSubmit)="upload()" #preguntaForm="ngForm">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
@@ -134,14 +134,16 @@
                 <div class="row">
                     <h3 class="ms-3">Imagen</h3>
                 </div>
-                <input type="text" class="modal-input form-control row m-3" [(ngModel)]="concept.name" required
-                    name="productName" />
+                <input type="file" class="modal-input form-control row m-3"  accept=".jpg,.png,.jpeg" (change)="onChange($event)">
 
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
                 <button type="submit" class="btn btn-primary" data-bs-dismiss="modal"
-                    [disabled]="!preguntaForm.form.valid">Añadir imagen</button>
+                    >Añadir imagen</button>
+                    <!--
+                        [disabled]="!preguntaForm.form.valid"
+                    -->
             </div>
         </div>
     </div>
