@@ -27,8 +27,8 @@ export class ClienteApiOrdersService {
      * @param id Identificador de un pedido
      * @returns Respuesta http con un pedido
      */
-    getOrder(id: Number): Observable<HttpResponse<Tai>> {
-        let url = ClienteApiOrdersService.BASE_URI + id;
+    getCode(): Observable<HttpResponse<Tai>> {
+        let url = ClienteApiOrdersService.BASE_URI + "code";
         return this.http.get<Tai>(url, { observe: 'response' });
     }
 
@@ -68,12 +68,12 @@ export class ClienteApiOrdersService {
 
     
 
-    upload(file: File): Observable<HttpEvent<any>> {
+    upload(file: File, code: String): Observable<HttpEvent<any>> {
         const formData: FormData = new FormData();
         formData.append('file', file);
-        const req = new HttpRequest('POST', ClienteApiOrdersService.BASE_URI + "/upload", formData, {
+        const req = new HttpRequest('POST', ClienteApiOrdersService.BASE_URI + "/upload/" + code, formData, {
             reportProgress: true,
-            responseType: 'json'
+            responseType: 'text'
         });
         return this.http.request(req);
     }

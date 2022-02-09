@@ -48,6 +48,7 @@ export class TaiEditarComponent implements OnInit {
     private clienteApiRest: ClienteApiOrdersService) { }
 
   ngOnInit(): void {
+    this.getCode();
   }
 
   //Se ejecuta al realizar en el template la acción de enviar el formulario
@@ -57,10 +58,22 @@ export class TaiEditarComponent implements OnInit {
     
   }
 
+  clickCode(){
+    console.log("Code: "+this.tai.code);
+  }
+
+  getCode(){
+    this.clienteApiRest.getCode().subscribe(
+      resp => {
+       this.tai.code = resp.body?.code as String;
+      }
+    );
+  }
+
   // Agrega un nuevo pedido
   addEncuesta() {
     this.files.forEach(file => {
-      this.clienteApiRest.upload(file).subscribe();
+      this.clienteApiRest.upload(file, this.tai.code).subscribe();
     });
     
     this.clienteApiRest.addOrder(this.tai).subscribe(

@@ -76,8 +76,9 @@ public class TaiController {
     private static final Logger logger = Logger.getLogger(TaiController.class.getName());
     private final Path root = Paths.get("uploads");
 
-    @PostMapping("/upload")
-    public ResponseEntity<String> uploadData(@RequestParam("file") MultipartFile file) throws Exception {
+    @PostMapping("/upload/{code}")
+    public ResponseEntity<String> uploadData(@RequestParam("file") MultipartFile file, 
+            @PathVariable String code) throws Exception {
         if (file == null) {
             throw new RuntimeException("You must select the a file for uploading");
         }
@@ -103,8 +104,8 @@ public class TaiController {
         }
 
         try {
-            Files.copy(file.getInputStream(), this.root.resolve(file.getOriginalFilename()));
-            System.out.println(this.root.resolve(file.getOriginalFilename()));
+            Files.copy(file.getInputStream(), this.root.resolve(code+file.getOriginalFilename()));
+            System.out.println(this.root.resolve(code+file.getOriginalFilename()));
         } catch (Exception e) {
             throw new RuntimeException("Could not store the file. Error: " + e.getMessage());
         }
