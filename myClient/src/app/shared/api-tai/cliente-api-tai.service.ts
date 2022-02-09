@@ -17,7 +17,7 @@ export class ClienteApiOrdersService {
      * de la peticion get http
      * @returns Respuesta http con la lista de pedidos
      */
-    getOrders(): Observable<HttpResponse<Tai[]>> {
+    getTais(): Observable<HttpResponse<Tai[]>> {
         let url = ClienteApiOrdersService.BASE_URI;
         return this.http.get<Tai[]>(url, { observe: 'response' });
     }

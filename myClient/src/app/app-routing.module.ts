@@ -4,15 +4,15 @@ import { InicioComponent } from './inicio/inicio.component';
 import { TaiEditarComponent } from './tai-editar/tai-editar.component';
 
 
-import { TestAtencionComponent } from './test-atencion/test-atencion.component';
+import { TaiListarComponent } from './tai-listar/tai-listar.component';
 import { TestTAIComponent } from './test-tai/test-tai.component';
 
 
 const routes: Routes = [
   {path: 'inicio', component:InicioComponent},
-  {path: 'testAtencion', component:TestAtencionComponent},
-  {path: 'testTAI', component:TestTAIComponent},
-  {path: 'testTAI/new', component: TaiEditarComponent },
+  {path: 'tai', component: TaiListarComponent},
+  {path: 'tai/test', component:TestTAIComponent},
+  {path: 'tai/new', component: TaiEditarComponent },
   {path: '**', redirectTo:'inicio', pathMatch:'full'}
 ];
 

@@ -78,7 +78,7 @@ export class TaiEditarComponent implements OnInit {
     
     this.clienteApiRest.addOrder(this.tai).subscribe(
       resp => {
-        this.router.navigate(['testTAI']);
+        this.router.navigate(['tai']);
       },
       err => {
         console.log("Error al editar: " + err.message);

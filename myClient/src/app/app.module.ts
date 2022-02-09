@@ -7,7 +7,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 
-import { TestAtencionComponent } from './test-atencion/test-atencion.component';
+import { TaiListarComponent } from './tai-listar/tai-listar.component';
 import { TestTAIComponent } from './test-tai/test-tai.component';
 import { InicioComponent } from './inicio/inicio.component';
 import { TaiEditarComponent } from './tai-editar/tai-editar.component'; // CLI 
@@ -18,9 +18,9 @@ import { ClienteApiOrdersService } from './shared/api-tai/cliente-api-tai.servic
 @NgModule({
   declarations: [
     AppComponent,
-    TestAtencionComponent,
     TestTAIComponent,
     InicioComponent,
+    TaiListarComponent,
     TaiEditarComponent
   ],
   imports: [
