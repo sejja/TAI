@@ -18,10 +18,13 @@ export class TaiEditarComponent implements OnInit {
   selectedFile:File;
   image:string;
 
+  files: Array<File> =[];
+
   newTai = {
 
     id: 0,
     name: "",
+    code: "",
     palabra1: "",
     palabra2: "",
     imagen1: "",
@@ -56,6 +59,10 @@ export class TaiEditarComponent implements OnInit {
 
   // Agrega un nuevo pedido
   addEncuesta() {
+    this.files.forEach(file => {
+      this.clienteApiRest.upload(file).subscribe();
+    });
+    
     this.clienteApiRest.addOrder(this.tai).subscribe(
       resp => {
         this.router.navigate(['testTAI']);
@@ -70,11 +77,6 @@ export class TaiEditarComponent implements OnInit {
 
   onImagenSubmit() {
 
-    this.tai.concepts.push(this.concept);
-    this.concept = <Concept>{
-      name: "",
-      status: ""
-    };
 
   }
 
@@ -103,20 +105,13 @@ export class TaiEditarComponent implements OnInit {
 */
 
   upload() {
-    this.clienteApiRest.upload(this.selectedFile).subscribe(
-      event => {
-        if (event.type === HttpEventType.UploadProgress) {
-          //this.progress = Math.round(100 * event.loaded / event.total);
-        } else if (event instanceof HttpResponse) {
-          //this.message = event.body.message;
-          //this.fileInfos = this.uploadService.getFiles();
-        }
-      },
-      err => {
-        //this.progress = 0;
-        //this.message = 'Could not upload the file!';
-        //this.currentFile = undefined;
-      });
+    this.files.push(this.selectedFile);
+    this.concept.name = this.selectedFile.name;
+    this.tai.concepts.push(this.concept);
+    this.concept = <Concept>{
+      name: "",
+      status: ""
+    };
     //this.selectedFiles = undefined;
   }
 

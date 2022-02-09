@@ -78,8 +78,8 @@ export class ClienteApiOrdersService {
         return this.http.request(req);
     }
 
-    getFiles(): Observable<any> {
+    /*getFiles(): Observable<any> {
         return this.http.get(ClienteApiOrdersService.BASE_URI + "/files");
-    }
+    }*/
 
 }

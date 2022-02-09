@@ -25,6 +25,8 @@ public class Tai {
     private Integer id;
     @Size(max = 50)
     private String name;
+    @Size(max = 10)
+    private String code;
     @Size(max = 50)
     private String palabra1;
     @Size(max = 50) // si no se pone esta anotación lo creo por defecto con size=255
@@ -39,7 +41,7 @@ public class Tai {
 
     private Date created_at;
 
-    Tai() {
+    public Tai() {
         this.created_at = Date.valueOf(LocalDate.now());
     }
 
@@ -64,6 +66,14 @@ public class Tai {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getCode() {
+        return this.code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
     }
 
     public String getPalabra1() {

@@ -113,43 +113,24 @@ public class TaiController {
     }
 
     
-
-
-
-
-
-    /**
-     * Crea una nuevo pedido apartir de una paricion POST a /orders
-     * mediante el json recibido
-     * 
-     * @param newTai
-     * @return
-  
-    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, value = "/image")
-    public String newImage(@RequestParam("file") MultipartFile file) {
-
-        if(file.isEmpty()){
-            return "Archivo no seleccionado";
+    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE, value = { "/code" })
+    public Tai getCode() {
+        Tai newTai = new Tai();
+        newTai.setCode(generateCode());
+        while(pedidoRepository.existsByCode(newTai.getCode())){
+            newTai.setCode(generateCode());
         }
-        try{
-            uploadFileService.saveFile(file);
-        }catch(IOException e){
-            e.printStackTrace();
-        }
-        return "archivo subido";
+        return newTai;
     }
-    
-    /**
-     * Devuelve el pedido con id param{id} apartir de una
-     * peticion GET a /orders/{id}
-     * 
-     * @param id
-     * @return
-     */
-    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE, value = { "/{id}" })
-    public Tai getPedidoById(@PathVariable int id) {
-        Tai pedido = pedidoRepository.findById(id).orElseThrow(() -> new TaiException("Sin resultado"));
-        return pedido;
+
+    private String generateCode() {
+        String charSet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        String code = "";
+        int CODELENGH = 4;
+        for (int i = 0; i < CODELENGH; i++) {
+            code = code + charSet.charAt((int) (charSet.length() * Math.random()));
+        }
+        return code;
     }
 
     /**

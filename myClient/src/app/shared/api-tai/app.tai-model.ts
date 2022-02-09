@@ -4,6 +4,7 @@ export interface Tai {
 
     id: Number,
     name: String,
+    code: String,
     palabra1: String,
     palabra2: String,
     imagen1: String,
