@@ -16,13 +16,16 @@ import { Estado } from '../shared/api-tai/app.estado-model';
 })
 export class TestTAIComponent implements OnInit {
 
+  keySig = " ";
+  keyIzq = "f";
+  keyDch = "j";
 
-  ifase:any;
-  nfase:any;
+  ifase = 0;
+  nfase = 9;
+  ironda = 0;
+  nronda = 5;
 
   id = 0;
-  i = 0;
-  j = 0;
 
   imagenes1: Array<Concept> = [];
   imagenes2: Array<Concept> = [];
@@ -30,14 +33,14 @@ export class TestTAIComponent implements OnInit {
   palabras2: Array<Concept> = [];
 
   tai: Tai;
+
+  conceptTest: Concept;
   
 
   constructor(private ruta: ActivatedRoute, private router: Router,
     private clienteApiRest: ClienteApiOrdersService) { }
 
   ngOnInit() {
-    this.ifase = 0;
-    this.nfase = 9;
 
     // Elimina los query params.
     this.router.navigate([]);
@@ -71,6 +74,7 @@ export class TestTAIComponent implements OnInit {
           this.imagenes1 = [];
           this.imagenes2 = [];
           this.getLists();
+          this.randomPalabra();
         } 
       }
     );
@@ -107,30 +111,99 @@ export class TestTAIComponent implements OnInit {
 
   }
 
+  randomIntFromInterval(min: any, max: any): number { // min and max included 
+    return Math.floor(Math.random() * (max - min + 1) + min);
+  }
+
+  randomConcept(){
+    this.conceptTest;
+  }
+
+  randomImagen() {
+    let aux = this.imagenes1.concat(this.imagenes2);
+    this.conceptTest = aux[this.randomIntFromInterval(0,aux.length-1)]
+  }
+  randomPalabra() {
+    let aux = this.palabras1.concat(this.palabras2);
+    this.conceptTest = aux[this.randomIntFromInterval(0, aux.length-1)]
+  }
+
 
   @HostListener('document:keypress', ['$event'])
   handleKeyboardEvent(event: KeyboardEvent) { 
 
-    console.log("Evento --> " + this.ifase);
-    console.log("NAME --> " + this.tai.concepts[0].name);
+    console.log("Fase --> " + this.ifase);
+    console.log("Ronda --> " + this.ironda);
+
     
-    if (event.key == " " && event.target == document.body) {
+    if (event.key == this.keySig && event.target == document.body) {
       event.preventDefault();
       if (this.ifase == 5){//reonocimento de imagenes
 
-        this.ifase = (this.ifase + 1) % this.nfase;
+        if (this.ironda == this.nronda){
+          this.ifase = (this.ifase + 1) % this.nfase;
+          this.ironda = 0
+        }
       } else if (this.ifase == 6) {//reonocimento de palabras
 
-        this.ifase = (this.ifase + 1) % this.nfase;
+        if (this.ironda == this.nronda) {
+          this.ifase = (this.ifase + 1) % this.nfase;
+          this.ironda = 0
+        }
       } else if (this.ifase == 7) {//test 1
 
-        this.ifase = (this.ifase + 1) % this.nfase;
+        if (this.ironda == this.nronda) {
+          this.ifase = (this.ifase + 1) % this.nfase;
+          this.ironda = 0
+        }
       } else if (this.ifase == 8) {//test 2
 
-        this.ifase = (this.ifase + 1) % this.nfase;
+        if (this.ironda == this.nronda) {
+          this.ifase = (this.ifase + 1) % this.nfase;
+          this.ironda = 0
+        }
       } else{
         
         this.ifase = (this.ifase + 1) % this.nfase;
+      }
+    }
+
+    if (event.key == this.keyIzq && event.target == document.body) {
+      if (this.ifase == 5 && this.ironda < this.nronda) {//es correcta da la de izq en fase 5
+        this.ironda = (this.ironda + 1);
+
+      }
+      if (this.ifase == 6 && this.ironda < this.nronda) {//es correcta da la de izq en fase 6
+        this.ironda = (this.ironda + 1);
+        this.randomPalabra();
+
+      }
+      if (this.ifase == 7 && this.ironda < this.nronda) {//es correcta da la de izq en fase 7
+        this.ironda = (this.ironda + 1);
+
+      }
+      if (this.ifase == 8 && this.ironda < this.nronda) {//es correcta da la de izq en fase 8
+        this.ironda = (this.ironda + 1);
+
+      }
+    }
+
+    if (event.key == this.keyDch && event.target == document.body) {
+      if (this.ifase == 5 && this.ironda < this.nronda) {//es correcta da la de izq en fase 5
+        this.ironda = (this.ironda + 1);
+
+      }
+      if (this.ifase == 6 && this.ironda < this.nronda) {//es correcta da la de izq en fase 6
+        this.ironda = (this.ironda + 1);
+
+      }
+      if (this.ifase == 7 && this.ironda < this.nronda) {//es correcta da la de izq en fase 7
+        this.ironda = (this.ironda + 1);
+
+      }
+      if (this.ifase == 8 && this.ironda < this.nronda) {//es correcta da la de izq en fase 8
+        this.ironda = (this.ironda + 1);
+
       }
     }
 
