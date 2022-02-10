@@ -4,6 +4,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Optional;
 
 import com.uva.tai.exception.TaiException;
 import com.uva.tai.model.Concepto;
@@ -143,8 +144,17 @@ public class TaiController {
      * @return
      */
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<Tai> getPedidos() {
+    public List<Tai> getTais() {
         List<Tai> list = pedidoRepository.findAll();
         return list;
+    }
+
+    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE, value = "/{id}")
+    public Optional<Tai> getTai(@PathVariable int id) {
+        Optional<Tai> tai = null;
+        if(pedidoRepository.existsById(id)){
+            tai = pedidoRepository.findById(id);
+        }
+        return tai;
     }
 }

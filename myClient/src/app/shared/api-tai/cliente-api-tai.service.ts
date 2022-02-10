@@ -22,6 +22,12 @@ export class ClienteApiOrdersService {
         return this.http.get<Tai[]>(url, { observe: 'response' });
     }
 
+    getTai(id:number): Observable<HttpResponse<Tai>> {
+        let url = ClienteApiOrdersService.BASE_URI + id;
+        return this.http.get<Tai>(url, { observe: 'response' });
+    }
+
+
     /**
      * Obtiene una respuesta http con un pedido por su identificador
      * @param id Identificador de un pedido
