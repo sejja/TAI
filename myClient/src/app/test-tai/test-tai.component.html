@@ -60,17 +60,8 @@
     </div>
 
     <div class="row">
-      <div class="col-sm-4 my-2 bg-secondary">
-        <img class="card-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/Coca-Cola_bottle_cap.svg/2048px-Coca-Cola_bottle_cap.svg.png" alt="CocaCola">
-      </div>
-      <div class="col-sm-4 my-2 bg-secondary">
-        <img class="card-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/Coca-Cola_bottle_cap.svg/2048px-Coca-Cola_bottle_cap.svg.png" alt="CocaCola">
-      </div>
-      <div class="col-sm-4 my-2 bg-secondary">
-        <img class="card-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/Coca-Cola_bottle_cap.svg/2048px-Coca-Cola_bottle_cap.svg.png" alt="CocaCola">
-      </div>
-      <div class="col-sm-4 my-2 bg-secondary">
-        <img class="card-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/Coca-Cola_bottle_cap.svg/2048px-Coca-Cola_bottle_cap.svg.png" alt="CocaCola">
+      <div class="col-sm-4 my-2 bg-secondary" *ngFor="let imagen of imagenes1; let i = index">
+        <img class="card-img" src={{getUrl(imagen)}} alt={{imagen.name}}>
       </div>
     </div>
 
@@ -87,17 +78,8 @@
     </div>
 
     <div class="row">
-      <div class="col-sm-4 my-2 bg-secondary">
-        <img class="card-img" src="https://senorcreativo.com/wp-content/uploads/2008/12/pepsi-historia-logotipo-1482x635.png" alt="Pepsi">
-      </div>
-      <div class="col-sm-4 my-2 bg-secondary">
-        <img class="card-img" src="https://senorcreativo.com/wp-content/uploads/2008/12/pepsi-historia-logotipo-1482x635.png" alt="Pepsi">
-      </div>
-      <div class="col-sm-4 my-2 bg-secondary">
-        <img class="card-img" src="https://senorcreativo.com/wp-content/uploads/2008/12/pepsi-historia-logotipo-1482x635.png" alt="Pepsi">
-      </div>
-      <div class="col-sm-4 my-2 bg-secondary">
-        <img class="card-img" src="https://senorcreativo.com/wp-content/uploads/2008/12/pepsi-historia-logotipo-1482x635.png" alt="Pepsi">
+      <div class="col-sm-4 my-2 bg-secondary" *ngFor="let imagen of imagenes2; let i = index">
+        <img class="card-img" src={{getUrl(imagen)}} alt={{imagen.name}}>
       </div>
     </div>
 
@@ -115,17 +97,8 @@
     </div>
 
     <div class="row">
-      <div class="col-sm-4 my-2 bg-secondary">
-        <h2>Barata</h2>
-      </div>
-      <div class="col-sm-4 my-2 bg-secondary">
-        <h2>Rica</h2>
-      </div>
-      <div class="col-sm-4 my-2 bg-secondary">
-        <h2>Refrescante</h2>
-      </div>
-      <div class="col-sm-4 my-2 bg-secondary">
-        <h2>Estimulante</h2>
+      <div class="col-sm-4 my-2 bg-secondary" *ngFor="let palabra of palabras1; let i = index">
+        <h2>{{palabra.name}}</h2>
       </div>
     </div>
 
@@ -142,17 +115,8 @@
     </div>
 
     <div class="row">
-      <div class="col-sm-4 my-2 bg-secondary">
-        <h2>Cara</h2>
-      </div>
-      <div class="col-sm-4 my-2 bg-secondary">
-        <h2>Insipida</h2>
-      </div>
-      <div class="col-sm-4 my-2 bg-secondary">
-        <h2>Desagradable</h2>
-      </div>
-      <div class="col-sm-4 my-2 bg-secondary">
-        <h2>Mala</h2>
+      <div class="col-sm-4 my-2 bg-secondary" *ngFor="let palabra of palabras2; let i = index">
+        <h2>{{palabra.name}}</h2>
       </div>
     </div>
 
@@ -172,7 +136,7 @@
         <h2>{{tai.imagen2}}</h2>
       </div>
       <div class="offset-3 col-sm-6 my-2 bg-secondary">
-        <img class="img-fluid img-thumbnail" src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/Coca-Cola_bottle_cap.svg/2048px-Coca-Cola_bottle_cap.svg.png" alt="CocaCola">
+        <img class="card-img" src={{getUrl(imagenes1[0])}} alt={{imagenes1[0].name}}>
       </div>
     </div>
   </div>
@@ -191,7 +155,7 @@
       </div>
 
       <div class="col-sm-12 my-2 bg-secondary">
-        <h2>Mala</h2>
+        <h2>{{palabras1[0].name}}</h2>
       </div>
 
     </div>
@@ -217,7 +181,7 @@
       </div>
       -->
       <div class="offset-3 col-sm-6 my-2 bg-secondary">
-        <img class="img-fluid img-thumbnail" src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/Coca-Cola_bottle_cap.svg/2048px-Coca-Cola_bottle_cap.svg.png" alt="CocaCola">
+        <img class="card-img" src={{getUrl(imagenes1[0])}} alt={{imagenes1[0].name}}>
       </div>
     </div>
   </div>
@@ -238,14 +202,10 @@
       </div>
 
       <div class="col-sm-12 my-2 bg-secondary">
-        <h2>mala</h2>
+        <h2>{{palabras1[0].name}}</h2>
       </div>
 
     </div>
   </div>
 </section>
-
-
-
-
 </body>

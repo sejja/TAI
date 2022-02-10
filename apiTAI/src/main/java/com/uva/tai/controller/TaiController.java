@@ -75,7 +75,7 @@ public class TaiController {
 
 
     private static final Logger logger = Logger.getLogger(TaiController.class.getName());
-    private final Path root = Paths.get("uploads");
+    private final Path root = Paths.get("apiTAI/src/main/resources/uploads");
 
     @PostMapping("/upload/{code}")
     public ResponseEntity<String> uploadData(@RequestParam("file") MultipartFile file, 
