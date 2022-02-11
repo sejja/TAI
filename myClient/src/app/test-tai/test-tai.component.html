@@ -35,7 +35,7 @@
 
 <!-- Test TAI -->
 
-<!-- FASE 1-->
+<!-- FASE 0-->
   <section class="bg-primary bg-secondary text-white" [hidden]="ifase != 0">
     <div class="container px-4 text-center">    
       <div class="row">
@@ -43,14 +43,14 @@
           <h2>Instruciones</h2>
           <p>Mantenga las menos en el telado sobre las tecla F y J ina serie de impagens que tendré que clasificar
             despues en lugar de impagenes clasificará palabras, finarlmete se le solicitara que clasifique
-            tanto imagens como palabras
+            tanto imagenes como palabras
           </p>
         </div>
       </div>
     </div>
   </section>
 
-<!-- FASE 2-->
+<!-- FASE 1-->
 <section class="bg-primary bg-secondary text-white" [hidden]="ifase != 1">
   <div class="container px-4 text-center">    
     <div class="row">
@@ -68,7 +68,7 @@
   </div>
 </section>
 
-<!-- FASE 3-->
+<!-- FASE 2-->
 <section class="bg-primary bg-secondary text-white" [hidden]="ifase != 2">
   <div class="container px-4 text-center">    
     <div class="row">
@@ -87,7 +87,7 @@
 </section>
 
 
-<!-- FASE 4-->
+<!-- FASE 3-->
 <section class="bg-primary bg-secondary text-white" [hidden]="ifase != 3">
   <div class="container px-4 text-center">    
     <div class="row">
@@ -105,7 +105,7 @@
   </div>
 </section>
 
-<!-- FASE 5-->
+<!-- FASE 4-->
 <section class="bg-primary bg-secondary text-white" [hidden]="ifase != 4">
   <div class="container px-4 text-center">    
     <div class="row">
@@ -123,10 +123,36 @@
   </div>
 </section>
 
+<!--Instrucciones cartegorizar Imagenes-->
+<!-- FASE 5-->
+<section class="bg-primary bg-secondary text-white" [hidden]="ifase != 5">
+  <div class="container px-4 text-center">
+    <div class="row">
+      <div class="col-sm-6 bg-secondary">
+        <h2>{{tai.imagen1}}</h2>
+        <p>Clasificar con F</p>
+      </div>
+      <div class="col-sm-6 bg-secondary">
+        <h2>{{tai.imagen2}}</h2>
+        <p>Clasificar con J</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12 my-2 bg-secondary">
+        <h2>Instruciones</h2>
+        <p>Mantenga las menos en el telado sobre las tecla F y J ina serie de impagens que tendré que clasificar
+          despues en lugar de impagenes clasificará palabras, finarlmete se le solicitara que clasifique
+          tanto imagens como palabras
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
 
 <!--cartegorizar Imagenes-->
 <!-- FASE 6-->
-<section class="bg-primary bg-secondary text-white" [hidden]="ifase != 5">
+<section class="bg-primary bg-secondary text-white" [hidden]="ifase != 6">
   <div class="container px-4 text-center">    
     <div class="row">
       <div class="col-sm-6 bg-secondary">
@@ -136,15 +162,41 @@
         <h2>{{tai.imagen2}}</h2>
       </div>
       <div class="offset-3 col-sm-6 my-2 bg-secondary">
-        <img class="card-img" src={{getUrl(imagenes1[0])}} alt={{imagenes1[0].name}}>
+        <img class="card-img" src={{getUrl(conceptTest)}} alt={{conceptTest.name}}>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!--Instrucciones cartegorizar palabras-->
+<!-- FASE 7-->
+<section class="bg-primary bg-secondary text-white" [hidden]="ifase != 7">
+  <div class="container px-4 text-center">
+    <div class="row">
+      <div class="col-sm-6 bg-secondary">
+        <h2>{{tai.palabra1}}</h2>
+        <p>Clasificar con F</p>
+      </div>
+      <div class="col-sm-6 bg-secondary">
+        <h2>{{tai.palabra2}}</h2>
+        <p>Clasificar con J</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12 my-2 bg-secondary">
+        <h2>Instruciones</h2>
+        <p>Mantenga las menos en el telado sobre las tecla F y J ina serie de impagens que tendré que clasificar
+          despues en lugar de impagenes clasificará palabras, finarlmete se le solicitara que clasifique
+          tanto imagens como palabras
+        </p>
       </div>
     </div>
   </div>
 </section>
 
 <!--cartegorizar Palabras-->
-<!-- FASE 7-->
-<section class="bg-primary bg-secondary text-white" [hidden]="ifase != 6">
+<!-- FASE 8-->
+<section class="bg-primary bg-secondary text-white" [hidden]="ifase != 8">
   <div class="container px-4 text-center">    
     <div class="row">
       <div class="col-sm-6 bg-secondary">
@@ -162,10 +214,10 @@
   </div>
 </section>
 
-<!--Test 1-->
-<!-- FASE 8-->
-<section class="bg-primary bg-secondary text-white" [hidden]="ifase != 7">
-  <div class="container px-4 text-center">    
+<!--Instrucciones test 1-->
+<!-- FASE 9-->
+<section class="bg-primary bg-secondary text-white" [hidden]="ifase != 9">
+  <div class="container px-4 text-center">
     <div class="row">
       <div class="col-sm-6 bg-secondary">
         <h2>{{tai.imagen1}}</h2>
@@ -175,21 +227,175 @@
         <h2>{{tai.imagen2}}</h2>
         <h2>{{tai.palabra2}}</h2>
       </div>
-      <!--
+    </div>
+    <div class="row">
       <div class="col-sm-12 my-2 bg-secondary">
-        <h2>Mala</h2>
-      </div>
-      -->
-      <div class="offset-3 col-sm-6 my-2 bg-secondary">
-        <img class="card-img" src={{getUrl(imagenes1[0])}} alt={{imagenes1[0].name}}>
+        <h2>Instruciones</h2>
+        <p>Mantenga las menos en el telado sobre las tecla F y J ina serie de impagens que tendré que clasificar
+          despues en lugar de impagenes clasificará palabras, finarlmete se le solicitara que clasifique
+          tanto imagens como palabras
+        </p>
       </div>
     </div>
   </div>
 </section>
 
-<!--Test 2-->
-<!-- FASE 9-->
-<section class="bg-primary bg-secondary text-white" [hidden]="ifase != 8">
+<!--Instrucciones test 1-->
+<!-- FASE 11-->
+<section class="bg-primary bg-secondary text-white" [hidden]="ifase != 11">
+  <div class="container px-4 text-center">
+    <div class="row">
+      <div class="col-sm-6 bg-secondary">
+        <h2>{{tai.imagen1}}</h2>
+        <h2>{{tai.palabra1}}</h2>
+      </div>
+      <div class="col-sm-6 bg-secondary">
+        <h2>{{tai.imagen2}}</h2>
+        <h2>{{tai.palabra2}}</h2>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12 my-2 bg-secondary">
+        <h2>Instruciones</h2>
+        <p>Mantenga las menos en el telado sobre las tecla F y J ina serie de impagens que tendré que clasificar
+          despues en lugar de impagenes clasificará palabras, finarlmete se le solicitara que clasifique
+          tanto imagens como palabras
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!--Test 1-->
+<!-- FASE 10 y 12-->
+<section class="bg-primary bg-secondary text-white" [hidden]="ifase != 10 && ifase != 12">
+  <div class="container px-4 text-center">    
+    <div class="row">
+      <div class="col-sm-6 bg-secondary">
+        <h2>{{tai.imagen1}}</h2>
+        <h2>{{tai.palabra1}}</h2>
+      </div>
+      <div class="col-sm-6 bg-secondary">
+        <h2>{{tai.imagen2}}</h2>
+        <h2>{{tai.palabra2}}</h2>
+      </div>
+
+      <div *ngIf="conceptTest.status == 'Palabra1' || conceptTest.status == 'Palabra2'; then thenBlock else elseBlock"></div>
+      <ng-template #thenBlock>
+        <div class="col-sm-12 my-2 bg-secondary">
+          <h2>{{conceptTest.name}}</h2>
+        </div>
+      </ng-template>
+      <ng-template #elseBlock>
+        <div class="offset-3 col-sm-6 my-2 bg-secondary">
+          <img class="card-img" src={{getUrl(conceptTest)}} alt={{conceptTest.name}}>
+        </div>
+      </ng-template>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- istruccions cambio de imagenes -->
+<!--Instrucciones cartegorizar Imagenes-->
+<!-- FASE 13-->
+<section class="bg-primary bg-secondary text-white" [hidden]="ifase != 13">
+  <div class="container px-4 text-center">
+    <div class="row">
+      <div class="col-sm-6 bg-secondary">
+        <h2>{{tai.imagen2}}</h2>
+      </div>
+      <div class="col-sm-6 bg-secondary">
+        <h2>{{tai.imagen1}}</h2>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12 my-2 bg-secondary">
+        <h2>Instruciones</h2>
+        <p>Mantenga las menos en el telado sobre las tecla F y J ina serie de impagens que tendré que clasificar
+          despues en lugar de impagenes clasificará palabras, finarlmete se le solicitara que clasifique
+          tanto imagens como palabras
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!--cartegorizar Imagenes-->
+<!-- FASE 14-->
+<section class="bg-primary bg-secondary text-white" [hidden]="ifase != 14">
+  <div class="container px-4 text-center">
+    <div class="row">
+      <div class="col-sm-6 bg-secondary">
+        <h2>{{tai.imagen2}}</h2>
+      </div>
+      <div class="col-sm-6 bg-secondary">
+        <h2>{{tai.imagen1}}</h2>
+      </div>
+      <div class="offset-3 col-sm-6 my-2 bg-secondary">
+        <img class="card-img" src={{getUrl(conceptTest)}} alt={{conceptTest.name}}>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!--Instrucciones reconocimieto 2-->
+<!-- FASE 15-->
+<section class="bg-primary bg-secondary text-white" [hidden]="ifase != 15">
+  <div class="container px-4 text-center">
+    <div class="row">
+      <div class="col-sm-6 bg-secondary">
+        <h2>{{tai.imagen2}}</h2>
+        <h2>{{tai.palabra1}}</h2>
+      </div>
+      <div class="col-sm-6 bg-secondary">
+        <h2>{{tai.imagen1}}</h2>
+        <h2>{{tai.palabra2}}</h2>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12 my-2 bg-secondary">
+        <h2>Instruciones</h2>
+        <p>Mantenga las menos en el telado sobre las tecla F y J ina serie de impagens que tendré que clasificar
+          despues en lugar de impagenes clasificará palabras, finarlmete se le solicitara que clasifique
+          tanto imagens como palabras
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!--Instrucciones test 2-->
+<!-- FASE 17-->
+<section class="bg-primary bg-secondary text-white" [hidden]="ifase != 17">
+  <div class="container px-4 text-center">
+    <div class="row">
+      <div class="col-sm-6 bg-secondary">
+        <h2>{{tai.imagen2}}</h2>
+        <h2>{{tai.palabra1}}</h2>
+      </div>
+      <div class="col-sm-6 bg-secondary">
+        <h2>{{tai.imagen1}}</h2>
+        <h2>{{tai.palabra2}}</h2>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12 my-2 bg-secondary">
+        <h2>Instruciones</h2>
+        <p>Mantenga las menos en el telado sobre las tecla F y J ina serie de impagens que tendré que clasificar
+          despues en lugar de impagenes clasificará palabras, finarlmete se le solicitara que clasifique
+          tanto imagens como palabras
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!--test 2-->
+<!-- FASE 16 y 18-->
+<section class="bg-primary bg-secondary text-white" [hidden]="ifase != 16 && ifase != 18">
   <div class="container px-4 text-center">    
     <div class="row">
       <div class="col-sm-6 bg-secondary">
@@ -201,9 +407,17 @@
         <h2>{{tai.palabra2}}</h2>
       </div>
 
-      <div class="col-sm-12 my-2 bg-secondary">
-        <h2>{{palabras1[0].name}}</h2>
-      </div>
+      <div *ngIf="conceptTest.status == 'Palabra1' || conceptTest.status == 'Palabra2'; then thenBlock else elseBlock"></div>
+      <ng-template #thenBlock>
+        <div class="col-sm-12 my-2 bg-secondary">
+          <h2>{{conceptTest.name}}</h2>
+        </div>
+      </ng-template>
+      <ng-template #elseBlock>
+        <div class="offset-3 col-sm-6 my-2 bg-secondary">
+          <img class="card-img" src={{getUrl(conceptTest)}} alt={{conceptTest.name}}>
+        </div>
+      </ng-template>
 
     </div>
   </div>

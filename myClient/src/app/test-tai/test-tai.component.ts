@@ -21,7 +21,7 @@ export class TestTAIComponent implements OnInit {
   keyDch = "j";
 
   ifase = 0;
-  nfase = 9;
+  nfase = 17;
   ironda = 0;
   nronda = 5;
 
@@ -135,7 +135,9 @@ export class TestTAIComponent implements OnInit {
     console.log("Fase --> " + this.ifase);
     console.log("Ronda --> " + this.ironda);
 
-    
+    this.ifase = (this.ifase + 1) % this.nfase;
+
+/*    
     if (event.key == this.keySig && event.target == document.body) {
       event.preventDefault();
       if (this.ifase == 5){//reonocimento de imagenes
@@ -187,26 +189,8 @@ export class TestTAIComponent implements OnInit {
 
       }
     }
-
-    if (event.key == this.keyDch && event.target == document.body) {
-      if (this.ifase == 5 && this.ironda < this.nronda) {//es correcta da la de izq en fase 5
-        this.ironda = (this.ironda + 1);
-
-      }
-      if (this.ifase == 6 && this.ironda < this.nronda) {//es correcta da la de izq en fase 6
-        this.ironda = (this.ironda + 1);
-
-      }
-      if (this.ifase == 7 && this.ironda < this.nronda) {//es correcta da la de izq en fase 7
-        this.ironda = (this.ironda + 1);
-
-      }
-      if (this.ifase == 8 && this.ironda < this.nronda) {//es correcta da la de izq en fase 8
-        this.ironda = (this.ironda + 1);
-
-      }
-    }
-
+    
+*/
   }
 
 }
