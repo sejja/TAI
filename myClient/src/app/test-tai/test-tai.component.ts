@@ -21,7 +21,7 @@ export class TestTAIComponent implements OnInit {
   keyDch = "j";
 
   ifase = 0;
-  nfase = 17;
+  nfase = 19;
   ironda = 0;
   nronda = 5;
 
@@ -116,7 +116,10 @@ export class TestTAIComponent implements OnInit {
   }
 
   randomConcept(){
-    this.conceptTest;
+    let aux1 = this.imagenes1.concat(this.imagenes2);
+    let aux2 = this.palabras1.concat(this.palabras2);
+    let aux3 = aux1.concat(aux2);
+    this.conceptTest = aux3[this.randomIntFromInterval(0, aux3.length - 1)]
   }
 
   randomImagen() {
@@ -135,62 +138,69 @@ export class TestTAIComponent implements OnInit {
     console.log("Fase --> " + this.ifase);
     console.log("Ronda --> " + this.ironda);
 
-    this.ifase = (this.ifase + 1) % this.nfase;
 
-/*    
     if (event.key == this.keySig && event.target == document.body) {
       event.preventDefault();
-      if (this.ifase == 5){//reonocimento de imagenes
-
-        if (this.ironda == this.nronda){
-          this.ifase = (this.ifase + 1) % this.nfase;
-          this.ironda = 0
-        }
-      } else if (this.ifase == 6) {//reonocimento de palabras
-
-        if (this.ironda == this.nronda) {
-          this.ifase = (this.ifase + 1) % this.nfase;
-          this.ironda = 0
-        }
-      } else if (this.ifase == 7) {//test 1
-
-        if (this.ironda == this.nronda) {
-          this.ifase = (this.ifase + 1) % this.nfase;
-          this.ironda = 0
-        }
-      } else if (this.ifase == 8) {//test 2
-
-        if (this.ironda == this.nronda) {
-          this.ifase = (this.ifase + 1) % this.nfase;
-          this.ironda = 0
-        }
-      } else{
-        
+      if (this.ifase < 5){
+        this.ifase = (this.ifase + 1) % this.nfase;
+      } else if (this.ifase == 5) {
+        this.randomImagen();
+        this.ifase = (this.ifase + 1) % this.nfase;
+      } else if (this.ifase == 7) {
+        this.randomPalabra();
+        this.ifase = (this.ifase + 1) % this.nfase;
+      } else if (this.ifase == 9 || this.ifase == 11) {
+        this.randomConcept();
+        this.ifase = (this.ifase + 1) % this.nfase;
+      } else if (this.ifase == 13) {
+        this.randomImagen();
+        this.ifase = (this.ifase + 1) % this.nfase;
+      } else if (this.ifase == 15 || this.ifase == 17) {
+        this.randomConcept();
         this.ifase = (this.ifase + 1) % this.nfase;
       }
     }
 
+
+
     if (event.key == this.keyIzq && event.target == document.body) {
-      if (this.ifase == 5 && this.ironda < this.nronda) {//es correcta da la de izq en fase 5
-        this.ironda = (this.ironda + 1);
-
-      }
-      if (this.ifase == 6 && this.ironda < this.nronda) {//es correcta da la de izq en fase 6
-        this.ironda = (this.ironda + 1);
+      if (this.ifase == 6){
+        this.randomImagen();
+        this.ironda++;
+        if (this.ironda == this.nronda) {
+          this.ifase = (this.ifase + 1) % this.nfase;
+          this.ironda = 0;
+        }
+      } else if (this.ifase == 8) {
         this.randomPalabra();
-
-      }
-      if (this.ifase == 7 && this.ironda < this.nronda) {//es correcta da la de izq en fase 7
-        this.ironda = (this.ironda + 1);
-
-      }
-      if (this.ifase == 8 && this.ironda < this.nronda) {//es correcta da la de izq en fase 8
-        this.ironda = (this.ironda + 1);
-
+        this.ironda++;
+        if (this.ironda == this.nronda) {
+          this.ifase = (this.ifase + 1) % this.nfase;
+          this.ironda = 0;
+        }
+      } else if (this.ifase == 10 || this.ifase == 12) {
+        this.randomConcept();
+        this.ironda++;
+        if (this.ironda == this.nronda) {
+          this.ifase = (this.ifase + 1) % this.nfase;
+          this.ironda = 0;
+        }
+      } else if (this.ifase == 14) {
+        this.randomImagen();
+        this.ironda++;
+        if (this.ironda == this.nronda) {
+          this.ifase = (this.ifase + 1) % this.nfase;
+          this.ironda = 0;
+        }
+      } else if (this.ifase == 16 || this.ifase == 18) {
+        this.randomConcept();
+        this.ironda++;
+        if (this.ironda == this.nronda) {
+          this.ifase = (this.ifase + 1) % this.nfase;
+          this.ironda = 0;
+        }
       }
     }
-    
-*/
   }
 
 }
