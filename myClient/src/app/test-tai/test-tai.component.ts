@@ -5,6 +5,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Tai } from '../shared/api-tai/app.tai-model';
 import { Concept } from '../shared/api-tai/app.concept-model';
 
+import { Response } from '../shared/api-tai/app.response-model';
+import { Element } from '../shared/api-tai/app.element-model';
+
 import { ClienteApiOrdersService } from '../shared/api-tai/cliente-api-tai.service';
 import { HttpEventType, HttpResponse } from '@angular/common/http';
 
@@ -23,9 +26,9 @@ export class TestTAIComponent implements OnInit {
   keyDch = "j";
 
   ifase = 0;
-  nfase = 19;
+  nfase = 20;//son 19 reaes
   ironda = 0;
-  nronda = 20;
+  nronda = 5;//son 20 reales
 
   id = 0;
 
@@ -41,6 +44,26 @@ export class TestTAIComponent implements OnInit {
 
   init:Date = new Date();
   end: Date = new Date();
+
+  newResponse = {
+    id: 0,
+    codeEnc: "",
+    idEnc: 0,
+    resp: []
+
+  };
+
+  response = this.newResponse as Response;  // Hay que darle valor inicial, si no salta una
+
+  newElement = {
+
+    tipo: "",
+    correcta: true,
+    tiempo: 0
+
+  };
+
+  element = this.newElement as Element;  // Hay que darle valor inicial, si no salta una
   
 
   constructor(private ruta: ActivatedRoute, private router: Router,
@@ -215,6 +238,13 @@ export class TestTAIComponent implements OnInit {
         }
       } else if ((this.ifase == 10 || this.ifase == 12) && 
         (this.conceptTest.status == "Palabra1" || this.conceptTest.status == "Imagen1")) {
+
+        this.element.correcta = this.error;
+        this.element.tiempo = this.end.getTime() - this.init.getTime();
+        this.element.tipo = 'Test1';
+        this.response.resp.push(this.element);
+        this.element = this.newElement as Element;
+
         this.timeLeft = this.time;
         this.error = false;
         this.randomConcept();
@@ -234,6 +264,13 @@ export class TestTAIComponent implements OnInit {
         }
       } else if ((this.ifase == 16 || this.ifase == 18) && 
         (this.conceptTest.status == "Imagen2" || this.conceptTest.status == "Palabra1")) {
+
+        this.element.correcta = this.error;
+        this.element.tiempo = this.end.getTime() - this.init.getTime();
+        this.element.tipo = 'Test2';
+        this.response.resp.push(this.element);
+        this.element = this.newElement as Element;
+
         this.timeLeft = this.time;
         this.error = false;
         this.randomConcept();
@@ -241,6 +278,7 @@ export class TestTAIComponent implements OnInit {
         if (this.ironda == this.nronda) {
           this.ifase = (this.ifase + 1) % this.nfase;
           this.ironda = 0;
+          this.enviarTai();
         }
       } else {
         this.error = true;
@@ -253,6 +291,7 @@ export class TestTAIComponent implements OnInit {
       this.end = new Date();
       if (this.ifase == 6 && this.conceptTest.status == "Imagen2") {
         this.timeLeft = this.time;
+
         this.error = false;
         this.randomImagen();
         this.ironda++;
@@ -271,6 +310,13 @@ export class TestTAIComponent implements OnInit {
         }
       } else if ((this.ifase == 10 || this.ifase == 12) &&
         (this.conceptTest.status == "Palabra2" || this.conceptTest.status == "Imagen2")) {
+
+        this.element.correcta = this.error;
+        this.element.tiempo = this.end.getTime() - this.init.getTime();
+        this.element.tipo = 'Test1';
+        this.response.resp.push(this.element);
+        this.element = this.newElement as Element;
+
         this.timeLeft = this.time;
         this.error = false;
         this.randomConcept();
@@ -290,6 +336,13 @@ export class TestTAIComponent implements OnInit {
         }
       } else if ((this.ifase == 16 || this.ifase == 18) &&
         (this.conceptTest.status == "Imagen1" || this.conceptTest.status == "Palabra2")) {
+
+        this.element.correcta = this.error;
+        this.element.tiempo = this.end.getTime() - this.init.getTime();
+        this.element.tipo = 'Test2';
+        this.response.resp.push(this.element);
+        this.element = this.newElement as Element;
+
         this.timeLeft = this.time;
         this.error = false;
         this.randomConcept();
@@ -297,12 +350,26 @@ export class TestTAIComponent implements OnInit {
         if (this.ironda == this.nronda) {
           this.ifase = (this.ifase + 1) % this.nfase;
           this.ironda = 0;
+          this.enviarTai();
         }
       } else {
         this.error = true;
        }
     }
   }
+
+  enviarTai(){
+    this.clienteApiRest.sendTai(this.tai, this.id).subscribe(
+      resp => {
+        this.router.navigate(['tai']);
+      },
+      err => {
+        console.log("Error al enviar: " + err.message);
+        throw err;
+      }
+    )
+  }
+
 
   timeLeft: number = this.time;
   interval: any;
@@ -318,6 +385,7 @@ export class TestTAIComponent implements OnInit {
         console.log(this.init);
         this.aux = false;
         this.timeLeft = 0;
+        console.log(this.response.resp.toString());
       }
     }, 1)
   }

@@ -48,6 +48,11 @@ export class ClienteApiOrdersService {
         return this.http.post(url, order, { observe: 'response', responseType: 'text' });
     }
 
+    sendTai(tai: Tai, id: number){
+        let url = ClienteApiOrdersService.BASE_URI + id;
+        return this.http.post(url, tai, { observe: 'response', responseType: 'text' });
+    }
+
     /**
      * Actualiza los datos de un pedido
      * @param id Identificador de un pedido
