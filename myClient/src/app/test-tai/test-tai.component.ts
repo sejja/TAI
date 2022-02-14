@@ -25,7 +25,7 @@ export class TestTAIComponent implements OnInit {
   ifase = 0;
   nfase = 19;
   ironda = 0;
-  nronda = 5;
+  nronda = 20;
 
   id = 0;
 
@@ -38,6 +38,9 @@ export class TestTAIComponent implements OnInit {
 
   conceptTest: Concept;
   error = false;
+
+  init:Date = new Date();
+  end: Date = new Date();
   
 
   constructor(private ruta: ActivatedRoute, private router: Router,
@@ -66,6 +69,7 @@ export class TestTAIComponent implements OnInit {
 
     this.getTai();
     this.startTimer()
+    this.init = new Date();
   }
 
   getTai(){
@@ -130,17 +134,21 @@ export class TestTAIComponent implements OnInit {
     let aux = this.imagenes1.concat(this.imagenes2);
     this.conceptTest = aux[this.randomIntFromInterval(0,aux.length-1)]
   }
+
   randomPalabra() {
     let aux = this.palabras1.concat(this.palabras2);
     this.conceptTest = aux[this.randomIntFromInterval(0, aux.length-1)]
   }
-
 
   @HostListener('document:keypress', ['$event'])
   handleKeyboardEvent(event: KeyboardEvent) { 
 
     console.log("Fase --> " + this.ifase);
     console.log("Ronda --> " + this.ironda);
+
+    this.end = new Date();
+
+    console.log("TRespuesta", this.end.getTime() - this.init.getTime())
 
 
     if (event.key == this.keySig && event.target == document.body) {
@@ -186,6 +194,7 @@ export class TestTAIComponent implements OnInit {
 
 
     if (event.key == this.keyIzq && event.target == document.body && this.timeLeft == 0) {
+      this.end = new Date();
       if (this.ifase == 6 && this.conceptTest.status == "Imagen1"){
         this.timeLeft = this.time;
         this.error = false;
@@ -241,6 +250,7 @@ export class TestTAIComponent implements OnInit {
 
 
     if (event.key == this.keyDch && event.target == document.body && this.timeLeft == 0) {
+      this.end = new Date();
       if (this.ifase == 6 && this.conceptTest.status == "Imagen2") {
         this.timeLeft = this.time;
         this.error = false;
@@ -294,15 +304,19 @@ export class TestTAIComponent implements OnInit {
     }
   }
 
-
   timeLeft: number = this.time;
   interval: any;
+  aux = false;
 
   startTimer() {
     this.interval = setInterval(() => {
       if (this.timeLeft > 0) {
         this.timeLeft--;
-      } else {
+        this.aux = true;
+      } else if (this.aux) {
+        this.init = new Date();
+        console.log(this.init);
+        this.aux = false;
         this.timeLeft = 0;
       }
     }, 1)
