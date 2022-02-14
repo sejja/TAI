@@ -7,7 +7,7 @@ import { Concept } from '../shared/api-tai/app.concept-model';
 
 import { ClienteApiOrdersService } from '../shared/api-tai/cliente-api-tai.service';
 import { HttpEventType, HttpResponse } from '@angular/common/http';
-import { Estado } from '../shared/api-tai/app.estado-model';
+
 
 @Component({
   selector: 'app-test-tai',
@@ -15,6 +15,8 @@ import { Estado } from '../shared/api-tai/app.estado-model';
   styleUrls: ['./test-tai.component.css']
 })
 export class TestTAIComponent implements OnInit {
+
+  time = 150;
 
   keySig = " ";
   keyIzq = "f";
@@ -62,6 +64,7 @@ export class TestTAIComponent implements OnInit {
     )
 
     this.getTai();
+    this.startTimer()
   }
 
   getTai(){
@@ -142,20 +145,32 @@ export class TestTAIComponent implements OnInit {
     if (event.key == this.keySig && event.target == document.body) {
       event.preventDefault();
       if (this.ifase < 5){
+
+        this.timeLeft = this.time;
         this.ifase = (this.ifase + 1) % this.nfase;
       } else if (this.ifase == 5) {
+
+        this.timeLeft = this.time;
         this.randomImagen();
         this.ifase = (this.ifase + 1) % this.nfase;
       } else if (this.ifase == 7) {
+
+        this.timeLeft = this.time;
         this.randomPalabra();
         this.ifase = (this.ifase + 1) % this.nfase;
       } else if (this.ifase == 9 || this.ifase == 11) {
+
+        this.timeLeft = this.time;
         this.randomConcept();
         this.ifase = (this.ifase + 1) % this.nfase;
       } else if (this.ifase == 13) {
+
+        this.timeLeft = this.time;
         this.randomImagen();
         this.ifase = (this.ifase + 1) % this.nfase;
       } else if (this.ifase == 15 || this.ifase == 17) {
+
+        this.timeLeft = this.time;
         this.randomConcept();
         this.ifase = (this.ifase + 1) % this.nfase;
       }
@@ -163,7 +178,8 @@ export class TestTAIComponent implements OnInit {
 
 
 
-    if (event.key == this.keyIzq && event.target == document.body) {
+    if (event.key == this.keyIzq && event.target == document.body && this.timeLeft == 0) {
+      this.timeLeft = this.time;
       if (this.ifase == 6){
         this.randomImagen();
         this.ironda++;
@@ -201,6 +217,24 @@ export class TestTAIComponent implements OnInit {
         }
       }
     }
+  }
+
+
+  timeLeft: number = this.time;
+  interval: any;
+
+  startTimer() {
+    this.interval = setInterval(() => {
+      if (this.timeLeft > 0) {
+        this.timeLeft--;
+      } else {
+        this.timeLeft = 0;
+      }
+    }, 1)
+  }
+
+  pauseTimer() {
+    clearInterval(this.interval);
   }
 
 }

@@ -161,7 +161,7 @@
       <div class="col-sm-6 bg-secondary">
         <h2>{{tai.imagen2}}</h2>
       </div>
-      <div class="offset-3 col-sm-6 my-2 bg-secondary">
+      <div *ngIf="timeLeft == 0" class="offset-3 col-sm-6 my-2 bg-secondary">
         <img class="card-img" src={{getUrl(conceptTest)}} alt={{conceptTest.name}}>
       </div>
     </div>
@@ -206,7 +206,7 @@
         <h2>{{tai.palabra2}}</h2>
       </div>
 
-      <div class="col-sm-12 my-2 bg-secondary">
+      <div *ngIf="timeLeft == 0" class="col-sm-12 my-2 bg-secondary">
         <h2>{{conceptTest.name}}</h2>
       </div>
 
@@ -279,18 +279,19 @@
         <h2>{{tai.imagen2}}</h2>
         <h2>{{tai.palabra2}}</h2>
       </div>
-
-      <div *ngIf="conceptTest.status == 'Palabra1' || conceptTest.status == 'Palabra2'; then thenBlock else elseBlock"></div>
-      <ng-template #thenBlock>
-        <div class="col-sm-12 my-2 bg-secondary">
-          <h2>{{conceptTest.name}}</h2>
-        </div>
-      </ng-template>
-      <ng-template #elseBlock>
-        <div class="offset-3 col-sm-6 my-2 bg-secondary">
-          <img class="card-img" src={{getUrl(conceptTest)}} alt={{conceptTest.name}}>
-        </div>
-      </ng-template>
+      <div *ngIf="timeLeft == 0">
+        <div *ngIf="conceptTest.status == 'Palabra1' || conceptTest.status == 'Palabra2'; then thenBlock else elseBlock"></div>
+        <ng-template #thenBlock>
+          <div class="col-sm-12 my-2 bg-secondary">
+            <h2>{{conceptTest.name}}</h2>
+          </div>
+        </ng-template>
+        <ng-template #elseBlock>
+          <div class="offset-3 col-sm-6 my-2 bg-secondary">
+            <img class="card-img" src={{getUrl(conceptTest)}} alt={{conceptTest.name}}>
+          </div>
+        </ng-template>
+      </div>
     </div>
   </div>
 </section>
@@ -333,7 +334,7 @@
       <div class="col-sm-6 bg-secondary">
         <h2>{{tai.imagen1}}</h2>
       </div>
-      <div class="offset-3 col-sm-6 my-2 bg-secondary">
+      <div *ngIf="timeLeft == 0" class="offset-3 col-sm-6 my-2 bg-secondary">
         <img class="card-img" src={{getUrl(conceptTest)}} alt={{conceptTest.name}}>
       </div>
     </div>
@@ -406,19 +407,19 @@
         <h2>{{tai.imagen1}}</h2>
         <h2>{{tai.palabra2}}</h2>
       </div>
-
-      <div *ngIf="conceptTest.status == 'Palabra1' || conceptTest.status == 'Palabra2'; then thenBlock else elseBlock"></div>
-      <ng-template #thenBlock>
-        <div class="col-sm-12 my-2 bg-secondary">
-          <h2>{{conceptTest.name}}</h2>
-        </div>
-      </ng-template>
-      <ng-template #elseBlock>
-        <div class="offset-3 col-sm-6 my-2 bg-secondary">
-          <img class="card-img" src={{getUrl(conceptTest)}} alt={{conceptTest.name}}>
-        </div>
-      </ng-template>
-
+      <div *ngIf="timeLeft == 0">
+        <div *ngIf="conceptTest.status == 'Palabra1' || conceptTest.status == 'Palabra2'; then thenBlock else elseBlock"></div>
+        <ng-template #thenBlock>
+          <div class="col-sm-12 my-2 bg-secondary">
+            <h2>{{conceptTest.name}}</h2>
+          </div>
+        </ng-template>
+        <ng-template #elseBlock>
+          <div class="offset-3 col-sm-6 my-2 bg-secondary">
+            <img class="card-img" src={{getUrl(conceptTest)}} alt={{conceptTest.name}}>
+          </div>
+        </ng-template>
+      </div>
     </div>
   </div>
 </section>
