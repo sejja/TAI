@@ -37,6 +37,7 @@ export class TestTAIComponent implements OnInit {
   tai: Tai;
 
   conceptTest: Concept;
+  error = false;
   
 
   constructor(private ruta: ActivatedRoute, private router: Router,
@@ -147,30 +148,36 @@ export class TestTAIComponent implements OnInit {
       if (this.ifase < 5){
 
         this.timeLeft = this.time;
+        this.error = false;
         this.ifase = (this.ifase + 1) % this.nfase;
       } else if (this.ifase == 5) {
 
         this.timeLeft = this.time;
+        this.error = false;
         this.randomImagen();
         this.ifase = (this.ifase + 1) % this.nfase;
       } else if (this.ifase == 7) {
 
         this.timeLeft = this.time;
+        this.error = false;
         this.randomPalabra();
         this.ifase = (this.ifase + 1) % this.nfase;
       } else if (this.ifase == 9 || this.ifase == 11) {
 
         this.timeLeft = this.time;
+        this.error = false;
         this.randomConcept();
         this.ifase = (this.ifase + 1) % this.nfase;
       } else if (this.ifase == 13) {
 
         this.timeLeft = this.time;
+        this.error = false;
         this.randomImagen();
         this.ifase = (this.ifase + 1) % this.nfase;
       } else if (this.ifase == 15 || this.ifase == 17) {
 
         this.timeLeft = this.time;
+        this.error = false;
         this.randomConcept();
         this.ifase = (this.ifase + 1) % this.nfase;
       }
@@ -179,43 +186,111 @@ export class TestTAIComponent implements OnInit {
 
 
     if (event.key == this.keyIzq && event.target == document.body && this.timeLeft == 0) {
-      this.timeLeft = this.time;
-      if (this.ifase == 6){
+      if (this.ifase == 6 && this.conceptTest.status == "Imagen1"){
+        this.timeLeft = this.time;
+        this.error = false;
         this.randomImagen();
         this.ironda++;
         if (this.ironda == this.nronda) {
           this.ifase = (this.ifase + 1) % this.nfase;
           this.ironda = 0;
         }
-      } else if (this.ifase == 8) {
+      } else if (this.ifase == 8 && this.conceptTest.status == "Palabra1") {
+        this.timeLeft = this.time;
+        this.error = false;
         this.randomPalabra();
         this.ironda++;
         if (this.ironda == this.nronda) {
           this.ifase = (this.ifase + 1) % this.nfase;
           this.ironda = 0;
         }
-      } else if (this.ifase == 10 || this.ifase == 12) {
+      } else if ((this.ifase == 10 || this.ifase == 12) && 
+        (this.conceptTest.status == "Palabra1" || this.conceptTest.status == "Imagen1")) {
+        this.timeLeft = this.time;
+        this.error = false;
         this.randomConcept();
         this.ironda++;
         if (this.ironda == this.nronda) {
           this.ifase = (this.ifase + 1) % this.nfase;
           this.ironda = 0;
         }
-      } else if (this.ifase == 14) {
+      } else if (this.ifase == 14 && this.conceptTest.status == "Imagen2") {
+        this.timeLeft = this.time;
+        this.error = false;
         this.randomImagen();
         this.ironda++;
         if (this.ironda == this.nronda) {
           this.ifase = (this.ifase + 1) % this.nfase;
           this.ironda = 0;
         }
-      } else if (this.ifase == 16 || this.ifase == 18) {
+      } else if ((this.ifase == 16 || this.ifase == 18) && 
+        (this.conceptTest.status == "Imagen2" || this.conceptTest.status == "Palabra1")) {
+        this.timeLeft = this.time;
+        this.error = false;
         this.randomConcept();
         this.ironda++;
         if (this.ironda == this.nronda) {
           this.ifase = (this.ifase + 1) % this.nfase;
           this.ironda = 0;
         }
+      } else {
+        this.error = true;
       }
+    }
+
+
+
+    if (event.key == this.keyDch && event.target == document.body && this.timeLeft == 0) {
+      if (this.ifase == 6 && this.conceptTest.status == "Imagen2") {
+        this.timeLeft = this.time;
+        this.error = false;
+        this.randomImagen();
+        this.ironda++;
+        if (this.ironda == this.nronda) {
+          this.ifase = (this.ifase + 1) % this.nfase;
+          this.ironda = 0;
+        }
+      } else if (this.ifase == 8 && this.conceptTest.status == "Palabra2") {
+        this.timeLeft = this.time;
+        this.error = false;
+        this.randomPalabra();
+        this.ironda++;
+        if (this.ironda == this.nronda) {
+          this.ifase = (this.ifase + 1) % this.nfase;
+          this.ironda = 0;
+        }
+      } else if ((this.ifase == 10 || this.ifase == 12) &&
+        (this.conceptTest.status == "Palabra2" || this.conceptTest.status == "Imagen2")) {
+        this.timeLeft = this.time;
+        this.error = false;
+        this.randomConcept();
+        this.ironda++;
+        if (this.ironda == this.nronda) {
+          this.ifase = (this.ifase + 1) % this.nfase;
+          this.ironda = 0;
+        }
+      } else if (this.ifase == 14 && this.conceptTest.status == "Imagen1") {
+        this.timeLeft = this.time;
+        this.error = false;
+        this.randomImagen();
+        this.ironda++;
+        if (this.ironda == this.nronda) {
+          this.ifase = (this.ifase + 1) % this.nfase;
+          this.ironda = 0;
+        }
+      } else if ((this.ifase == 16 || this.ifase == 18) &&
+        (this.conceptTest.status == "Imagen1" || this.conceptTest.status == "Palabra2")) {
+        this.timeLeft = this.time;
+        this.error = false;
+        this.randomConcept();
+        this.ironda++;
+        if (this.ironda == this.nronda) {
+          this.ifase = (this.ifase + 1) % this.nfase;
+          this.ironda = 0;
+        }
+      } else {
+        this.error = true;
+       }
     }
   }
 

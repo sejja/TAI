@@ -161,7 +161,10 @@
       <div class="col-sm-6 bg-secondary">
         <h2>{{tai.imagen2}}</h2>
       </div>
-      <div *ngIf="timeLeft == 0" class="offset-3 col-sm-6 my-2 bg-secondary">
+      <div *ngIf="timeLeft == 0 && !error" class="offset-3 col-sm-6 my-2 bg-secondary">
+        <img class="card-img" src={{getUrl(conceptTest)}} alt={{conceptTest.name}}>
+      </div>
+      <div *ngIf="timeLeft == 0 && error" class="offset-3 col-sm-6 my-2 bg-secondary border border-danger border-5">
         <img class="card-img" src={{getUrl(conceptTest)}} alt={{conceptTest.name}}>
       </div>
     </div>
@@ -206,8 +209,11 @@
         <h2>{{tai.palabra2}}</h2>
       </div>
 
-      <div *ngIf="timeLeft == 0" class="col-sm-12 my-2 bg-secondary">
+      <div *ngIf="timeLeft == 0 && !error" class="col-sm-12 my-2 bg-secondary">
         <h2>{{conceptTest.name}}</h2>
+      </div>
+      <div *ngIf="timeLeft == 0 && error" class="col-sm-12 my-2 bg-secondary">
+        <h2 class="text-danger">{{conceptTest.name}}</h2>
       </div>
 
     </div>
@@ -279,7 +285,7 @@
         <h2>{{tai.imagen2}}</h2>
         <h2>{{tai.palabra2}}</h2>
       </div>
-      <div *ngIf="timeLeft == 0">
+      <div *ngIf="timeLeft == 0 && !error">
         <div *ngIf="conceptTest.status == 'Palabra1' || conceptTest.status == 'Palabra2'; then thenBlock else elseBlock"></div>
         <ng-template #thenBlock>
           <div class="col-sm-12 my-2 bg-secondary">
@@ -288,6 +294,20 @@
         </ng-template>
         <ng-template #elseBlock>
           <div class="offset-3 col-sm-6 my-2 bg-secondary">
+            <img class="card-img" src={{getUrl(conceptTest)}} alt={{conceptTest.name}}>
+          </div>
+        </ng-template>
+      </div>
+      <div *ngIf="timeLeft == 0 && error">
+        <div *ngIf="conceptTest.status == 'Palabra1' || conceptTest.status == 'Palabra2'; then thenBlock else elseBlock">
+        </div>
+        <ng-template #thenBlock>
+          <div class="col-sm-12 my-2 bg-secondary">
+            <h2 class="text-danger">{{conceptTest.name}}</h2>
+          </div>
+        </ng-template>
+        <ng-template #elseBlock>
+          <div class="offset-3 col-sm-6 my-2 bg-secondary border border-danger border-5">
             <img class="card-img" src={{getUrl(conceptTest)}} alt={{conceptTest.name}}>
           </div>
         </ng-template>
@@ -334,7 +354,10 @@
       <div class="col-sm-6 bg-secondary">
         <h2>{{tai.imagen1}}</h2>
       </div>
-      <div *ngIf="timeLeft == 0" class="offset-3 col-sm-6 my-2 bg-secondary">
+      <div *ngIf="timeLeft == 0 && !error" class="offset-3 col-sm-6 my-2 bg-secondary">
+        <img class="card-img" src={{getUrl(conceptTest)}} alt={{conceptTest.name}}>
+      </div>
+      <div *ngIf="timeLeft == 0 && error" class="offset-3 col-sm-6 my-2 bg-secondary border border-danger border-5">
         <img class="card-img" src={{getUrl(conceptTest)}} alt={{conceptTest.name}}>
       </div>
     </div>
@@ -397,7 +420,7 @@
 <!--test 2-->
 <!-- FASE 16 y 18-->
 <section class="bg-primary bg-secondary text-white" [hidden]="ifase != 16 && ifase != 18">
-  <div class="container px-4 text-center">    
+  <div class="container px-4 text-center">
     <div class="row">
       <div class="col-sm-6 bg-secondary">
         <h2>{{tai.imagen2}}</h2>
@@ -407,8 +430,10 @@
         <h2>{{tai.imagen1}}</h2>
         <h2>{{tai.palabra2}}</h2>
       </div>
-      <div *ngIf="timeLeft == 0">
-        <div *ngIf="conceptTest.status == 'Palabra1' || conceptTest.status == 'Palabra2'; then thenBlock else elseBlock"></div>
+      <div *ngIf="timeLeft == 0 && !error">
+        <div
+          *ngIf="conceptTest.status == 'Palabra1' || conceptTest.status == 'Palabra2'; then thenBlock else elseBlock">
+        </div>
         <ng-template #thenBlock>
           <div class="col-sm-12 my-2 bg-secondary">
             <h2>{{conceptTest.name}}</h2>
@@ -416,6 +441,21 @@
         </ng-template>
         <ng-template #elseBlock>
           <div class="offset-3 col-sm-6 my-2 bg-secondary">
+            <img class="card-img" src={{getUrl(conceptTest)}} alt={{conceptTest.name}}>
+          </div>
+        </ng-template>
+      </div>
+      <div *ngIf="timeLeft == 0 && error">
+        <div
+          *ngIf="conceptTest.status == 'Palabra1' || conceptTest.status == 'Palabra2'; then thenBlock else elseBlock">
+        </div>
+        <ng-template #thenBlock>
+          <div class="col-sm-12 my-2 bg-secondary">
+            <h2 class="text-danger">{{conceptTest.name}}</h2>
+          </div>
+        </ng-template>
+        <ng-template #elseBlock>
+          <div class="offset-3 col-sm-6 my-2 bg-secondary border border-danger border-5">
             <img class="card-img" src={{getUrl(conceptTest)}} alt={{conceptTest.name}}>
           </div>
         </ng-template>
