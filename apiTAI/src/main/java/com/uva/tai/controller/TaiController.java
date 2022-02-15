@@ -3,6 +3,7 @@ package com.uva.tai.controller;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -11,6 +12,7 @@ import com.uva.tai.model.Concepto;
 import com.uva.tai.model.Tai;
 import com.uva.tai.model.Respuesta;
 import com.uva.tai.model.Elemento;
+import com.uva.tai.repository.ElementoRepository;
 import com.uva.tai.repository.RespuestaRepository;
 import com.uva.tai.repository.TaiRepository;
 
@@ -43,10 +45,13 @@ public class TaiController {
 
     private final TaiRepository taiRepository;
     private final RespuestaRepository respuestaRepository;
+    private final ElementoRepository elemetoRepository;
 
-    TaiController(TaiRepository taiRepository, RespuestaRepository respuestaRepository) {
+    TaiController(TaiRepository taiRepository, RespuestaRepository respuestaRepository,
+            ElementoRepository elemetoRepository) {
         this.taiRepository = taiRepository;
         this.respuestaRepository = respuestaRepository;
+        this.elemetoRepository = elemetoRepository;
     }
 
     /**
@@ -193,7 +198,9 @@ public class TaiController {
             for (Elemento element : resp)
                 element.setResp(newRespuesta);
             respuestaRepository.saveAndFlush(newRespuesta);
-            return "Nuevo registro creado";
+            List<Elemento> elementos = newRespuesta.getResp();
+            generateResult(elementos);
+            return "Nuevo registro creado";//Mejor el id de la respuesta
         } catch (Exception e) {
             // Se deja esta parte comentada como alternativa a la gestion de errores
             // propuesta
@@ -204,6 +211,77 @@ public class TaiController {
             e.printStackTrace();
             throw new TaiException("Error al crear el nuevo registro.");
         }
+
+    }
+
+    void generateResult(List<Elemento> elementos){//Hoy que refactorizar esto
+
+        System.out.println("\n->size " + elementos.size());
+
+        ArrayList<Elemento> correctas = new ArrayList<>();
+        ArrayList<Elemento> incorretas = new ArrayList<>();
+        for (Elemento elemento : elementos) {//Clasificcación de correctas y incorrectas
+            if(elemento.getCorrecta() || elemento.getTiempo() < 300 || elemento.getTiempo() > 10000){
+                correctas.add(elemento);
+            }else{
+                incorretas.add(elemento);
+            }
+        }
+        int mediaCorrectas = 0;
+        int sumaCorrectas = 0;
+        for (Elemento elemento : correctas) {//Calculo de media de correctas
+            sumaCorrectas += elemento.getTiempo();
+        }
+        mediaCorrectas =  Math.round(sumaCorrectas / correctas.size());
+
+        for (Elemento elemento : elementos) {//sustitucion
+            if (!elemento.getCorrecta()) {
+                elemento.setCorrecta(true);
+                elemento.setTiempo(mediaCorrectas + 600);
+            }
+        }
+
+        //Los datos ya tienen el formato correcto
+        int media1 = 0;
+        int media2 = 0;
+        int media = 0;
+        ArrayList<Elemento> test1 = new ArrayList<>();
+        ArrayList<Elemento> test2 = new ArrayList<>();
+        for (Elemento elemento : elementos) {
+            if (elemento.getTipo().equals("Test1")) {
+                test1.add(elemento);
+                media1 += elemento.getTiempo();
+            } else {
+                test2.add(elemento);
+                media2 += elemento.getTiempo();
+            }
+            media += elemento.getTiempo();
+        }
+
+        media1 = Math.round(media1 / test1.size());
+        media2 = Math.round(media2 / test2.size());
+        media = Math.round(media / elementos.size());
+
+        int std1 = 0;
+        int std2 = 0;
+        int std = 0;
+
+        for (Elemento elemento : test1) {
+            std1 += Math.pow(elemento.getTiempo() - media1, 2);
+        }
+
+        for (Elemento elemento : test2) {
+            std2 += Math.pow(elemento.getTiempo() - media2, 2);
+        }
+
+        for (Elemento elemento : elementos) {
+            std += Math.pow(elemento.getTiempo() - media, 2);
+        }
+
+        int dif = media1 - media2;
+
+        System.out.println("\n-> dif:"+dif+" media1:"+media1+" media2:"+media2+" media:"+media+
+        " std1:"+std1+" std2:"+std2+" std:"+std);
 
     }
 
