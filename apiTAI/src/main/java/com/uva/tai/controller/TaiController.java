@@ -50,7 +50,7 @@ public class TaiController {
     }
 
     /**
-     * Crea una nuevo pedido apartir de una paricion POST a /orders
+     * Crea una nuevo tai apartir de una paricion POST:/tai
      * mediante el json recibido
      * 
      * @param newTai
@@ -80,6 +80,13 @@ public class TaiController {
     private static final Logger logger = Logger.getLogger(TaiController.class.getName());
     private final Path root = Paths.get("apiTAI/src/main/resources/uploads");
 
+    /**
+     * Almacena una imagen apartir de una paricion POST:/tai/upload/:code
+     * mediante el archivo recibido
+     * 
+     * @param newTai
+     * @return
+     */
     @PostMapping("/upload/{code}")
     public ResponseEntity<String> uploadData(@RequestParam("file") MultipartFile file, 
             @PathVariable String code) throws Exception {
@@ -117,7 +124,12 @@ public class TaiController {
         return new ResponseEntity<String>(originalName, HttpStatus.OK);
     }
 
-    
+    /**
+     * Devuelve un cadigo apartir de una peticion GET:/tai/code
+     * 
+     * @param newTai
+     * @return
+     */
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE, value = { "/code" })
     public Tai getCode() {
         Tai newTai = new Tai();
@@ -139,11 +151,10 @@ public class TaiController {
     }
 
     /**
-     * Devuelve la lista de todos los usuarios si no se especifica parametro. Con
-     * parametro enable param{enable} debolverá la lista de los usuarios activo o
-     * inavtios en funcion del valor de enable: true o false GET a GET /orders
+     * Devuelve la lista de todos los tais. /tai
      * 
-     * @param enable
+     * 
+     * 
      * @return
      */
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
@@ -152,6 +163,12 @@ public class TaiController {
         return list;
     }
 
+    /**
+     * Devuelve el tai con GET: /tai/:id
+     * 
+     * @param id
+     * @return
+     */
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE, value = "/{id}")
     public Optional<Tai> getTai(@PathVariable int id) {
         Optional<Tai> tai = null;
@@ -161,6 +178,13 @@ public class TaiController {
         return tai;
     }
 
+    /**
+     * Crea una nuevo respuesta apartir de una paricion POST:/tai/:id
+     * mediante el json recibido
+     * 
+     * @param newTai
+     * @return
+     */
     @PostMapping("/{id}")
     public String newRespuesta(@RequestBody Respuesta newRespuesta) {
 

@@ -22,8 +22,6 @@ public class TaiApplication {
 
 		@Override
 		public void addResourceHandlers(ResourceHandlerRegistry registry) { 
-			//registry.addResourceHandler("/**")
-			//	.addResourceLocations("classpath:/static/");
 			registry.addResourceHandler("/uploads/**").addResourceLocations("classpath:/uploads/")
 					.setCacheControl(CacheControl.maxAge(2, TimeUnit.HOURS).cachePublic());
 		}
