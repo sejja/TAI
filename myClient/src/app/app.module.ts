@@ -12,6 +12,8 @@ import { TestTAIComponent } from './test-tai/test-tai.component';
 import { InicioComponent } from './inicio/inicio.component';
 import { TaiEditarComponent } from './tai-editar/tai-editar.component'; // CLI 
 import { ClienteApiOrdersService } from './shared/api-tai/cliente-api-tai.service';
+import { TaiSeleccionarComponent } from './tai-seleccionar/tai-seleccionar.component';
+import { LoginComponent } from './login/login.component';
 
 
 
@@ -21,7 +23,9 @@ import { ClienteApiOrdersService } from './shared/api-tai/cliente-api-tai.servic
     TestTAIComponent,
     InicioComponent,
     TaiListarComponent,
-    TaiEditarComponent
+    TaiEditarComponent,
+    TaiSeleccionarComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
