@@ -276,9 +276,11 @@ export class TestTAIComponent implements OnInit {
         this.randomConcept();
         this.ironda++;
         if (this.ironda == this.nronda) {
+          if (this.ifase == 18){
+            this.enviarRespuesta();
+          }
           this.ifase = (this.ifase + 1) % this.nfase;
           this.ironda = 0;
-          this.enviarRespuesta();
         }
       } else {
         this.error = true;
@@ -348,9 +350,11 @@ export class TestTAIComponent implements OnInit {
         this.randomConcept();
         this.ironda++;
         if (this.ironda == this.nronda) {
+          if (this.ifase == 18) {
+            this.enviarRespuesta();
+          }
           this.ifase = (this.ifase + 1) % this.nfase;
           this.ironda = 0;
-          this.enviarRespuesta();
         }
       } else {
         this.error = true;
