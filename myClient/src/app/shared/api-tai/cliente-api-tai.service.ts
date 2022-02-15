@@ -2,6 +2,7 @@ import { HttpClient, HttpEvent, HttpRequest, HttpResponse } from '@angular/commo
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Tai } from './app.tai-model';
+import { TaiResponse } from './app.response-model';
 
 @Injectable({
     providedIn: 'root'
@@ -48,9 +49,9 @@ export class ClienteApiOrdersService {
         return this.http.post(url, order, { observe: 'response', responseType: 'text' });
     }
 
-    sendTai(tai: Tai, id: number){
+    sendResponse(id: number, resp: TaiResponse,){
         let url = ClienteApiOrdersService.BASE_URI + id;
-        return this.http.post(url, tai, { observe: 'response', responseType: 'text' });
+        return this.http.post(url, resp, { observe: 'response', responseType: 'text' });
     }
 
     /**

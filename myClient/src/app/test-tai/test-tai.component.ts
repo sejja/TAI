@@ -5,7 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Tai } from '../shared/api-tai/app.tai-model';
 import { Concept } from '../shared/api-tai/app.concept-model';
 
-import { Response } from '../shared/api-tai/app.response-model';
+import { TaiResponse } from '../shared/api-tai/app.response-model';
 import { Element } from '../shared/api-tai/app.element-model';
 
 import { ClienteApiOrdersService } from '../shared/api-tai/cliente-api-tai.service';
@@ -53,7 +53,7 @@ export class TestTAIComponent implements OnInit {
 
   };
 
-  response = this.newResponse as Response;  // Hay que darle valor inicial, si no salta una
+  response = this.newResponse as TaiResponse;  // Hay que darle valor inicial, si no salta una
 
   newElement = {
 
@@ -243,7 +243,7 @@ export class TestTAIComponent implements OnInit {
         this.element.tiempo = this.end.getTime() - this.init.getTime();
         this.element.tipo = 'Test1';
         this.response.resp.push(this.element);
-        this.element = this.newElement as Element;
+        this.element = <Element>{tipo: "",correcta: true,tiempo: 0};
 
         this.timeLeft = this.time;
         this.error = false;
@@ -269,7 +269,7 @@ export class TestTAIComponent implements OnInit {
         this.element.tiempo = this.end.getTime() - this.init.getTime();
         this.element.tipo = 'Test2';
         this.response.resp.push(this.element);
-        this.element = this.newElement as Element;
+        this.element = <Element>{ tipo: "", correcta: true, tiempo: 0 };
 
         this.timeLeft = this.time;
         this.error = false;
@@ -278,7 +278,7 @@ export class TestTAIComponent implements OnInit {
         if (this.ironda == this.nronda) {
           this.ifase = (this.ifase + 1) % this.nfase;
           this.ironda = 0;
-          this.enviarTai();
+          this.enviarRespuesta();
         }
       } else {
         this.error = true;
@@ -315,7 +315,7 @@ export class TestTAIComponent implements OnInit {
         this.element.tiempo = this.end.getTime() - this.init.getTime();
         this.element.tipo = 'Test1';
         this.response.resp.push(this.element);
-        this.element = this.newElement as Element;
+        this.element = <Element>{ tipo: "", correcta: true, tiempo: 0 };
 
         this.timeLeft = this.time;
         this.error = false;
@@ -341,7 +341,7 @@ export class TestTAIComponent implements OnInit {
         this.element.tiempo = this.end.getTime() - this.init.getTime();
         this.element.tipo = 'Test2';
         this.response.resp.push(this.element);
-        this.element = this.newElement as Element;
+        this.element = <Element>{ tipo: "", correcta: true, tiempo: 0 };
 
         this.timeLeft = this.time;
         this.error = false;
@@ -350,7 +350,7 @@ export class TestTAIComponent implements OnInit {
         if (this.ironda == this.nronda) {
           this.ifase = (this.ifase + 1) % this.nfase;
           this.ironda = 0;
-          this.enviarTai();
+          this.enviarRespuesta();
         }
       } else {
         this.error = true;
@@ -358,8 +358,10 @@ export class TestTAIComponent implements OnInit {
     }
   }
 
-  enviarTai(){
-    this.clienteApiRest.sendTai(this.tai, this.id).subscribe(
+  enviarRespuesta(){
+    this.response.codeEnc = this.tai.code;
+    this.response.idEnc = this.tai.id;
+    this.clienteApiRest.sendResponse(this.id, this.response).subscribe(
       resp => {
         this.router.navigate(['tai']);
       },

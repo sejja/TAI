@@ -9,6 +9,9 @@ import java.util.Optional;
 import com.uva.tai.exception.TaiException;
 import com.uva.tai.model.Concepto;
 import com.uva.tai.model.Tai;
+import com.uva.tai.model.Respuesta;
+import com.uva.tai.model.Elemento;
+import com.uva.tai.repository.RespuestaRepository;
 import com.uva.tai.repository.TaiRepository;
 
 import org.springframework.web.bind.annotation.RestController;
@@ -38,12 +41,12 @@ import org.springframework.http.HttpStatus;
 @CrossOrigin(origins = "*")
 public class TaiController {
 
-    private final TaiRepository pedidoRepository;
-    //private final ConceptoRepository lineaPedidoRepository;
+    private final TaiRepository taiRepository;
+    private final RespuestaRepository respuestaRepository;
 
-    TaiController(TaiRepository pedidoRepository /*ConceptoRepository lineaPedidoRepositor*/) {
-        this.pedidoRepository = pedidoRepository;
-       // this.lineaPedidoRepository = lineaPedidoRepository;
+    TaiController(TaiRepository taiRepository, RespuestaRepository respuestaRepository) {
+        this.taiRepository = taiRepository;
+        this.respuestaRepository = respuestaRepository;
     }
 
     /**
@@ -59,7 +62,7 @@ public class TaiController {
         try {
             List<Concepto> concepts = newTai.getConcepts();
             for (Concepto concept : concepts) concept.setTai(newTai);
-            pedidoRepository.saveAndFlush(newTai);
+            taiRepository.saveAndFlush(newTai);
             return "Nuevo registro creado";
         } catch (Exception e) {
             // Se deja esta parte comentada como alternativa a la gestion de errores
@@ -119,7 +122,7 @@ public class TaiController {
     public Tai getCode() {
         Tai newTai = new Tai();
         newTai.setCode(generateCode());
-        while(pedidoRepository.existsByCode(newTai.getCode())){
+        while(taiRepository.existsByCode(newTai.getCode())){
             newTai.setCode(generateCode());
         }
         return newTai;
@@ -145,16 +148,41 @@ public class TaiController {
      */
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public List<Tai> getTais() {
-        List<Tai> list = pedidoRepository.findAll();
+        List<Tai> list = taiRepository.findAll();
         return list;
     }
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE, value = "/{id}")
     public Optional<Tai> getTai(@PathVariable int id) {
         Optional<Tai> tai = null;
-        if(pedidoRepository.existsById(id)){
-            tai = pedidoRepository.findById(id);
+        if(taiRepository.existsById(id)){
+            tai = taiRepository.findById(id);
         }
         return tai;
     }
+
+    @PostMapping("/{id}")
+    public String newRespuesta(@RequestBody Respuesta newRespuesta) {
+
+        try {
+            List<Elemento> resp = newRespuesta.getResp();
+            for (Elemento element : resp)
+                element.setResp(newRespuesta);
+            respuestaRepository.saveAndFlush(newRespuesta);
+            return "Nuevo registro creado";
+        } catch (Exception e) {
+            // Se deja esta parte comentada como alternativa a la gestion de errores
+            // propuesta
+            // throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY, "Error al
+            // crear el nuevo registro.");
+            // Se usa este sistema de gestión de errores porque es mas sencillo hacer que el
+            // cliente reciba el mensaje de error
+            e.printStackTrace();
+            throw new TaiException("Error al crear el nuevo registro.");
+        }
+
+    }
+
+
+
 }
