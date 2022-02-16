@@ -23,7 +23,7 @@ public class Respuesta {
     @Id
     @GeneratedValue
     private Integer id;
-    private Integer idEnc;
+    private Integer idTai;
     @Size(max = 10)
     private String codeEnc;
  
@@ -36,9 +36,10 @@ public class Respuesta {
         this.created_at = Date.valueOf(LocalDate.now());
     }
 
-    Respuesta(String codeEnc, Integer idEnc, List<Elemento> resp) {
+    Respuesta(String codeEnc, Integer idTai, List<Elemento> resp) {
 
         this.codeEnc = codeEnc;
+        this.idTai = idTai;
         this.resp = resp;
         this.created_at = Date.valueOf(LocalDate.now());
     }
@@ -59,12 +60,12 @@ public class Respuesta {
         this.codeEnc = codeEnc;
     }
 
-    public Integer getIdEnc() {
-        return this.idEnc;
+    public Integer getIdTai() {
+        return this.idTai;
     }
 
-    public void setIdEnc(Integer idEnc) {
-        this.idEnc = idEnc;
+    public void setIdTai(Integer idTai) {
+        this.idTai = idTai;
     }
 
     public List<Elemento> getResp() {

@@ -14,6 +14,7 @@ import { TaiEditarComponent } from './tai-editar/tai-editar.component'; // CLI
 import { ClienteApiOrdersService } from './shared/api-tai/cliente-api-tai.service';
 import { TaiSeleccionarComponent } from './tai-seleccionar/tai-seleccionar.component';
 import { LoginComponent } from './login/login.component';
+import { TaiResultadosComponent } from './tai-resultados/tai-resultados.component';
 
 
 
@@ -25,7 +26,8 @@ import { LoginComponent } from './login/login.component';
     TaiListarComponent,
     TaiEditarComponent,
     TaiSeleccionarComponent,
-    LoginComponent
+    LoginComponent,
+    TaiResultadosComponent
   ],
   imports: [
     BrowserModule,

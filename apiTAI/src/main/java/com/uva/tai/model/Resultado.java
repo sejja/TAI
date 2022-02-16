@@ -21,26 +21,40 @@ public class Resultado {
     @GeneratedValue
     private Integer id;
     private Integer idResp;
+    private Integer idTai;
+    
     @Size(max = 50)
     private String asociacion1;
-    private Integer trespuesta1;
+    private Integer tmedio1;
+    private Integer std1;
+
     @Size(max = 50)
     private String asociacion2;
-    private Integer trespuesta2;
+    private Integer tmedio2;
+    private Integer std2;
 
     private Date created_at;
+
+    private Integer tmedio;
+    private Integer std;
 
     public Resultado() {
         this.created_at = Date.valueOf(LocalDate.now());
     }
 
-    Resultado(Integer idResp, String asociacion1, Integer trespuesta1, String asociacion2, Integer trespuesta2) {
+    public Resultado(Integer idResp, Integer idTai, String asociacion1, Integer tmedio1, Integer std1, 
+    String asociacion2, Integer tmedio2, Integer std2, Integer tmedio, Integer std ) {
 
         this.idResp = idResp;
+        this.idTai = idTai;
         this.asociacion1 = asociacion1;
-        this.trespuesta1 = trespuesta1;
+        this.tmedio1 = tmedio1;
+        this.std1 = std1;
         this.asociacion2 = asociacion2;
-        this.trespuesta2 = trespuesta2;
+        this.tmedio2 = tmedio2;
+        this.std2 = std2;
+        this.tmedio = tmedio;
+        this.std = std;
 
         this.created_at = Date.valueOf(LocalDate.now());
     }
@@ -60,7 +74,15 @@ public class Resultado {
     public void setIdResp(Integer idResp) {
         this.idResp = idResp;
     }
+    
 
+    public Integer getIdTai() {
+        return this.idTai;
+    }
+
+    public void setIdTai(Integer idTai) {
+        this.idTai = idTai;
+    }
 
     public String getAsociacion1(){
         return this.asociacion1;
@@ -70,12 +92,20 @@ public class Resultado {
         this.asociacion1 = asociacion1;
     }
 
-    public Integer getTrespuesta1() {
-        return this.trespuesta1;
+    public Integer getTmedio1() {
+        return this.tmedio1;
     }
 
-    public void setTrespuesta1(Integer trespuesta1) {
-        this.trespuesta1 = trespuesta1;
+    public void setTmedio1(Integer tmedio1) {
+        this.tmedio1 = tmedio1;
+    }
+
+    public Integer getStd1() {
+        return this.std1;
+    }
+
+    public void setStd1(Integer std1) {
+        this.std1 = std1;
     }
 
     public String getAsociacion2() {
@@ -86,14 +116,21 @@ public class Resultado {
         this.asociacion2 = asociacion2;
     }
 
-    public Integer getTrespuesta2() {
-        return this.trespuesta2;
+    public Integer getTmadio2() {
+        return this.tmedio2;
     }
 
-    public void setTrespuesta2(Integer trespuesta2) {
-        this.trespuesta2 = trespuesta2;
+    public void setTrespuesta2(Integer tmedio2) {
+        this.tmedio2 = tmedio2;
     }
 
+    public Integer getStd2() {
+        return this.std2;
+    }
+
+    public void setStd2(Integer std2) {
+        this.std2 = std2;
+    }
 
     public Date getCreatedAt() {
         return this.created_at;
@@ -101,6 +138,26 @@ public class Resultado {
 
     public void setCreatedAt(Date created_at) {
         this.created_at = created_at;
+    }
+
+    public Integer getTmedio() {
+        return this.tmedio;
+    }
+
+    public void setTmedio(Integer tmedio) {
+        this.tmedio = tmedio;
+    }
+
+    public Integer getStd() {
+        return this.std;
+    }
+
+    public void setStd(Integer std) {
+        this.std = std;
+    }
+
+    public Integer getDiff() {
+        return this.tmedio1 - this.tmedio2;
     }
 
 }

@@ -48,7 +48,7 @@ export class TestTAIComponent implements OnInit {
   newResponse = {
     id: 0,
     codeEnc: "",
-    idEnc: 0,
+    idTai: 0,
     resp: []
 
   };
@@ -64,6 +64,8 @@ export class TestTAIComponent implements OnInit {
   };
 
   element = this.newElement as Element;  // Hay que darle valor inicial, si no salta una
+
+  idRespuesta = 0;
   
 
   constructor(private ruta: ActivatedRoute, private router: Router,
@@ -364,16 +366,21 @@ export class TestTAIComponent implements OnInit {
 
   enviarRespuesta(){
     this.response.codeEnc = this.tai.code;
-    this.response.idEnc = this.tai.id;
+    this.response.idTai = this.tai.id;
     this.clienteApiRest.sendResponse(this.id, this.response).subscribe(
       resp => {
-        this.router.navigate(['tai']);
+        let str = resp.body as String;
+        console.log("String: "+str);
+        console.log("TAI: ", this.tai.id);
+        console.log("TAI: ", this.tai.id.toString());
+        this.router.navigate(["tai/" + this.tai.id + "/resultados/" + str]);
       },
       err => {
         console.log("Error al enviar: " + err.message);
         throw err;
       }
     )
+    
   }
 
 

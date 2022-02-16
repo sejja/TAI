@@ -6,6 +6,7 @@ import { TaiEditarComponent } from './tai-editar/tai-editar.component';
 
 
 import { TaiListarComponent } from './tai-listar/tai-listar.component';
+import { TaiResultadosComponent } from './tai-resultados/tai-resultados.component';
 import { TaiSeleccionarComponent } from './tai-seleccionar/tai-seleccionar.component';
 import { TestTAIComponent } from './test-tai/test-tai.component';
 
@@ -17,6 +18,7 @@ const routes: Routes = [
   {path: 'tai/selet', component: TaiSeleccionarComponent },
   {path: 'tai/new', component: TaiEditarComponent},
   {path: 'tai/:id/test', component: TestTAIComponent },
+  {path: 'tai/:id/resultados/:id2', component: TaiResultadosComponent },
   {path: '**', redirectTo:'inicio', pathMatch:'full'}
 ];
 

@@ -11,9 +11,11 @@ import com.uva.tai.exception.TaiException;
 import com.uva.tai.model.Concepto;
 import com.uva.tai.model.Tai;
 import com.uva.tai.model.Respuesta;
+import com.uva.tai.model.Resultado;
 import com.uva.tai.model.Elemento;
 import com.uva.tai.repository.ElementoRepository;
 import com.uva.tai.repository.RespuestaRepository;
+import com.uva.tai.repository.ResultadoRepository;
 import com.uva.tai.repository.TaiRepository;
 
 import org.springframework.web.bind.annotation.RestController;
@@ -46,16 +48,18 @@ public class TaiController {
     private final TaiRepository taiRepository;
     private final RespuestaRepository respuestaRepository;
     private final ElementoRepository elemetoRepository;
+    private final ResultadoRepository resultadoRepository;
 
     TaiController(TaiRepository taiRepository, RespuestaRepository respuestaRepository,
-            ElementoRepository elemetoRepository) {
+            ElementoRepository elemetoRepository, ResultadoRepository resultadoRepository) {
         this.taiRepository = taiRepository;
         this.respuestaRepository = respuestaRepository;
         this.elemetoRepository = elemetoRepository;
+        this.resultadoRepository = resultadoRepository;
     }
 
     /**
-     * Crea una nuevo tai apartir de una paricion POST:/tai
+     * Crea una nuevo tai apartir de una peticion POST:/tai
      * mediante el json recibido
      * 
      * @param newTai
@@ -86,7 +90,7 @@ public class TaiController {
     private final Path root = Paths.get("apiTAI/src/main/resources/uploads");
 
     /**
-     * Almacena una imagen apartir de una paricion POST:/tai/upload/:code
+     * Almacena una imagen apartir de una peticion POST:/tai/upload/:code
      * mediante el archivo recibido
      * 
      * @param newTai
@@ -130,7 +134,7 @@ public class TaiController {
     }
 
     /**
-     * Devuelve un cadigo apartir de una peticion GET:/tai/code
+     * Devuelve un codigo apartir de una peticion GET:/tai/code
      * 
      * @param newTai
      * @return
@@ -145,6 +149,11 @@ public class TaiController {
         return newTai;
     }
 
+    /**
+     * Genera un codigo de 4 caracteres en mayusculas
+     * @return
+     */
+
     private String generateCode() {
         String charSet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
         String code = "";
@@ -156,10 +165,8 @@ public class TaiController {
     }
 
     /**
-     * Devuelve la lista de todos los tais. /tai
-     * 
-     * 
-     * 
+     * Devuelve una lista de todos los tais. 
+     * Mediante la peticion GET:/tai
      * @return
      */
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
@@ -169,7 +176,7 @@ public class TaiController {
     }
 
     /**
-     * Devuelve el tai con GET: /tai/:id
+     * Devuelve el tai con GET:/tai/:id
      * 
      * @param id
      * @return
@@ -184,8 +191,9 @@ public class TaiController {
     }
 
     /**
-     * Crea una nuevo respuesta apartir de una paricion POST:/tai/:id
-     * mediante el json recibido
+     * Crea una nueva respuesta apartir de una peticion POST:/tai/:id
+     * mediante el json recibido ademas calcula los resultados de esa 
+     * respuesta y los almacena ademas devuelve el id de la respuesta
      * 
      * @param newTai
      * @return
@@ -198,9 +206,9 @@ public class TaiController {
             for (Elemento element : resp)
                 element.setResp(newRespuesta);
             respuestaRepository.saveAndFlush(newRespuesta);
-            List<Elemento> elementos = newRespuesta.getResp();
-            generateResult(elementos);
-            return "Nuevo registro creado";//Mejor el id de la respuesta
+            Respuesta respuesta = respuestaRepository.findTopByOrderByIdDesc();
+            generateResult(respuesta);
+            return respuesta.getId().toString();//devualve el id de la respuesta
         } catch (Exception e) {
             // Se deja esta parte comentada como alternativa a la gestion de errores
             // propuesta
@@ -214,7 +222,13 @@ public class TaiController {
 
     }
 
-    void generateResult(List<Elemento> elementos){//Hoy que refactorizar esto
+    /**
+     * Calculo de resultados
+     * @param newRespuesta
+     */
+    void generateResult(Respuesta newRespuesta){//Hay que refactorizar esto
+
+        List<Elemento> elementos = newRespuesta.getResp();
 
         System.out.println("\n->size " + elementos.size());
 
@@ -280,11 +294,39 @@ public class TaiController {
 
         int dif = media1 - media2;
 
+        std1 = (int) Math.round(Math.sqrt(std1 / test1.size()));
+        std2 = (int) Math.round(Math.sqrt(std2 / test2.size()));
+        std = (int) Math.round(Math.sqrt(std / elementos.size()));
+
         System.out.println("\n-> dif:"+dif+" media1:"+media1+" media2:"+media2+" media:"+media+
         " std1:"+std1+" std2:"+std2+" std:"+std);
 
+        Resultado resultado = new Resultado(newRespuesta.getId(), newRespuesta.getIdTai(), "Test1",
+         media1, std1, "Test2", media2, std2, media, std);
+
+        resultadoRepository.saveAndFlush(resultado);
+
     }
 
+    /**
+     * Devuelve una lista con los resultados del tai con id especificada
+     * @param id
+     * @return
+     */
+    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE, value = "/{id}/resultados")  
+    public List<Resultado> getResultados(@PathVariable int id) {
+        return resultadoRepository.findByIdTai(id);
+    }
 
+    /**
+     * Divierve el resultado del tai id de la respuesta id2
+     * @param id
+     * @param id2
+     * @return
+     */
+    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE, value = "/{id}/resultados/{id2}")
+    public Optional<Resultado> getResultados(@PathVariable int id, @PathVariable int id2) {
+        return resultadoRepository.findByIdResp(id2);
+    }
 
 }
