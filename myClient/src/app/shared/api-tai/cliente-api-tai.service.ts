@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Tai } from './app.tai-model';
 import { TaiResponse } from './app.response-model';
+import { TaiResult } from './app.result-model';
 
 @Injectable({
     providedIn: 'root'
@@ -74,10 +75,6 @@ export class ClienteApiOrdersService {
         let url = ClienteApiOrdersService.BASE_URI + id;
         return this.http.delete(url, { observe: 'response', responseType: 'text' });
     }
-
-
-
-
     
 
     upload(file: File, code: String): Observable<HttpEvent<any>> {
@@ -93,5 +90,12 @@ export class ClienteApiOrdersService {
     /*getFiles(): Observable<any> {
         return this.http.get(ClienteApiOrdersService.BASE_URI + "/files");
     }*/
+
+    getResult(idTai:number, idResp: number){
+        let url = ClienteApiOrdersService.BASE_URI + idTai + "/resultados/" + idResp;
+        return this.http.get<TaiResult>(url, { observe: 'response'});
+    }
+
+    
 
 }

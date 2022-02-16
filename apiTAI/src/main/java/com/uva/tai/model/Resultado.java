@@ -116,11 +116,11 @@ public class Resultado {
         this.asociacion2 = asociacion2;
     }
 
-    public Integer getTmadio2() {
+    public Integer getTmedio2() {
         return this.tmedio2;
     }
 
-    public void setTrespuesta2(Integer tmedio2) {
+    public void setTmedio2(Integer tmedio2) {
         this.tmedio2 = tmedio2;
     }
 
