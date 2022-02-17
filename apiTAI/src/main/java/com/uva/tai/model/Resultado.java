@@ -6,7 +6,7 @@ import java.time.LocalDate;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Table;
-import javax.validation.constraints.Size;
+//import javax.validation.constraints.Size;
 import javax.persistence.Id;
 
 
@@ -22,39 +22,51 @@ public class Resultado {
     private Integer id;
     private Integer idResp;
     private Integer idTai;
-    
-    @Size(max = 50)
-    private String asociacion1;
-    private Integer tmedio1;
-    private Integer std1;
 
-    @Size(max = 50)
-    private String asociacion2;
-    private Integer tmedio2;
-    private Integer std2;
+    private Integer mb3;
+    private Integer mb4;
+    private Integer mb6;
+    private Integer mb7;
+    private Integer mb36;
+    private Integer mb47;
+
+
+    private Integer std3;
+    private Integer std4;
+    private Integer std6;
+    private Integer std7;
+    private Integer std36;
+    private Integer std47;
+
 
     private Date created_at;
 
-    private Integer tmedio;
-    private Integer std;
 
     public Resultado() {
         this.created_at = Date.valueOf(LocalDate.now());
     }
 
-    public Resultado(Integer idResp, Integer idTai, String asociacion1, Integer tmedio1, Integer std1, 
-    String asociacion2, Integer tmedio2, Integer std2, Integer tmedio, Integer std ) {
+    public Resultado(Integer idResp, Integer idTai, Integer mb3, Integer mb4, Integer mb6, Integer mb7, Integer mb36, Integer mb47, 
+        Integer std3, Integer std4, Integer std6, Integer std7, Integer std36, Integer std47) {
 
         this.idResp = idResp;
         this.idTai = idTai;
-        this.asociacion1 = asociacion1;
-        this.tmedio1 = tmedio1;
-        this.std1 = std1;
-        this.asociacion2 = asociacion2;
-        this.tmedio2 = tmedio2;
-        this.std2 = std2;
-        this.tmedio = tmedio;
-        this.std = std;
+        this.mb3 = mb3;
+        this.mb4 = mb4;
+        this.mb6 = mb6;
+        this.mb7 = mb7;
+        this.mb36 = mb36;
+        this.mb47 = mb47;
+        this.std3 = std3;
+        this.std4 = std4;
+        this.std6 = std6;
+        this.std7 = std7;
+        this.std36 = std36;
+        this.std47 = std47;
+
+
+
+
 
         this.created_at = Date.valueOf(LocalDate.now());
     }
@@ -84,54 +96,6 @@ public class Resultado {
         this.idTai = idTai;
     }
 
-    public String getAsociacion1(){
-        return this.asociacion1;
-    }
-
-    public void setAsociacion1(String asociacion1){
-        this.asociacion1 = asociacion1;
-    }
-
-    public Integer getTmedio1() {
-        return this.tmedio1;
-    }
-
-    public void setTmedio1(Integer tmedio1) {
-        this.tmedio1 = tmedio1;
-    }
-
-    public Integer getStd1() {
-        return this.std1;
-    }
-
-    public void setStd1(Integer std1) {
-        this.std1 = std1;
-    }
-
-    public String getAsociacion2() {
-        return this.asociacion2;
-    }
-
-    public void setAsociacion2(String asociacion2) {
-        this.asociacion2 = asociacion2;
-    }
-
-    public Integer getTmedio2() {
-        return this.tmedio2;
-    }
-
-    public void setTmedio2(Integer tmedio2) {
-        this.tmedio2 = tmedio2;
-    }
-
-    public Integer getStd2() {
-        return this.std2;
-    }
-
-    public void setStd2(Integer std2) {
-        this.std2 = std2;
-    }
-
     public Date getCreatedAt() {
         return this.created_at;
     }
@@ -140,24 +104,118 @@ public class Resultado {
         this.created_at = created_at;
     }
 
-    public Integer getTmedio() {
-        return this.tmedio;
+    public Integer getMb3() {
+        return this.mb3;
     }
 
-    public void setTmedio(Integer tmedio) {
-        this.tmedio = tmedio;
+    public void setMb3(Integer mb3) {
+        this.mb3 = mb3;
     }
 
-    public Integer getStd() {
-        return this.std;
+    public Integer getMb4() {
+        return this.mb4;
     }
 
-    public void setStd(Integer std) {
-        this.std = std;
+    public void setMb4(Integer mb4) {
+        this.mb4 = mb4;
     }
 
-    public Integer getDiff() {
-        return this.tmedio1 - this.tmedio2;
+    public Integer getMb6() {
+        return this.mb6;
     }
+
+    public void setMb6(Integer mb6) {
+        this.mb6 = mb6;
+    }
+
+    public Integer getMb7() {
+        return this.mb7;
+    }
+
+    public void setMb7(Integer mb7) {
+        this.mb7 = mb7;
+    }
+
+    public Integer getMb36() {
+        return this.mb36;
+    }
+
+    public void setMb36(Integer mb36) {
+        this.mb36 = mb36;
+    }
+
+    public Integer getMb47() {
+        return this.mb47;
+    }
+
+    public void setMb47(Integer mb47) {
+        this.mb47 = mb47;
+    }
+
+    public Integer getStd3() {
+        return this.std3;
+    }
+
+    public void setStd3(Integer std3) {
+        this.std3 = std3;
+    }
+
+    public Integer getStd4() {
+        return this.std4;
+    }
+
+    public void setStd4(Integer std4) {
+        this.std4 = std4;
+    }
+
+    public Integer getStd6() {
+        return this.std6;
+    }
+
+    public void setStd6(Integer std6) {
+        this.std6 = std6;
+    }
+
+    public Integer getStd7() {
+        return this.std7;
+    }
+
+    public void setStd7(Integer std7) {
+        this.std7 = std7;
+    }
+
+    public Integer getStd36() {
+        return this.std36;
+    }
+
+    public void setStd36(Integer std36) {
+        this.std36 = std36;
+    }
+
+    public Integer getStd47() {
+        return this.std47;
+    }
+
+    public void setStd47(Integer std47) {
+        this.std47 = std47;
+    }
+
+    public Integer getDiff63() {
+        return this.mb6 - this.mb3;
+    }
+
+    public Integer getDiff74() {
+        return this.mb7 - this.mb4;
+    }
+
+    public Float getDscore36() {
+        return this.getDiff63() * 1f / this.std36;
+    }
+    
+    public Float getDscore47() {
+        return this.getDiff74() * 1f / this.std47;
+    }
+
+
 
 }

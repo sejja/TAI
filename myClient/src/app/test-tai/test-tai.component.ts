@@ -238,14 +238,31 @@ export class TestTAIComponent implements OnInit {
           this.ifase = (this.ifase + 1) % this.nfase;
           this.ironda = 0;
         }
-      } else if ((this.ifase == 10 || this.ifase == 12) && 
+      } else if (this.ifase == 10 && 
         (this.conceptTest.status == "Palabra1" || this.conceptTest.status == "Imagen1")) {
 
         this.element.correcta = this.error;
         this.element.tiempo = this.end.getTime() - this.init.getTime();
-        this.element.tipo = 'Test1';
+        this.element.tipo = 'Bloque3';
         this.response.resp.push(this.element);
         this.element = <Element>{tipo: "",correcta: true,tiempo: 0};
+
+        this.timeLeft = this.time;
+        this.error = false;
+        this.randomConcept();
+        this.ironda++;
+        if (this.ironda == this.nronda) {
+          this.ifase = (this.ifase + 1) % this.nfase;
+          this.ironda = 0;
+        }
+      } else if (this.ifase == 12 &&
+        (this.conceptTest.status == "Palabra1" || this.conceptTest.status == "Imagen1")) {
+
+        this.element.correcta = this.error;
+        this.element.tiempo = this.end.getTime() - this.init.getTime();
+        this.element.tipo = 'Bloque4';;
+        this.response.resp.push(this.element);
+        this.element = <Element>{ tipo: "", correcta: true, tiempo: 0 };
 
         this.timeLeft = this.time;
         this.error = false;
@@ -264,12 +281,12 @@ export class TestTAIComponent implements OnInit {
           this.ifase = (this.ifase + 1) % this.nfase;
           this.ironda = 0;
         }
-      } else if ((this.ifase == 16 || this.ifase == 18) && 
+      } else if (this.ifase == 16 && 
         (this.conceptTest.status == "Imagen2" || this.conceptTest.status == "Palabra1")) {
 
         this.element.correcta = this.error;
         this.element.tiempo = this.end.getTime() - this.init.getTime();
-        this.element.tipo = 'Test2';
+        this.element.tipo = 'Bloque6';
         this.response.resp.push(this.element);
         this.element = <Element>{ tipo: "", correcta: true, tiempo: 0 };
 
@@ -278,13 +295,29 @@ export class TestTAIComponent implements OnInit {
         this.randomConcept();
         this.ironda++;
         if (this.ironda == this.nronda) {
-          if (this.ifase == 18){
-            this.enviarRespuesta();
-          }
           this.ifase = (this.ifase + 1) % this.nfase;
           this.ironda = 0;
         }
-      } else {
+      } else if (this.ifase == 18 &&
+        (this.conceptTest.status == "Imagen2" || this.conceptTest.status == "Palabra1")) {
+
+        this.element.correcta = this.error;
+        this.element.tiempo = this.end.getTime() - this.init.getTime();
+        this.element.tipo = 'Bloque7';
+        this.response.resp.push(this.element);
+        this.element = <Element>{ tipo: "", correcta: true, tiempo: 0 };
+
+        this.timeLeft = this.time;
+        this.error = false;
+        this.randomConcept();
+        this.ironda++;
+        if (this.ironda == this.nronda) {
+          this.enviarRespuesta();
+          this.ifase = (this.ifase + 1) % this.nfase;
+          this.ironda = 0;
+        }
+      }  
+      else {
         this.error = true;
       }
     }
@@ -312,12 +345,29 @@ export class TestTAIComponent implements OnInit {
           this.ifase = (this.ifase + 1) % this.nfase;
           this.ironda = 0;
         }
-      } else if ((this.ifase == 10 || this.ifase == 12) &&
+      } else if (this.ifase == 10 &&
         (this.conceptTest.status == "Palabra2" || this.conceptTest.status == "Imagen2")) {
 
         this.element.correcta = this.error;
         this.element.tiempo = this.end.getTime() - this.init.getTime();
-        this.element.tipo = 'Test1';
+        this.element.tipo = 'Bloque3';
+        this.response.resp.push(this.element);
+        this.element = <Element>{ tipo: "", correcta: true, tiempo: 0 };
+
+        this.timeLeft = this.time;
+        this.error = false;
+        this.randomConcept();
+        this.ironda++;
+        if (this.ironda == this.nronda) {
+          this.ifase = (this.ifase + 1) % this.nfase;
+          this.ironda = 0;
+        }
+      } else if (this.ifase == 12 &&
+        (this.conceptTest.status == "Palabra2" || this.conceptTest.status == "Imagen2")) {
+
+        this.element.correcta = this.error;
+        this.element.tiempo = this.end.getTime() - this.init.getTime();
+        this.element.tipo = 'Bloque4';
         this.response.resp.push(this.element);
         this.element = <Element>{ tipo: "", correcta: true, tiempo: 0 };
 
@@ -338,12 +388,12 @@ export class TestTAIComponent implements OnInit {
           this.ifase = (this.ifase + 1) % this.nfase;
           this.ironda = 0;
         }
-      } else if ((this.ifase == 16 || this.ifase == 18) &&
+      } else if (this.ifase == 16 &&
         (this.conceptTest.status == "Imagen1" || this.conceptTest.status == "Palabra2")) {
 
         this.element.correcta = this.error;
         this.element.tiempo = this.end.getTime() - this.init.getTime();
-        this.element.tipo = 'Test2';
+        this.element.tipo = 'Bloque6';
         this.response.resp.push(this.element);
         this.element = <Element>{ tipo: "", correcta: true, tiempo: 0 };
 
@@ -352,9 +402,24 @@ export class TestTAIComponent implements OnInit {
         this.randomConcept();
         this.ironda++;
         if (this.ironda == this.nronda) {
-          if (this.ifase == 18) {
-            this.enviarRespuesta();
-          }
+          this.ifase = (this.ifase + 1) % this.nfase;
+          this.ironda = 0;
+        }
+      } else if (this.ifase == 18 &&
+        (this.conceptTest.status == "Imagen1" || this.conceptTest.status == "Palabra2")) {
+
+        this.element.correcta = this.error;
+        this.element.tiempo = this.end.getTime() - this.init.getTime();
+        this.element.tipo = 'Bloque7';
+        this.response.resp.push(this.element);
+        this.element = <Element>{ tipo: "", correcta: true, tiempo: 0 };
+
+        this.timeLeft = this.time;
+        this.error = false;
+        this.randomConcept();
+        this.ironda++;
+        if (this.ironda == this.nronda) {
+          this.enviarRespuesta();
           this.ifase = (this.ifase + 1) % this.nfase;
           this.ironda = 0;
         }
