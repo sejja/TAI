@@ -12,9 +12,15 @@ import { TestTAIComponent } from './test-tai/test-tai.component';
 import { InicioComponent } from './inicio/inicio.component';
 import { TaiEditarComponent } from './tai-editar/tai-editar.component'; // CLI 
 import { ClienteApiOrdersService } from './shared/api-tai/cliente-api-tai.service';
+import { ClienteApiAuthService } from './shared/api-auth/cliente-api-auth.service';
 import { TaiSeleccionarComponent } from './tai-seleccionar/tai-seleccionar.component';
 import { LoginComponent } from './login/login.component';
 import { TaiResultadosComponent } from './tai-resultados/tai-resultados.component';
+
+import { LoggedGuard } from './logged-guard.guard';
+import { NotLoggedGuard } from './not-logged.guard';
+
+import { JwtInterceptor } from './jwt.interceptor';
 
 // npm install highcharts --save
 // npm install highcharts-angular --save
@@ -41,7 +47,8 @@ import { HighchartsChartModule } from 'highcharts-angular';
     HighchartsChartModule
   ],
   providers: [
-    ClienteApiOrdersService
+    ClienteApiOrdersService,
+    ClienteApiAuthService
   ],
   bootstrap: [AppComponent]
 })

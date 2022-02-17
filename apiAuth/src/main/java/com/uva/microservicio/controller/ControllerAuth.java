@@ -28,11 +28,11 @@ import java.sql.Date;
 @RestController
 @RequestMapping("/login")
 @CrossOrigin(origins = "*")
-class Controller {
+class ControllerAuth {
 
     private final UsuarioRepository repository;
 
-    Controller(UsuarioRepository repository) {
+    ControllerAuth(UsuarioRepository repository) {
         this.repository = repository;
     }
 
