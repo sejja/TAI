@@ -1,17 +1,33 @@
-import { Component, OnInit, HostListener } from '@angular/core';
+import { Component, VERSION, OnInit } from '@angular/core';
 
 import { ActivatedRoute, Params, Router } from '@angular/router';
 
-import { Tai } from '../shared/api-tai/app.tai-model';
-import { Concept } from '../shared/api-tai/app.concept-model';
-
-import { TaiResponse } from '../shared/api-tai/app.response-model';
 import { TaiResult } from '../shared/api-tai/app.result-model';
 
 import { ClienteApiOrdersService } from '../shared/api-tai/cliente-api-tai.service';
 import { HttpEventType, HttpResponse } from '@angular/common/http';
 
 import * as Highcharts from 'highcharts'; //npm install highcharts
+
+
+declare var require: any;
+const More = require('highcharts/highcharts-more');
+More(Highcharts);
+
+import Histogram from 'highcharts/modules/histogram-bellcurve';
+Histogram(Highcharts);
+
+const Exporting = require('highcharts/modules/exporting');
+Exporting(Highcharts);
+
+const ExportData = require('highcharts/modules/export-data');
+ExportData(Highcharts);
+
+const Accessibility = require('highcharts/modules/accessibility');
+Accessibility(Highcharts);
+//import * as newdata from './data';
+
+
 
 @Component({
   selector: 'app-tai-resultados',
@@ -24,9 +40,78 @@ export class TaiResultadosComponent implements OnInit {
   idResp = 0;
 
   resultado: TaiResult;
+  resultados: TaiResult[];
+
+  public activity: any;
+  public xData: any;
+  public label: any;
+  options: any;
+  res: any;
 
   constructor(private ruta: ActivatedRoute, private router: Router,
     private clienteApiRest: ClienteApiOrdersService) { }
+
+  createHistogram(data:number[]){
+
+    //var data = [3.5, 3, 3.2, 3.1, 3.6, 3.9, 3.4, 3.4, 2.9, 3.1, 3.7, 3.4, 3, 3, 4, 4.4, 3.9, 3.5, 3.8, 3.8, 3.4, 3.7, 3.6, 3.3, 3.4, 3, 3.4, 3.5, 3.4, 3.2, 3.1, 3.4, 4.1, 4.2, 3.1, 3.2, 3.5, 3.6, 3, 3.4, 3.5, 2.3, 3.2, 3.5, 3.8, 3, 3.8, 3.2, 3.7, 3.3, 3.2, 3.2, 3.1, 2.3, 2.8, 2.8, 3.3, 2.4, 2.9, 2.7, 2, 3, 2.2, 2.9, 2.9, 3.1, 3, 2.7, 2.2, 2.5, 3.2, 2.8, 2.5, 2.8, 2.9, 3, 2.8, 3, 2.9, 2.6, 2.4, 2.4, 2.7, 2.7, 3, 3.4, 3.1, 2.3, 3, 2.5, 2.6, 3, 2.6, 2.3, 2.7, 3, 2.9, 2.9, 2.5, 2.8, 3.3, 2.7, 3, 2.9, 3, 3, 2.5, 2.9, 2.5, 3.6, 3.2, 2.7, 3, 2.5, 2.8, 3.2, 3, 3.8, 2.6, 2.2, 3.2, 2.8, 2.8, 2.7, 3.3, 3.2, 2.8, 3, 2.8, 3, 2.8, 3.8, 2.8, 2.8, 2.6, 3, 3.4, 3.1, 3, 3.1, 3.1, 3.1, 2.7, 3.2, 3.3, 3, 2.5, 3, 3.4, 3];
+
+    this.options = {
+      title: {
+        text: 'Highcharts Histogram'
+      },
+
+      xAxis: [{
+        title: { text: 'Data' },
+        alignTicks: false
+      }, {
+        title: { text: 'Histogram' },
+        alignTicks: false,
+        opposite: true
+      }],
+
+      yAxis: [{
+        title: { text: 'Data' }
+      }, {
+        title: { text: 'Histogram' },
+        opposite: true
+      }],
+
+      plotOptions: {
+        histogram: {
+          accessibility: {
+            pointDescriptionFormatter: function (point: { index: number; x: number; x2: number; y: any; }) {
+              var ix = point.index + 1,
+                x1 = point.x.toFixed(3),
+                x2 = point.x2.toFixed(3),
+                val = point.y;
+              return ix + '. ' + x1 + ' to ' + x2 + ', ' + val + '.';
+            }
+          }
+        }
+      },
+
+      series: [{
+        name: 'Histogram',
+        type: 'histogram',
+        xAxis: 1,
+        yAxis: 1,
+        baseSeries: 's1',
+        zIndex: -1
+      }, {
+        name: 'Data',
+        type: 'scatter',
+        data: data,
+        id: 's1',
+        marker: {
+          radius: 1.5
+        }
+      }]
+    };
+
+    Highcharts.chart('container', this.options);
+
+  }
+    
 
   ngOnInit(): void {
 
@@ -37,6 +122,8 @@ export class TaiResultadosComponent implements OnInit {
     this.idResp = parseInt((obj == null) ? "null" : obj.toString());
 
     this.getResult();
+    this.getResults();
+    
   }
 
   getResult(){
@@ -45,11 +132,23 @@ export class TaiResultadosComponent implements OnInit {
         if (resp.status < 400) { // Si no hay error en la respuesta
           this.resultado = resp.body as TaiResult; // Se obtiene la lista de users desde la respuesta
         } 
-      }/*
-      err => {
-        console.log("Error al leer resultados " + err)
-        throw err;
-      }*/
+      }
+    );
+  }
+
+  getResults() {
+    this.clienteApiRest.getResults(this.idTai).subscribe(
+      resp => {
+        if (resp.status < 400) { // Si no hay error en la respuesta
+          this.resultados = resp.body as TaiResult[]; // Se obtiene la lista de users desde la respuesta
+          console.log(this.resultados.length);
+          var data: number[] = [];
+          this.resultados.forEach(element => {
+            data.push(element.diff74);
+          });
+          this.createHistogram(data);
+        }
+      }
     );
   }
 

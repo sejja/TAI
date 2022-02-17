@@ -96,6 +96,11 @@ export class ClienteApiOrdersService {
         return this.http.get<TaiResult>(url, { observe: 'response'});
     }
 
+    getResults(idTai: number) {
+        let url = ClienteApiOrdersService.BASE_URI + idTai + "/resultados";
+        return this.http.get<TaiResult[]>(url, { observe: 'response' });
+    }
+
     
 
 }

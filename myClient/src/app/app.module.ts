@@ -16,6 +16,10 @@ import { TaiSeleccionarComponent } from './tai-seleccionar/tai-seleccionar.compo
 import { LoginComponent } from './login/login.component';
 import { TaiResultadosComponent } from './tai-resultados/tai-resultados.component';
 
+// npm install highcharts --save
+// npm install highcharts-angular --save
+import { HighchartsChartModule } from 'highcharts-angular';
+
 
 
 @NgModule({
@@ -33,7 +37,8 @@ import { TaiResultadosComponent } from './tai-resultados/tai-resultados.componen
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    HighchartsChartModule
   ],
   providers: [
     ClienteApiOrdersService
