@@ -13,9 +13,10 @@ import { NotLoggedGuard } from './not-logged.guard'
 
 
 const routes: Routes = [
-  { path: 'login', component: LoginComponent, canActivate: [NotLoggedGuard]},
-  { path: 'inicio', component: InicioComponent, canActivate: [LoggedGuard]},
-  { path: 'tai/selet', component: TaiSeleccionarComponent, canActivate: [NotLoggedGuard]},
+  { path: 'login', component: LoginComponent},
+  { path: 'inicio', component: InicioComponent},
+  { path: 'tai', component: TaiListarComponent},
+  { path: 'tai/selet', component: TaiSeleccionarComponent},
   {path: 'tai/new', component: TaiEditarComponent},
   {path: 'tai/:id/test', component: TestTAIComponent },
   {path: 'tai/:id/resultados/:id2', component: TaiResultadosComponent },
