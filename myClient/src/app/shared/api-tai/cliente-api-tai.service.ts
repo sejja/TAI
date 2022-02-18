@@ -51,7 +51,7 @@ export class ClienteApiOrdersService {
     }
 
     sendResponse(id: number, resp: TaiResponse,){
-        let url = ClienteApiOrdersService.BASE_URI + id;
+        let url = ClienteApiOrdersService.BASE_URI + "/" +  id;
         return this.http.post(url, resp, { observe: 'response', responseType: 'text' });
     }
 
@@ -60,7 +60,7 @@ export class ClienteApiOrdersService {
      * @param id Identificador de un pedido
      * @param order Pedido modificado
      * @returns Respuesta http 
-     */
+    
     updateOrder(id: String, order: Tai): Observable<HttpResponse<any>> {
         let url = ClienteApiOrdersService.BASE_URI + id;
         return this.http.put(url, order, { observe: 'response', responseType: 'text' });
@@ -72,7 +72,7 @@ export class ClienteApiOrdersService {
      * @returns Respuesta http
      */
     deleteOrder(id: Number): Observable<HttpResponse<any>> {
-        let url = ClienteApiOrdersService.BASE_URI + id;
+        let url = ClienteApiOrdersService.BASE_URI + "/" + id;
         return this.http.delete(url, { observe: 'response', responseType: 'text' });
     }
     
@@ -92,12 +92,12 @@ export class ClienteApiOrdersService {
     }*/
 
     getResult(idTai:number, idResp: number){
-        let url = ClienteApiOrdersService.BASE_URI + idTai + "/resultados/" + idResp;
+        let url = ClienteApiOrdersService.BASE_URI + "/" + idTai + "/resultados/" + idResp;
         return this.http.get<TaiResult>(url, { observe: 'response'});
     }
 
     getResults(idTai: number) {
-        let url = ClienteApiOrdersService.BASE_URI + idTai + "/resultados";
+        let url = ClienteApiOrdersService.BASE_URI + "/" + idTai + "/resultados";
         return this.http.get<TaiResult[]>(url, { observe: 'response' });
     }
 
