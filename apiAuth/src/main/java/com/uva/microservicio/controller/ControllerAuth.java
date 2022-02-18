@@ -32,6 +32,9 @@ class ControllerAuth {
 
     private final UsuarioRepository repository;
 
+    private final String PREFIX = "Bearer ";
+    private final String SECRET = "asdfhdjskalskdjfhalduiweuhdlajadhaiuehdljdhiqouehfjlajsdhfuhofqhqehdjahldjhfiqeu";
+
     ControllerAuth(UsuarioRepository repository) {
         this.repository = repository;
     }
@@ -55,7 +58,7 @@ class ControllerAuth {
 
 
     private String getJWTToken(String username) {
-        String secretKey = "asdfhdjskalskdjfhalduiweuhdlajadhaiuehdljdhiqouehfjlajsdhfuhofqhqehdjahldjhfiqeu";
+        String secretKey = SECRET;
         List<GrantedAuthority> grantedAuthorities = AuthorityUtils
                 .commaSeparatedStringToAuthorityList("ROLE_USER");
 
@@ -73,7 +76,7 @@ class ControllerAuth {
                         secretKey.getBytes())
                 .compact();
 
-        return "Bearer " + token;
+        return PREFIX + token;
     }
 
 }

@@ -42,6 +42,8 @@ export class TaiResultadosComponent implements OnInit {
   resultado: TaiResult;
   resultados: TaiResult[];
 
+  media: number;
+
   public activity: any;
   public xData: any;
   public label: any;
@@ -57,24 +59,26 @@ export class TaiResultadosComponent implements OnInit {
 
     this.options = {
       title: {
-        text: 'Highcharts Histogram'
+        text: 'Histograma de la diferencia de tiempos de respuesta'
       },
 
       xAxis: [{
-        title: { text: 'Data' },
-        alignTicks: false
-      }, {
-        title: { text: 'Histogram' },
+        title: { text: 'Numero de usuarios' },
         alignTicks: false,
         opposite: true
+        
+      }, {
+        title: { text: 'Diferencia tiempo de respuesta' },
+        alignTicks: false,
       }],
 
       yAxis: [{
-        title: { text: 'Data' }
+        title: { text: 'Diferencia tiempo de respuesta' }
       }, {
-        title: { text: 'Histogram' },
+        title: { text: 'Numero de usuarios' },
         opposite: true
       }],
+      
 
       plotOptions: {
         histogram: {
@@ -103,7 +107,7 @@ export class TaiResultadosComponent implements OnInit {
         data: data,
         id: 's1',
         marker: {
-          radius: 1.5
+          radius: 1
         }
       }]
     };
@@ -143,9 +147,12 @@ export class TaiResultadosComponent implements OnInit {
           this.resultados = resp.body as TaiResult[]; // Se obtiene la lista de users desde la respuesta
           console.log(this.resultados.length);
           var data: number[] = [];
+          var sum: number = 0;
           this.resultados.forEach(element => {
             data.push(element.diff74);
+            sum += element.diff74;
           });
+          this.media = sum / data.length
           this.createHistogram(data);
         }
       }

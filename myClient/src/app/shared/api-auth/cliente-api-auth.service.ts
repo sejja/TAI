@@ -8,7 +8,7 @@ import { Auth } from './app.auth-model';
 })
 export class ClienteApiAuthService {
 
-    private static readonly BASE_URI = 'http://localhost:8081/login/';
+    private static readonly BASE_URI = 'http://localhost:8081/login';
 
     constructor(private http: HttpClient) { }
 

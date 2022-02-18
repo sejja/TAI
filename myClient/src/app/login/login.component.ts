@@ -52,7 +52,7 @@ export class LoginComponent implements OnInit {
           this.auth = resp.body;
           console.log("Token: " + this.auth.token);
           console.log("Token : " + localStorage.getItem("jwt_token"));
-          this.router.navigate(['users']);
+          this.router.navigate(['inicio']);
         }
         else if (resp.status == 403) {
           this.mensaje = 'Credenciales incorrectas';
@@ -66,5 +66,12 @@ export class LoginComponent implements OnInit {
         throw err;
       }
     );
+  }
+
+
+  // Al pulsar en el boton List Users
+  clickLogout() {
+    this.clienteApiAuth.logout();
+    this.router.navigate(['inicio']);
   }
 }

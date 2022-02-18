@@ -8,6 +8,9 @@
                             <div class="row text-center">
                                 <h1>Adminstración</h1>
                             </div>
+                            <div>
+                                <a id="logoutButton" class="btn btn-danger mt-auto" (click)="clickLogout()">Logout</a>
+                            </div>
                             <div class="mt-5 row">
                                 <input type="text" class="form-control" placeholder="Usuario" [ngModelOptions]="{standalone: true}" [(ngModel)]="auth.email" required>
                             </div>

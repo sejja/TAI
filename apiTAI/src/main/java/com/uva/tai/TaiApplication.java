@@ -2,10 +2,17 @@ package com.uva.tai;
 
 import java.util.concurrent.TimeUnit;
 
+import com.uva.tai.security.JWTAuthorizationFilter;
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.CacheControl;
+import org.springframework.http.HttpMethod;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
 
@@ -24,6 +31,27 @@ public class TaiApplication {
 		public void addResourceHandlers(ResourceHandlerRegistry registry) { 
 			registry.addResourceHandler("/uploads/**").addResourceLocations("classpath:/uploads/")
 					.setCacheControl(CacheControl.maxAge(2, TimeUnit.HOURS).cachePublic());
+		}
+	}
+
+	@EnableWebSecurity
+	@Configuration
+	class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+
+		@Override
+		protected void configure(HttpSecurity http) throws Exception {
+
+			http.cors().and().csrf().disable()
+					.addFilterAfter(new JWTAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class)
+					.authorizeRequests()
+					.antMatchers(HttpMethod.GET, "/**").permitAll()
+					.antMatchers(HttpMethod.POST, "/tai/{id}").permitAll()
+					.antMatchers(HttpMethod.POST, "/**").authenticated()
+					.antMatchers(HttpMethod.PUT, "/**").authenticated()
+					.antMatchers(HttpMethod.DELETE, "/**").authenticated()
+					
+					.anyRequest().authenticated();
+
 		}
 	}
 

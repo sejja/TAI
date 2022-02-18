@@ -17,7 +17,7 @@ export class NotLoggedGuard implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     if(localStorage.getItem('jwt_token')){
-      this.router.navigate(['users']);
+      this.router.navigate(['inicio']);
       return false;
     }
     else return true;

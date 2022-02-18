@@ -17,10 +17,10 @@ const routes: Routes = [
   { path: 'inicio', component: InicioComponent},
   { path: 'tai', component: TaiListarComponent},
   { path: 'tai/selet', component: TaiSeleccionarComponent},
-  {path: 'tai/new', component: TaiEditarComponent},
-  {path: 'tai/:id/test', component: TestTAIComponent },
-  {path: 'tai/:id/resultados/:id2', component: TaiResultadosComponent },
-  {path: '**', redirectTo:'inicio', pathMatch:'full'}
+  { path: 'tai/new', component: TaiEditarComponent, canActivate: [LoggedGuard]},
+  { path: 'tai/:id/test', component: TestTAIComponent },
+  { path: 'tai/:id/resultados/:id2', component: TaiResultadosComponent },
+  { path: '**', redirectTo:'inicio', pathMatch:'full'}
 ];
 
 @NgModule({
