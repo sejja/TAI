@@ -74,4 +74,10 @@ export class LoginComponent implements OnInit {
     this.clienteApiAuth.logout();
     this.router.navigate(['inicio']);
   }
+
+  // Al pulsar en el boton List Users
+  clickAdmin() {
+    //this.clienteApiAuth.logout();
+    this.router.navigate(['admin']);
+  }
 }

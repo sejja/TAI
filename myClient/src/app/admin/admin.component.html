@@ -1,0 +1,47 @@
+
+<div class="container">
+    <div class="row mt-5">
+        <div class="col-sm-1"></div>
+        <div class="col-sm-3">
+            <div class="list-group" *ngFor="let user of users; let i = index">
+                <a class="list-group-item list-group-item-action">{{user.email}}</a>
+        <!--
+                <a href="#" class="list-group-item list-group-item-action list-group-item-primary">This is a primary list group
+                    item</a>
+        -->
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <form>
+                <div class="row" >
+                    <input type="email" placeholder="Usuario">
+                </div>
+                <div class="row">
+                    <input type="password" placeholder="Contraseña">
+                </div>
+                <div class="row">
+                    <input type="password" placeholder="Contraseña">
+                </div>
+                <div class="row">
+                    <input type="submit" value="Nuevo Admin">
+                </div>
+            </form>
+        </div>
+        <div class="col-sm-3">
+            <form>
+                <div class="row">
+                    <input type="email" placeholder="Usuario">
+                </div>
+                <div class="row">
+                    <input type="password" placeholder="Antigua Contraseña">
+                </div>
+                <div class="row">
+                    <input type="password" placeholder="Nueva Contraseña">
+                </div>
+                <div class="row">
+                    <input type="submit" value="Editar Contraseña">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

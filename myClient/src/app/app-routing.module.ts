@@ -10,11 +10,13 @@ import { TestTAIComponent } from './test-tai/test-tai.component';
 
 import { LoggedGuard } from './logged-guard.guard';
 import { NotLoggedGuard } from './not-logged.guard'
+import { AdminComponent } from './admin/admin.component';
 
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent},
   { path: 'inicio', component: InicioComponent},
+  { path: 'admin', component: AdminComponent, canActivate: [LoggedGuard]},
   { path: 'tai', component: TaiListarComponent},
   { path: 'tai/selet', component: TaiSeleccionarComponent},
   { path: 'tai/new', component: TaiEditarComponent, canActivate: [LoggedGuard]},

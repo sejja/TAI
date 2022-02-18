@@ -25,6 +25,7 @@ import { JwtInterceptor } from './jwt.interceptor';
 // npm install highcharts --save
 // npm install highcharts-angular --save
 import { HighchartsChartModule } from 'highcharts-angular';
+import { AdminComponent } from './admin/admin.component';
 
 
 
@@ -37,7 +38,8 @@ import { HighchartsChartModule } from 'highcharts-angular';
     TaiEditarComponent,
     TaiSeleccionarComponent,
     LoginComponent,
-    TaiResultadosComponent
+    TaiResultadosComponent,
+    AdminComponent
   ],
   imports: [
     BrowserModule,
@@ -47,6 +49,7 @@ import { HighchartsChartModule } from 'highcharts-angular';
     HighchartsChartModule
   ],
   providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     ClienteApiOrdersService,
     ClienteApiAuthService
   ],

@@ -10,7 +10,7 @@ import { TaiResult } from './app.result-model';
 })
 export class ClienteApiOrdersService {
 
-    private static readonly BASE_URI = 'http://localhost:8080/tai/';
+    private static readonly BASE_URI = 'http://localhost:8080/tai';
 
     constructor(private http: HttpClient) { }
 
@@ -25,7 +25,7 @@ export class ClienteApiOrdersService {
     }
 
     getTai(id:number): Observable<HttpResponse<Tai>> {
-        let url = ClienteApiOrdersService.BASE_URI + id;
+        let url = ClienteApiOrdersService.BASE_URI + "/" + id;
         return this.http.get<Tai>(url, { observe: 'response' });
     }
 
@@ -36,7 +36,7 @@ export class ClienteApiOrdersService {
      * @returns Respuesta http con un pedido
      */
     getCode(): Observable<HttpResponse<Tai>> {
-        let url = ClienteApiOrdersService.BASE_URI + "code";
+        let url = ClienteApiOrdersService.BASE_URI + "/code";
         return this.http.get<Tai>(url, { observe: 'response' });
     }
 

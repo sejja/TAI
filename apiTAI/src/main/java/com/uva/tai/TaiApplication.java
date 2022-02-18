@@ -49,7 +49,7 @@ public class TaiApplication {
 					.antMatchers(HttpMethod.POST, "/**").authenticated()
 					.antMatchers(HttpMethod.PUT, "/**").authenticated()
 					.antMatchers(HttpMethod.DELETE, "/**").authenticated()
-					
+					.antMatchers(HttpMethod.OPTIONS, "/**").authenticated()
 					.anyRequest().authenticated();
 
 		}
