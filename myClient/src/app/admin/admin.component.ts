@@ -11,11 +11,30 @@ import { ClienteApiAuthService } from '../shared/api-auth/cliente-api-auth.servi
 export class AdminComponent implements OnInit {
 
   users:User[];
+  
+  newUser = {
+    id: 0,
+    name: "",
+    firstName: "",
+    lastName: "",
+    email: "",
+    password: "",
+    enabled: true,
+    createdAt: new Date,
+    updatedAt: new Date
+  };
+
+  userAdd = this.newUser as User;  // Hay que darle valor inicial, si no salta una
+  //userEdit = this.newUser as User;
 
   constructor(private router: Router, private clienteApiAuth: ClienteApiAuthService) { } 
 
   ngOnInit(): void {
     this.getUsers();
+  }
+
+  refresh(): void {
+    window.location.reload();
   }
 
   // Obtiene la lista de users
@@ -32,6 +51,47 @@ export class AdminComponent implements OnInit {
       }
     )
 
+  }
+
+  onSubmit(){
+    if(this.userAdd.id == 0){
+      this.nuevo();
+    }
+  }
+
+
+  nuevo() {
+    this.clienteApiAuth.addUser(this.userAdd).subscribe(
+      resp => {
+        if (resp.status < 400) { // Si no hay error en la respuesta
+          //this.users = resp.body as User[]; // Se obtiene la lista de users desde la respuesta
+          this.getUsers();
+        }
+      },
+      err => {
+        console.log("Error al traer la lista de users: " + err.message);
+        throw err;
+      }
+    );
+
+  }
+
+
+
+  delete(id : Number) {
+    this.clienteApiAuth.deleteUser(id).subscribe(
+      resp => {
+        if (resp.status < 400) { // Si no hay error en la respuesta
+          //this.users = resp.body as User[]; // Se obtiene la lista de users desde la respuesta
+          this.getUsers();
+        }
+      },
+      err => {
+        console.log("Error al traer la lista de users: " + err.message);
+        throw err;
+      }
+    );
+    
   }
 
 }

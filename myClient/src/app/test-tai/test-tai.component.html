@@ -1,19 +1,5 @@
 
-<body id="page-top">
-  <!-- Navigation-->
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
-      <div class="container px-4">
-          <a class="navbar-brand" href="#page-top">TAI</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-          <div class="collapse navbar-collapse" id="navbarResponsive">
-              <ul class="navbar-nav ms-auto">
-                  <li class="nav-item"><a class="nav-link"><button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#exampleModal"> 
-                    Ayuda </button></a></li>
-              </ul>
-          </div>
-      </div>
-  </nav>
-
+<body class="bg-primary bg-secondary">
 
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -162,10 +148,10 @@
         <h2>{{tai.imagen2}}</h2>
       </div>
       <div *ngIf="timeLeft == 0 && !error" class="offset-3 col-sm-6 my-2 bg-secondary">
-        <img class="card-img" src={{getUrl(conceptTest)}} alt={{conceptTest.name}}>
+        <img class="card-img concepImg" src={{getUrl(conceptTest)}} alt={{conceptTest.name}}>
       </div>
       <div *ngIf="timeLeft == 0 && error" class="offset-3 col-sm-6 my-2 bg-secondary border border-danger border-5">
-        <img class="card-img" src={{getUrl(conceptTest)}} alt={{conceptTest.name}}>
+        <img class="card-img concepImg" src={{getUrl(conceptTest)}} alt={{conceptTest.name}}>
       </div>
     </div>
   </div>
@@ -294,7 +280,7 @@
         </ng-template>
         <ng-template #elseBlock>
           <div class="offset-3 col-sm-6 my-2 bg-secondary">
-            <img class="card-img" src={{getUrl(conceptTest)}} alt={{conceptTest.name}}>
+            <img class="card-img concepImg" src={{getUrl(conceptTest)}} alt={{conceptTest.name}}>
           </div>
         </ng-template>
       </div>
@@ -308,7 +294,7 @@
         </ng-template>
         <ng-template #elseBlock>
           <div class="offset-3 col-sm-6 my-2 bg-secondary border border-danger border-5">
-            <img class="card-img" src={{getUrl(conceptTest)}} alt={{conceptTest.name}}>
+            <img class="card-img concepImg" src={{getUrl(conceptTest)}} alt={{conceptTest.name}}>
           </div>
         </ng-template>
       </div>
@@ -355,10 +341,10 @@
         <h2>{{tai.imagen1}}</h2>
       </div>
       <div *ngIf="timeLeft == 0 && !error" class="offset-3 col-sm-6 my-2 bg-secondary">
-        <img class="card-img" src={{getUrl(conceptTest)}} alt={{conceptTest.name}}>
+        <img class="card-img concepImg" src={{getUrl(conceptTest)}} alt={{conceptTest.name}}>
       </div>
       <div *ngIf="timeLeft == 0 && error" class="offset-3 col-sm-6 my-2 bg-secondary border border-danger border-5">
-        <img class="card-img" src={{getUrl(conceptTest)}} alt={{conceptTest.name}}>
+        <img class="card-img concepImg" src={{getUrl(conceptTest)}} alt={{conceptTest.name}}>
       </div>
     </div>
   </div>
@@ -441,7 +427,7 @@
         </ng-template>
         <ng-template #elseBlock>
           <div class="offset-3 col-sm-6 my-2 bg-secondary">
-            <img class="card-img" src={{getUrl(conceptTest)}} alt={{conceptTest.name}}>
+            <img class="card-img concepImg" src={{getUrl(conceptTest)}} alt={{conceptTest.name}}>
           </div>
         </ng-template>
       </div>
@@ -456,7 +442,7 @@
         </ng-template>
         <ng-template #elseBlock>
           <div class="offset-3 col-sm-6 my-2 bg-secondary border border-danger border-5">
-            <img class="card-img" src={{getUrl(conceptTest)}} alt={{conceptTest.name}}>
+            <img class="card-img concepImg" src={{getUrl(conceptTest)}} alt={{conceptTest.name}}>
           </div>
         </ng-template>
       </div>

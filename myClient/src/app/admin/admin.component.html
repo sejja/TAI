@@ -1,46 +1,61 @@
 
 <div class="container">
     <div class="row mt-5">
-        <div class="col-sm-1"></div>
-        <div class="col-sm-3">
+        <div class="col-sm m-3">
             <div class="list-group" *ngFor="let user of users; let i = index">
-                <a class="list-group-item list-group-item-action">{{user.email}}</a>
-        <!--
-                <a href="#" class="list-group-item list-group-item-action list-group-item-primary">This is a primary list group
-                    item</a>
-        -->
+                <div *ngIf="user.id == userAdd.id; then thenBlock else elseBlock"></div>
+                <ng-template #thenBlock>
+                    <div class="row list-group-item list-group-item-action active" (click)="userAdd=user">
+                        <div class="col">
+                            <p>id:{{user.id}} - {{user.email}}
+                        </div>
+                        <div class="col d-flex flex-row-reverse"><button (click)="delete(user.id)">DELETE</button></div>
+                    </div>
+                </ng-template>
+                <ng-template #elseBlock>
+                    <div class="row list-group-item list-group-item-action" (click)="userAdd=user">
+                        <div class="col">
+                            <p>id:{{user.id}} - {{user.email}}
+                        </div>
+                        <div class="col d-flex flex-row-reverse"><button (click)="delete(user.id)">DELETE</button></div>
+                    </div>
+                </ng-template>
             </div>
+            <button class="btn btn-primary mt-3" (click)="userAdd=newUser">Nuevo</button>
         </div>
-        <div class="col-sm-3">
-            <form>
-                <div class="row" >
-                    <input type="email" placeholder="Usuario">
-                </div>
+        <div class="col-sm m-3">
+            <form (ngSubmit)="nuevo()" #userForm="ngForm">
+
                 <div class="row">
-                    <input type="password" placeholder="Contraseña">
+                    <input placeholder="name" type="text" class="form-control" required [(ngModel)]="userAdd.name" name="name" />
                 </div>
+
                 <div class="row">
-                    <input type="password" placeholder="Contraseña">
+                    <input placeholder="First Name" type="text" class="form-control" required [(ngModel)]="userAdd.firstName" name="firstName" />
                 </div>
+
                 <div class="row">
-                    <input type="submit" value="Nuevo Admin">
+                    <input placeholder="LastName" type="text" class="form-control" required [(ngModel)]="userAdd.lastName" name="lastName" />
                 </div>
-            </form>
-        </div>
-        <div class="col-sm-3">
-            <form>
+
                 <div class="row">
-                    <input type="email" placeholder="Usuario">
+                    <input type="email" class="form-control" placeholder = "Email"
+                        pattern="^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$" required
+                        [(ngModel)]="userAdd.email" name="email" />
                 </div>
+
                 <div class="row">
-                    <input type="password" placeholder="Antigua Contraseña">
+                    <input placeholder="Password" type="password" class="form-control" required [(ngModel)]="userAdd.password" name="password" />
                 </div>
+
                 <div class="row">
-                    <input type="password" placeholder="Nueva Contraseña">
+                    <p>Enable:<input class="form-check-input ms-2" type="checkbox" id="enableEdit" [(ngModel)]="userAdd.enabled" name="enabled" />
                 </div>
+            
                 <div class="row">
-                    <input type="submit" value="Editar Contraseña">
+                    <button type="submit" class="btn btn-primary" [disabled]="!userForm.form.valid">Submit </button>
                 </div>
+              
             </form>
         </div>
     </div>
