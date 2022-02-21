@@ -4,6 +4,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
 
@@ -229,117 +230,129 @@ public class TaiController {
     void generateResult(Respuesta newRespuesta){//Hay que refactorizar esto
 
         List<Elemento> elementos = newRespuesta.getResp();
+        HashMap<String, Integer> map = new HashMap<>();
+        map.put("Bloque3", 0);
+        map.put("Bloque4", 0);
+        map.put("Bloque6", 0);
+        map.put("Bloque7", 0);
 
         ArrayList<Elemento> correctas = new ArrayList<>();
         ArrayList<Elemento> incorretas = new ArrayList<>();
         for (Elemento elemento : elementos) {//Clasificcación de correctas y incorrectas
-            if(elemento.getCorrecta() || elemento.getTiempo() < 300 || elemento.getTiempo() > 10000){
+            if(elemento.getCorrecta() && elemento.getTiempo() > 300 && elemento.getTiempo() < 10000){
                 correctas.add(elemento);
             }else{
                 incorretas.add(elemento);
-            }
-        }
-        int mediaCorrectas = 0;
-        int sumaCorrectas = 0;
-        for (Elemento elemento : correctas) {//Calculo de media de correctas
-            sumaCorrectas += elemento.getTiempo();
-        }
-        if(correctas.size() > 0){
-            mediaCorrectas = Math.round(sumaCorrectas / correctas.size());
-        }
-
-        for (Elemento elemento : elementos) {//sustitucion
-            if (!elemento.getCorrecta()) {
-                elemento.setCorrecta(true);
-                elemento.setTiempo(mediaCorrectas + 600);
+                map.put(elemento.getTipo(), map.get(elemento.getTipo()) + 1);
             }
         }
 
-        //Los datos ya tienen el formato correcto
-        int mb3 = 0;
-        int mb4 = 0;
-        int mb6 = 0;
-        int mb7 = 0;
-        ArrayList<Elemento> b3 = new ArrayList<>();
-        ArrayList<Elemento> b4 = new ArrayList<>();
-        ArrayList<Elemento> b6 = new ArrayList<>();
-        ArrayList<Elemento> b7 = new ArrayList<>();
-        for (Elemento elemento : elementos) {
-            if (elemento.getTipo().equals("Bloque3")) {
-                b3.add(elemento);
-                mb3 += elemento.getTiempo();
-            } else if (elemento.getTipo().equals("Bloque4")) {
-                b4.add(elemento);
-                mb4 += elemento.getTiempo();
-            } else if (elemento.getTipo().equals("Bloque6")) {
-                b6.add(elemento);
-                mb6 += elemento.getTiempo();
-            } else if (elemento.getTipo().equals("Bloque7")) {
-                b7.add(elemento);
-                mb7 += elemento.getTiempo();
+        if(correctas.size() > Math.round(elementos.size() * 0.4)){
+
+            int mediaCorrectas = 0;
+            for (Elemento elemento : correctas) {//Calculo de media de correctas
+                mediaCorrectas += elemento.getTiempo();
             }
+            mediaCorrectas = Math.round(mediaCorrectas / correctas.size());
             
+
+            for (Elemento elemento : elementos) {//sustitucion
+                if (!elemento.getCorrecta()) {
+                    elemento.setCorrecta(true);
+                    elemento.setTiempo(mediaCorrectas + 600);
+                }
+            }
+
+            //Los datos ya tienen el formato correcto
+            int mb3 = 0;
+            int mb4 = 0;
+            int mb6 = 0;
+            int mb7 = 0;
+            ArrayList<Elemento> b3 = new ArrayList<>();
+            ArrayList<Elemento> b4 = new ArrayList<>();
+            ArrayList<Elemento> b6 = new ArrayList<>();
+            ArrayList<Elemento> b7 = new ArrayList<>();
+            for (Elemento elemento : elementos) {
+                if (elemento.getTipo().equals("Bloque3")) {
+                    b3.add(elemento);
+                    mb3 += elemento.getTiempo();
+                } else if (elemento.getTipo().equals("Bloque4")) {
+                    b4.add(elemento);
+                    mb4 += elemento.getTiempo();
+                } else if (elemento.getTipo().equals("Bloque6")) {
+                    b6.add(elemento);
+                    mb6 += elemento.getTiempo();
+                } else if (elemento.getTipo().equals("Bloque7")) {
+                    b7.add(elemento);
+                    mb7 += elemento.getTiempo();
+                }
+                
+            }
+            if(map.get("Bloque3") < Math.round(b3.size() * 0.4)
+            && map.get("Bloque4") < Math.round(b4.size() * 0.4)
+            && map.get("Bloque6") < Math.round(b6.size() * 0.4)
+            && map.get("Bloque7") < Math.round(b7.size() * 0.4)){
+
+                mb3 = Math.round(mb3 / b3.size());
+                mb4 = Math.round(mb4 / b4.size());
+                mb6 = Math.round(mb6 / b6.size());
+                mb7 = Math.round(mb7 / b7.size());
+
+
+                int mb36 = Math.round((mb3 * b3.size() + mb6 * b6.size()) / (b3.size() + b6.size()));
+                int mb47 = Math.round((mb4 * b4.size() + mb7 * b7.size()) / (b4.size() + b7.size()));
+
+                int std3 = 0;
+                int std4 = 0;
+                int std6 = 0;
+                int std7 = 0;
+
+                int std36 = 0;
+                int std47 = 0;
+
+                for (Elemento elemento : b3) {
+                    std3 += Math.pow(elemento.getTiempo() - mb3, 2);
+                    std36 += Math.pow(elemento.getTiempo() - mb36, 2);
+                } 
+                std3 = (int) Math.round(Math.sqrt(std3 / b3.size()));
+
+                for (Elemento elemento : b4) {
+                    std4 += Math.pow(elemento.getTiempo() - mb4, 2);
+                    std47 += Math.pow(elemento.getTiempo() - mb47, 2);
+                }
+                std4 = (int) Math.round(Math.sqrt(std4 / b4.size()));
+
+                for (Elemento elemento : b6) {
+                    std6 += Math.pow(elemento.getTiempo() - mb6, 2);
+                    std36 += Math.pow(elemento.getTiempo() - mb36, 2);
+                }
+                std6 = (int) Math.round(Math.sqrt(std6 / b6.size()));
+                for (Elemento elemento : b7) {
+                    std7 += Math.pow(elemento.getTiempo() - mb7, 2);
+                    std47 += Math.pow(elemento.getTiempo() - mb47, 2);
+                }
+                std7 = (int) Math.round(Math.sqrt(std7 / b7.size()));
+
+                std36 = (int) Math.round(Math.sqrt(std36 / (b3.size() + b6.size())));
+                std47 = (int) Math.round(Math.sqrt(std47 / (b4.size() + b7.size())));
+
+                int diff63 = mb6 - mb3;
+                int diff74 = mb7 - mb4;
+
+                float dscore36 = diff63 * 1f / std36;
+                float dscore47 = diff74 * 1f / std47;
+
+
+                System.out.println("\n-> medias: " + mb3 + ", " + mb4 + ", " + mb6 + ", " + mb7 + ".\n"+
+                                    " desvest: " + std3 + ", " + std4 + ", " + std6 + ", " + std7 + ".\n" +
+                                    " scores:3 y 6: " + dscore36 + ", scores:4 y 7: " + dscore47);
+
+                Resultado resultado = new Resultado(newRespuesta.getId(), newRespuesta.getIdTai(),  mb3,  mb4,  mb6,  mb7, mb36,  mb47, 
+                    std3, std4, std6, std7, std36, std47);
+
+                resultadoRepository.saveAndFlush(resultado);
+            }
         }
-
-        mb3 = Math.round(mb3 / b3.size());
-        mb4 = Math.round(mb4 / b4.size());
-        mb6 = Math.round(mb6 / b6.size());
-        mb7 = Math.round(mb7 / b7.size());
-
-
-        int mb36 = Math.round((mb3 * b3.size() + mb6 * b6.size()) / (b3.size() + b6.size()));
-        int mb47 = Math.round((mb4 * b4.size() + mb7 * b7.size()) / (b4.size() + b7.size()));
-
-        int std3 = 0;
-        int std4 = 0;
-        int std6 = 0;
-        int std7 = 0;
-
-        int std36 = 0;
-        int std47 = 0;
-
-        for (Elemento elemento : b3) {
-            std3 += Math.pow(elemento.getTiempo() - mb3, 2);
-            std36 += Math.pow(elemento.getTiempo() - mb36, 2);
-        } 
-        std3 = (int) Math.round(Math.sqrt(std3 / b3.size()));
-
-        for (Elemento elemento : b4) {
-            std4 += Math.pow(elemento.getTiempo() - mb4, 2);
-            std47 += Math.pow(elemento.getTiempo() - mb47, 2);
-        }
-        std4 = (int) Math.round(Math.sqrt(std4 / b4.size()));
-
-        for (Elemento elemento : b6) {
-            std6 += Math.pow(elemento.getTiempo() - mb6, 2);
-            std36 += Math.pow(elemento.getTiempo() - mb36, 2);
-        }
-        std6 = (int) Math.round(Math.sqrt(std6 / b6.size()));
-        for (Elemento elemento : b7) {
-            std7 += Math.pow(elemento.getTiempo() - mb7, 2);
-            std47 += Math.pow(elemento.getTiempo() - mb47, 2);
-        }
-        std7 = (int) Math.round(Math.sqrt(std7 / b7.size()));
-
-        std36 = (int) Math.round(Math.sqrt(std36 / (b3.size() + b6.size())));
-        std47 = (int) Math.round(Math.sqrt(std47 / (b4.size() + b7.size())));
-
-        int diff63 = mb6 - mb3;
-        int diff74 = mb7 - mb4;
-
-        float dscore36 = diff63 * 1f / std36;
-        float dscore47 = diff74 * 1f / std47;
-
-
-        System.out.println("\n-> medias: " + mb3 + ", " + mb4 + ", " + mb6 + ", " + mb7 + ".\n"+
-                            " desvest: " + std3 + ", " + std4 + ", " + std6 + ", " + std7 + ".\n" +
-                            " scores:3 y 6: " + dscore36 + ", scores:4 y 7: " + dscore47);
-
-        Resultado resultado = new Resultado(newRespuesta.getId(), newRespuesta.getIdTai(),  mb3,  mb4,  mb6,  mb7, mb36,  mb47, 
-         std3, std4, std6, std7, std36, std47);
-
-        resultadoRepository.saveAndFlush(resultado);
-
     }
 
     /**

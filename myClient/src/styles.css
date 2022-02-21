@@ -11301,3 +11301,9 @@ section {
   padding-top: 9rem;
   padding-bottom: 9rem;
 }
+
+html, body { 
+    height: 100%;
+    -webkit-text-size-adjust: 100%;
+    display: block;
+}
