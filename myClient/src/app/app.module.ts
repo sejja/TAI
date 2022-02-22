@@ -13,7 +13,6 @@ import { InicioComponent } from './inicio/inicio.component';
 import { TaiEditarComponent } from './tai-editar/tai-editar.component'; // CLI 
 import { ClienteApiOrdersService } from './shared/api-tai/cliente-api-tai.service';
 import { ClienteApiAuthService } from './shared/api-auth/cliente-api-auth.service';
-import { TaiSeleccionarComponent } from './tai-seleccionar/tai-seleccionar.component';
 import { LoginComponent } from './login/login.component';
 import { TaiResultadosComponent } from './tai-resultados/tai-resultados.component';
 
@@ -36,7 +35,6 @@ import { AdminComponent } from './admin/admin.component';
     InicioComponent,
     TaiListarComponent,
     TaiEditarComponent,
-    TaiSeleccionarComponent,
     LoginComponent,
     TaiResultadosComponent,
     AdminComponent

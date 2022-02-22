@@ -6,8 +6,8 @@
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
           <div class="collapse navbar-collapse" id="navbarResponsive">
               <ul class="navbar-nav ms-auto">
+                <li class="nav-item"><a class="nav-link" (click)="clickLogout()">Logout</a></li>
                 <li class="nav-item"><a class="nav-link" [routerLink]="['/login']">Login</a></li>
-                <li class="nav-item"><a class="nav-link" [routerLink]="['/admin']">Admin</a></li>
               </ul>
           </div>
       </div>
@@ -17,7 +17,7 @@
       <div class="container px-4 text-center">
           <h1 class="fw-bolder">Test de Asociación Implícita</h1>
           <p class="lead">Averigua si existen en ti asociaciones implícitas entre dos conceptos</p>
-          <a class="btn btn-lg btn-light" href="tai">Empezar</a>
+          <a class="btn btn-lg btn-light" [routerLink]="['/tai']">Empezar</a>
       </div>
   </header>
   <!-- About section-->

@@ -43,6 +43,7 @@ export class TaiEditarComponent implements OnInit {
   };
 
   concept = this.newConcept as Concept;  // Hay que darle valor inicial, si no salta una
+  form:any
 
   constructor(private ruta: ActivatedRoute, private router: Router,
     private clienteApiRest: ClienteApiOrdersService) { }

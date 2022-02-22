@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { User } from '../shared/api-auth/app.user-model';
 import { ClienteApiAuthService } from '../shared/api-auth/cliente-api-auth.service';
+import { TaiResult } from '../shared/api-tai/app.result-model';
+import { Tai } from '../shared/api-tai/app.tai-model';
+import { ClienteApiOrdersService } from '../shared/api-tai/cliente-api-tai.service';
 
 @Component({
   selector: 'app-admin',
@@ -11,6 +14,9 @@ import { ClienteApiAuthService } from '../shared/api-auth/cliente-api-auth.servi
 export class AdminComponent implements OnInit {
 
   users:User[];
+  tais: Array<Tai> = [];
+  resultados: TaiResult[];
+  idTai = 0;
   
   newUser = {
     id: 0,
@@ -27,10 +33,16 @@ export class AdminComponent implements OnInit {
   userAdd = this.newUser as User;  // Hay que darle valor inicial, si no salta una
   //userEdit = this.newUser as User;
 
-  constructor(private router: Router, private clienteApiAuth: ClienteApiAuthService) { } 
+  constructor(private router: Router, private clienteApiAuth: ClienteApiAuthService, private ruta: ActivatedRoute, 
+    private clienteApiRest: ClienteApiOrdersService) { } 
+
+
+
 
   ngOnInit(): void {
     this.getUsers();
+    this.getTais();
+    this.getResults(this.idTai);
   }
 
   refresh(): void {
@@ -51,6 +63,31 @@ export class AdminComponent implements OnInit {
       }
     )
 
+  }
+
+  getTais() {
+    this.clienteApiRest.getTais().subscribe(
+      resp => {
+        if (resp.status < 400) { // Si no hay error en la respuesta
+          this.tais = resp.body as Tai[]; // Se obtiene la lista de users desde la respuesta
+        }
+      },
+      err => {
+        console.log("Error al traer la lista de Tais: " + err.message);
+        throw err;
+      }
+    )
+  }
+
+  getResults(idTai: Number) {
+    this.idTai = <number>idTai;
+    this.clienteApiRest.getResults(this.idTai).subscribe(
+      resp => {
+        if (resp.status < 400) { // Si no hay error en la respuesta
+          this.resultados = resp.body as TaiResult[]; // Se obtiene la lista de users desde la respuesta
+        }
+      }
+    );
   }
 
   onSubmit(){
@@ -76,8 +113,6 @@ export class AdminComponent implements OnInit {
 
   }
 
-
-
   delete(id : Number) {
     this.clienteApiAuth.deleteUser(id).subscribe(
       resp => {
@@ -93,5 +128,13 @@ export class AdminComponent implements OnInit {
     );
     
   }
+
+  // Al pulsar en el boton List Users
+  clickLogout() {
+    this.clienteApiAuth.logout();
+    this.router.navigate(['inicio']);
+  }
+
+  onDeleteTaiSubmit(){}
 
 }

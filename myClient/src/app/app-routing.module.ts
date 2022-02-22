@@ -5,7 +5,6 @@ import { LoginComponent } from './login/login.component';
 import { TaiEditarComponent } from './tai-editar/tai-editar.component';
 import { TaiListarComponent } from './tai-listar/tai-listar.component';
 import { TaiResultadosComponent } from './tai-resultados/tai-resultados.component';
-import { TaiSeleccionarComponent } from './tai-seleccionar/tai-seleccionar.component';
 import { TestTAIComponent } from './test-tai/test-tai.component';
 
 import { LoggedGuard } from './logged-guard.guard';
@@ -18,7 +17,6 @@ const routes: Routes = [
   { path: 'inicio', component: InicioComponent},
   { path: 'admin', component: AdminComponent, canActivate: [LoggedGuard]},
   { path: 'tai', component: TaiListarComponent},
-  { path: 'tai/selet', component: TaiSeleccionarComponent},
   { path: 'tai/new', component: TaiEditarComponent, canActivate: [LoggedGuard]},
   { path: 'tai/:id/test', component: TestTAIComponent },
   { path: 'tai/:id/resultados/:id2', component: TaiResultadosComponent },

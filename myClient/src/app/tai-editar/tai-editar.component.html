@@ -23,7 +23,7 @@
             <h5 class="control-label" for="name">Nombre de la CATEGORÍA POSITIVA</h5>
             <input type="text" class="form-control" [(ngModel)]="tai.palabra1" placeholder="¿Cual va a ser la palabra asociada a lo positivo?"
             required name="palabra1"/>
-            <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modalCatagoria" 
+            <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modalPalabra" 
                 (click)="concept.status = 'Palabra1'"  >
                 Añadir palabra de la categoria
             </button>
@@ -33,7 +33,7 @@
             <h5 class="control-label" for="firstName">Nombre del PRIMER CONCEPTO</h5>
             <input type="text" class="form-control" [(ngModel)]="tai.imagen1" placeholder="¿Cual va a ser el nombre del primer concepto?"
             required name="imagen1" />
-            <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modalConcepto"
+            <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modalImagen"
                 (click)="concept.status = 'Imagen1'">
                 Añadir imagen del concepto
             </button>
@@ -45,7 +45,7 @@
             <h5 class="control-label" for="name">Nombre de la CATEGORÍA NEGATIVA</h5>
             <input type="text" class="form-control" [(ngModel)]="tai.palabra2" placeholder="¿Cual va a ser la palabra asociada a lo negativo?"
             required name="palabra2"/>
-            <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modalCatagoria"
+            <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modalPalabra"
                 (click)="concept.status = 'Palabra2'">
                 Añadir palabra de la categoria
             </button>
@@ -55,7 +55,7 @@
             <h5 class="control-label" for="firstName">Nombre del SEGUNDO CONCEPTO</h5>
             <input type="text" class="form-control" [(ngModel)]="tai.imagen2" placeholder="¿Cual va a ser el nombre del segundo concepto?"
             required name="imagen2"/>
-            <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modalConcepto"
+            <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modalImagen"
                 (click)="concept.status = 'Imagen2'">
                 Añadir imagen del concepto
             </button>
@@ -97,7 +97,7 @@
 </form>
 
 <!-- Modal -->
-<form class="modal fade" id="modalCatagoria" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"
+<form class="modal fade" id="modalPalabra" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"
     (ngSubmit)="onPalabraSubmit()" #preguntaForm="ngForm">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
@@ -110,7 +110,7 @@
                     <h3 class="ms-3">Palabra</h3>
                 </div>
                 <input type="text" class="modal-input form-control row m-3" [(ngModel)]="concept.name" required
-                    name="productName" />
+                    name="palabra" id="palabra" />
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
@@ -120,10 +120,9 @@
         </div>
     </div>
 </form>
-<button type="button" class="btn btn-secondary" (click)="clickCode()">CODE</button>
 
 <!-- Modal -->
-<form class="modal fade" id="modalConcepto" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"
+<form class="modal fade" id="modalImagen" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"
     (ngSubmit)="upload()" #preguntaForm="ngForm">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
