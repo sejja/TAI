@@ -16,6 +16,7 @@
   <div class="row mt-5">
     <div class="col-lg-7 mx-auto">
       <div class="bg-white rounded-lg shadow-sm p-5">
+        <h2 class = "text-center">Selecione el TAI que desea realizar</h2>
         <div class="container py-5">
           <div class="row row mb-4">
 
@@ -33,8 +34,8 @@
                   <td>{{tai.id}}</td>
                   <td>{{tai.name}}</td>
                   <td>{{tai.code}}</td>
-                  <td><a id="editButton" class="btn btn-warning mb-2 btn-block"
-                      [routerLink]="['/tai/', tai.id, 'test']">Ver</a></td>
+                  <td><a id="editButton" class="btn btn-primary mb-2 btn-block"
+                      [routerLink]="['/tai/', tai.id, 'test']">Ir</a></td>
                 </tr>
               </tbody>
             </table>

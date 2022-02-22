@@ -6,6 +6,7 @@ import { Concept } from '../shared/api-tai/app.concept-model';
 
 import { ClienteApiOrdersService } from '../shared/api-tai/cliente-api-tai.service';
 import { HttpEventType, HttpResponse } from '@angular/common/http';
+import { ClienteApiAuthService } from '../shared/api-auth/cliente-api-auth.service';
 
 @Component({
   selector: 'app-tai-listar',
@@ -20,15 +21,15 @@ export class TaiListarComponent implements OnInit {
 
   //constructor() { }
   constructor(private ruta: ActivatedRoute, private router: Router,
-    private clienteApiRest: ClienteApiOrdersService) { }
+    private clienteApiRest: ClienteApiOrdersService, private clienteApiAuth: ClienteApiAuthService) { }
 
 
   ngOnInit() {
     this.getTais()
   }
 
-
   getTais() {
+    this.clienteApiAuth.logout();
     this.clienteApiRest.getTais().subscribe(
       resp => {
         if (resp.status < 400) { // Si no hay error en la respuesta

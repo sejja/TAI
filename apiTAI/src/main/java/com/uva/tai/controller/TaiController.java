@@ -30,6 +30,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.DeleteMapping;
 
 
 import java.io.InputStream;
@@ -376,6 +377,19 @@ public class TaiController {
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE, value = "/{id}/resultados/{id2}")
     public Optional<Resultado> getResultados(@PathVariable int id, @PathVariable int id2) {
         return resultadoRepository.findByIdResp(id2);
+    }
+
+
+    //NO FUCIONA CORRECTAMENTE HAY QUE BORRER EN CASCADA
+
+    @DeleteMapping("/{id}")
+    public String deleteTai(@PathVariable int id) {
+        try {
+            taiRepository.deleteById(id);
+            return "Tai eliminado: " + id;
+        } catch (Exception e) {
+            throw new TaiException("Error al eliminar el nuevo registro.");
+        }
     }
 
 }
