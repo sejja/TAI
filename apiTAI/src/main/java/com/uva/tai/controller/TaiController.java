@@ -239,14 +239,15 @@ public class TaiController {
         ArrayList<Elemento> correctas = new ArrayList<>();
         ArrayList<Elemento> incorretas = new ArrayList<>();
         for (Elemento elemento : elementos) {//Clasificcación de correctas y incorrectas
+            
             if(elemento.getCorrecta() && elemento.getTiempo() > 300 && elemento.getTiempo() < 10000){
                 correctas.add(elemento);
+                map.put(elemento.getTipo(), map.get(elemento.getTipo()) + 1);
             }else{
                 incorretas.add(elemento);
-                map.put(elemento.getTipo(), map.get(elemento.getTipo()) + 1);
             }
         }
-
+        
         if(correctas.size() > Math.round(elementos.size() * 0.4)){
 
             int mediaCorrectas = 0;
@@ -288,10 +289,11 @@ public class TaiController {
                 }
                 
             }
-            if(map.get("Bloque3") < Math.round(b3.size() * 0.4)
-            && map.get("Bloque4") < Math.round(b4.size() * 0.4)
-            && map.get("Bloque6") < Math.round(b6.size() * 0.4)
-            && map.get("Bloque7") < Math.round(b7.size() * 0.4)){
+
+            if(map.get("Bloque3") > Math.round(b3.size() * 0.4)
+            && map.get("Bloque4") > Math.round(b4.size() * 0.4)
+            && map.get("Bloque6") > Math.round(b6.size() * 0.4)
+            && map.get("Bloque7") > Math.round(b7.size() * 0.4)){
 
                 mb3 = Math.round(mb3 / b3.size());
                 mb4 = Math.round(mb4 / b4.size());

@@ -52,7 +52,7 @@ export class LoginComponent implements OnInit {
           this.auth = resp.body;
           console.log("Token: " + this.auth.token);
           console.log("Token : " + localStorage.getItem("jwt_token"));
-          this.router.navigate(['inicio']);
+          this.router.navigate(['admin']);
         }
         else if (resp.status == 403) {
           this.mensaje = 'Credenciales incorrectas';

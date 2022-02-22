@@ -7,14 +7,22 @@
 
 <div class="container">
     <div class="row">
+        <div class="col"></div>
         <div class="col">
-            <ul>
-                <li>Tiempo de respuesta medio del test 1: {{this.resultado.mb4}}</li>
-                <li>Tiempo de respuesta medio del test 2: {{this.resultado.mb7}}</li>
-                <li>Diferencia tiempos de respuesta: {{this.resultado.diff74}}</li>
-                <li>D Score: {{this.resultado.dscore47}}</li>
-                <li>Tiempo de respuesta medio global: {{this.media}}</li>
-            </ul>
+            <div *ngIf="resultado == null; then thenBlock else elseBlock"></div>
+            <ng-template #thenBlock>
+                <h1>Su test no es valido</h1>
+            </ng-template>
+            <ng-template #elseBlock>
+                <ul>
+                    <li>Tiempo de respuesta medio del test 1: {{this.resultado.mb4}}</li>
+                    <li>Tiempo de respuesta medio del test 2: {{this.resultado.mb7}}</li>
+                    <li>Diferencia tiempos de respuesta: {{this.resultado.diff74}}</li>
+                    <li>D Score: {{this.resultado.dscore47}}</li>
+                    <li>Tiempo de respuesta medio global: {{this.media}}</li>
+                </ul>
+            </ng-template>
         </div>
+        <div class="col"></div>
     </div>
 </div>

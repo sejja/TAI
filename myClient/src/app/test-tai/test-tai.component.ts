@@ -264,7 +264,7 @@ export class TestTAIComponent implements OnInit {
       } else if (this.ifase == 10 && 
         (this.conceptTest.status == "Palabra1" || this.conceptTest.status == "Imagen1")) {
 
-        this.element.correcta = this.error;
+        this.element.correcta = !this.error;
         this.element.tiempo = this.end.getTime() - this.init.getTime();
         this.element.tipo = 'Bloque3';
         this.response.resp.push(this.element);
@@ -281,7 +281,7 @@ export class TestTAIComponent implements OnInit {
       } else if (this.ifase == 12 &&
         (this.conceptTest.status == "Palabra1" || this.conceptTest.status == "Imagen1")) {
 
-        this.element.correcta = this.error;
+        this.element.correcta = !this.error;
         this.element.tiempo = this.end.getTime() - this.init.getTime();
         this.element.tipo = 'Bloque4';;
         this.response.resp.push(this.element);
@@ -310,7 +310,7 @@ export class TestTAIComponent implements OnInit {
       } else if (this.ifase == 16 && 
         (this.conceptTest.status == "Imagen2" || this.conceptTest.status == "Palabra1")) {
 
-        this.element.correcta = this.error;
+        this.element.correcta = !this.error;
         this.element.tiempo = this.end.getTime() - this.init.getTime();
         this.element.tipo = 'Bloque6';
         this.response.resp.push(this.element);
@@ -327,7 +327,7 @@ export class TestTAIComponent implements OnInit {
       } else if (this.ifase == 18 &&
         (this.conceptTest.status == "Imagen2" || this.conceptTest.status == "Palabra1")) {
 
-        this.element.correcta = this.error;
+        this.element.correcta = !this.error;
         this.element.tiempo = this.end.getTime() - this.init.getTime();
         this.element.tipo = 'Bloque7';
         this.response.resp.push(this.element);
@@ -389,7 +389,7 @@ export class TestTAIComponent implements OnInit {
       } else if (this.ifase == 10 &&
         (this.conceptTest.status == "Palabra2" || this.conceptTest.status == "Imagen2")) {
 
-        this.element.correcta = this.error;
+        this.element.correcta = !this.error;
         this.element.tiempo = this.end.getTime() - this.init.getTime();
         this.element.tipo = 'Bloque3';
         this.response.resp.push(this.element);
@@ -406,7 +406,7 @@ export class TestTAIComponent implements OnInit {
       } else if (this.ifase == 12 &&
         (this.conceptTest.status == "Palabra2" || this.conceptTest.status == "Imagen2")) {
 
-        this.element.correcta = this.error;
+        this.element.correcta = !this.error;
         this.element.tiempo = this.end.getTime() - this.init.getTime();
         this.element.tipo = 'Bloque4';
         this.response.resp.push(this.element);
@@ -440,7 +440,7 @@ export class TestTAIComponent implements OnInit {
       } else if (this.ifase == 16 &&
         (this.conceptTest.status == "Imagen1" || this.conceptTest.status == "Palabra2")) {
 
-        this.element.correcta = this.error;
+        this.element.correcta = !this.error;
         this.element.tiempo = this.end.getTime() - this.init.getTime();
         this.element.tipo = 'Bloque6';
         this.response.resp.push(this.element);
@@ -457,7 +457,7 @@ export class TestTAIComponent implements OnInit {
       } else if (this.ifase == 18 &&
         (this.conceptTest.status == "Imagen1" || this.conceptTest.status == "Palabra2")) {
 
-        this.element.correcta = this.error;
+        this.element.correcta = !this.error;
         this.element.tiempo = this.end.getTime() - this.init.getTime();
         this.element.tipo = 'Bloque7';
         this.response.resp.push(this.element);
