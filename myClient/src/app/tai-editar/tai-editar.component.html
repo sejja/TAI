@@ -7,57 +7,57 @@
     </figcaption>
 </figure>
 <form class="container" (ngSubmit)="onTaiSubmit()" #orderForm="ngForm">
-    <div class="row p-4">
-        <fieldset class="form-group ps-3 col-sm-5">
+    <div class="row mb-5">
+        <fieldset class="form-group col">
             <h3 class="control-label" for="name">Titulo</h3>
             <input type="text" class="form-control" [(ngModel)]="tai.name" required name="name" />
         </fieldset>
-        <div class="col-sm-1"></div>
-        <fieldset class="form-group ms-5 ps-3 col-sm-5">
+        <div class="col-1"></div>
+        <fieldset class="form-group col">
 
         </fieldset>
     </div>
 
-    <div class="row p-4">
-        <fieldset class="form-group ps-3 col-sm-5">
-            <h5 class="control-label" for="name">Nombre de la CATEGORÍA POSITIVA</h5>
-            <input type="text" class="form-control" [(ngModel)]="tai.palabra1" placeholder="¿Cual va a ser la palabra asociada a lo positivo?"
-            required name="palabra1"/>
-            <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modalPalabra" 
-                (click)="concept.status = 'Palabra1'"  >
-                Añadir palabra de la categoria
-            </button>
-        </fieldset>
-        <div class="col-sm-1"></div>
-        <fieldset class="form-group ms-5 ps-3 col-sm-5">
-            <h5 class="control-label" for="firstName">Nombre del PRIMER CONCEPTO</h5>
-            <input type="text" class="form-control" [(ngModel)]="tai.imagen1" placeholder="¿Cual va a ser el nombre del primer concepto?"
-            required name="imagen1" />
+    <div class="row mb-3">
+        <fieldset class="form-group col">
+            <h5 class="control-label" for="firstName">Nombre de la PRIMERA CATEGORÍA</h5>
+            <input type="text" class="form-control" [(ngModel)]="tai.imagen1"
+                placeholder="¿Cual va a ser el nombre del primer concepto?" required name="imagen1" />
             <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modalImagen"
                 (click)="concept.status = 'Imagen1'">
                 Añadir imagen del concepto
             </button>
         </fieldset>
+        <div class="col-1"></div>
+        <fieldset class="form-group col">
+            <h5 class="control-label" for="name">Nombre de la PRIMERA ASOCIACIÓN</h5>
+            <input type="text" class="form-control" [(ngModel)]="tai.palabra1"
+                placeholder="¿Cual va a ser la palabra asociada a lo positivo?" required name="palabra1" />
+            <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modalPalabra"
+                (click)="concept.status = 'Palabra1'">
+                Añadir palabra de la categoria
+            </button>
+        </fieldset>
     </div>
 
-    <div class="row p-4">
-        <fieldset class="form-group ps-3 col-sm-5">
-            <h5 class="control-label" for="name">Nombre de la CATEGORÍA NEGATIVA</h5>
+    <div class="row">
+        <fieldset class="form-group col">
+            <h5 class="control-label" for="firstName">Nombre de la SEGUNDA CATEGORÍA</h5>
+            <input type="text" class="form-control" [(ngModel)]="tai.imagen2"
+                placeholder="¿Cual va a ser el nombre del segundo concepto?" required name="imagen2" />
+            <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modalImagen"
+                (click)="concept.status = 'Imagen2'">
+                Añadir imagen del concepto
+            </button>
+        </fieldset>
+        <div class="col-1"></div>
+        <fieldset class="form-group col">
+            <h5 class="control-label" for="name">Nombre de la SEGUNDA ASOCIACIÓN</h5>
             <input type="text" class="form-control" [(ngModel)]="tai.palabra2" placeholder="¿Cual va a ser la palabra asociada a lo negativo?"
             required name="palabra2"/>
             <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modalPalabra"
                 (click)="concept.status = 'Palabra2'">
                 Añadir palabra de la categoria
-            </button>
-        </fieldset>
-        <div class="col-sm-1"></div>
-        <fieldset class="form-group ms-5 ps-3 col-sm-5">
-            <h5 class="control-label" for="firstName">Nombre del SEGUNDO CONCEPTO</h5>
-            <input type="text" class="form-control" [(ngModel)]="tai.imagen2" placeholder="¿Cual va a ser el nombre del segundo concepto?"
-            required name="imagen2"/>
-            <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modalImagen"
-                (click)="concept.status = 'Imagen2'">
-                Añadir imagen del concepto
             </button>
         </fieldset>
     </div>
