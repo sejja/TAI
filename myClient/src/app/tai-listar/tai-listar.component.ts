@@ -25,11 +25,11 @@ export class TaiListarComponent implements OnInit {
 
 
   ngOnInit() {
+    this.clienteApiAuth.logout();
     this.getTais()
   }
 
   getTais() {
-    this.clienteApiAuth.logout();
     this.clienteApiRest.getTais().subscribe(
       resp => {
         if (resp.status < 400) { // Si no hay error en la respuesta

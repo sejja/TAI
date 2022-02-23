@@ -25,6 +25,7 @@ export class LoginComponent implements OnInit {
   ) { } //private datosAuth: DataAuthService
 
   ngOnInit() {
+    this.clienteApiAuth.logout();
     this.mensaje = '';
     console.log("INIT: " + this.auth.email);
   }

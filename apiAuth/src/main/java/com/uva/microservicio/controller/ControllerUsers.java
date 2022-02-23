@@ -115,11 +115,16 @@ public class ControllerUsers {
      */
     @DeleteMapping("/{id}")
     public String deleteUsuario(@PathVariable Integer id) {
-        try {
-            repository.deleteById(id);
-            return "Usuario eliminado: " + id;
-        } catch (Exception e) {
-            throw new UsuarioException("Error al crear el nuevo registro.");
+        
+        if(repository.findAll().size() > 1){
+            try {
+                repository.deleteById(id);
+                return "Usuario eliminado: " + id;
+            } catch (Exception e) {
+                throw new UsuarioException("Error al crear el nuevo registro.");
+            }
+        }else{
+            return "Siempre tiene que haber almenos un usuario admin.";
         }
     }
 

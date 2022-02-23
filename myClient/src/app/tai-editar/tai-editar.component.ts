@@ -6,6 +6,7 @@ import { Concept } from '../shared/api-tai/app.concept-model';
 
 import { ClienteApiOrdersService } from '../shared/api-tai/cliente-api-tai.service';
 import { HttpEventType, HttpResponse } from '@angular/common/http';
+import { ClienteApiAuthService } from '../shared/api-auth/cliente-api-auth.service';
 
 
 @Component({
@@ -46,7 +47,7 @@ export class TaiEditarComponent implements OnInit {
   form:any
 
   constructor(private ruta: ActivatedRoute, private router: Router,
-    private clienteApiRest: ClienteApiOrdersService) { }
+    private clienteApiRest: ClienteApiOrdersService, private clienteApiAuth: ClienteApiAuthService) { }
 
   ngOnInit(): void {
     this.getCode();
@@ -131,6 +132,11 @@ export class TaiEditarComponent implements OnInit {
 
   deleteConcept(i: number) {
     this.tai.concepts.splice(i, 1);
+  }
+
+  clickLogout() {
+    this.clienteApiAuth.logout();
+    this.router.navigate(['inicio']);
   }
 
 }

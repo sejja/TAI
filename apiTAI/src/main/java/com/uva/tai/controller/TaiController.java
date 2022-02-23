@@ -2,6 +2,8 @@ package com.uva.tai.controller;
 
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
+import java.io.FileFilter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -14,6 +16,7 @@ import com.uva.tai.model.Tai;
 import com.uva.tai.model.Respuesta;
 import com.uva.tai.model.Resultado;
 import com.uva.tai.model.Elemento;
+import com.uva.tai.repository.ConceptoRepository;
 import com.uva.tai.repository.ElementoRepository;
 import com.uva.tai.repository.RespuestaRepository;
 import com.uva.tai.repository.ResultadoRepository;
@@ -49,15 +52,18 @@ public class TaiController {
 
     private final TaiRepository taiRepository;
     private final RespuestaRepository respuestaRepository;
-    private final ElementoRepository elemetoRepository;
+    private final ElementoRepository elementoRepository;
     private final ResultadoRepository resultadoRepository;
+    private final ConceptoRepository conceptoRepository;
 
     TaiController(TaiRepository taiRepository, RespuestaRepository respuestaRepository,
-            ElementoRepository elemetoRepository, ResultadoRepository resultadoRepository) {
+            ElementoRepository elementoRepository, ResultadoRepository resultadoRepository,
+            ConceptoRepository conceptoRepository) {
         this.taiRepository = taiRepository;
         this.respuestaRepository = respuestaRepository;
-        this.elemetoRepository = elemetoRepository;
+        this.elementoRepository = elementoRepository;
         this.resultadoRepository = resultadoRepository;
+        this.conceptoRepository = conceptoRepository;
     }
 
     /**
@@ -89,8 +95,8 @@ public class TaiController {
 
 
     private static final Logger logger = Logger.getLogger(TaiController.class.getName());
-    private final Path root = Paths.get("apiTAI/src/main/resources/uploads");
-
+    String url = "apiTAI/src/main/resources/uploads";
+    private final Path root = Paths.get(url);
     /**
      * Almacena una imagen apartir de una peticion POST:/tai/upload/:code
      * mediante el archivo recibido
@@ -380,16 +386,54 @@ public class TaiController {
     }
 
 
-    //NO FUCIONA CORRECTAMENTE HAY QUE BORRER EN CASCADA
-
     @DeleteMapping("/{id}")
     public String deleteTai(@PathVariable int id) {
+        Tai tai = taiRepository.findById(id).get();
+
+        // eliminar las imagenes
+        eliminarPorPrefijo(url, tai.getCode());
+
+        List<Concepto> conceptos = tai.getConcepts();
+        List<Respuesta> respuestas = respuestaRepository.findByIdTai(id);
+        List<Resultado> resultados = resultadoRepository.findByIdTai(id);
         try {
+            for (Resultado resultado : resultados) {
+                resultadoRepository.deleteById(resultado.getId());
+            }
+            for (Respuesta respuesta : respuestas) {
+                List<Elemento> elementos = respuesta.getResp();
+                for (Elemento elemento : elementos) {
+                    elementoRepository.deleteById(elemento.getId());
+                }
+                respuestaRepository.deleteById(respuesta.getId());
+            }
+
+            for (Concepto concepto : conceptos) {
+                conceptoRepository.deleteById(concepto.getSku());
+            }
             taiRepository.deleteById(id);
             return "Tai eliminado: " + id;
         } catch (Exception e) {
             throw new TaiException("Error al eliminar el nuevo registro.");
         }
+    }
+
+    /**
+     * Elimina los archivos con un determinado prefijo de una carpeta
+     * 
+     * @param path   Carpeta de la cual eliminar los archivos
+     * @param prefix Prefijo de los archivos a eliminar
+     */
+    public static void eliminarPorPrefijo(String path, final String prefix){
+        File[] archivos = new File(path).listFiles(new FileFilter() {
+            public boolean accept(File archivo) {
+                if (archivo.isFile())
+                    return archivo.getName().startsWith(prefix);
+                return false;
+            }
+        });
+        for (File archivo : archivos)
+            archivo.delete();
     }
 
 }

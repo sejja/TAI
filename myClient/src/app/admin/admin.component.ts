@@ -16,7 +16,7 @@ export class AdminComponent implements OnInit {
   users:User[];
   tais: Array<Tai> = [];
   resultados: TaiResult[];
-  idTai = 0;
+  idTai: number = 0;
   
   newUser = {
     id: 0,
@@ -79,8 +79,8 @@ export class AdminComponent implements OnInit {
     )
   }
 
-  getResults(idTai: Number) {
-    this.idTai = <number>idTai;
+  getResults(idTai: number) {
+    this.idTai = idTai;
     this.clienteApiRest.getResults(this.idTai).subscribe(
       resp => {
         if (resp.status < 400) { // Si no hay error en la respuesta
@@ -113,7 +113,7 @@ export class AdminComponent implements OnInit {
 
   }
 
-  delete(id : Number) {
+  deleteUser(id : Number) {
     this.clienteApiAuth.deleteUser(id).subscribe(
       resp => {
         if (resp.status < 400) { // Si no hay error en la respuesta
@@ -129,7 +129,22 @@ export class AdminComponent implements OnInit {
     
   }
 
-  // Al pulsar en el boton List Users
+  deleteTai(){
+    this.clienteApiRest.deleteTai(this.idTai).subscribe(
+      resp => {
+        if (resp.status < 400) { // Si no hay error en la respuesta
+          //this.users = resp.body as User[]; // Se obtiene la lista de users desde la respuesta
+          this.getTais();
+          this.idTai=0;
+        }
+      },
+      err => {
+        console.log("Error al traer la lista de users: " + err.message);
+        throw err;
+      }
+    );
+  }
+
   clickLogout() {
     this.clienteApiAuth.logout();
     this.router.navigate(['inicio']);

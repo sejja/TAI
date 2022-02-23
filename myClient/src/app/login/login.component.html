@@ -12,9 +12,6 @@
                                 <div class="col d-flex flex-row" >
                                     <a id="logoutButton" class="btn btn-danger mt-auto" (click)="clickLogout()">Logout</a>
                                 </div>
-                                <div class="col d-flex flex-row-reverse">
-                                    <a id="editButton" class="btn btn-info mt-auto" (click)="clickAdmin()">Edit Admins</a>
-                                </div>
                             </div>
                             <div class="mt-5 row">
                                 <input type="text" class="form-control" placeholder="Usuario" [ngModelOptions]="{standalone: true}" [(ngModel)]="auth.email" required>

@@ -2,7 +2,7 @@ import { Concept } from "./app.concept-model";
 
 export interface Tai {
 
-    id: Number,
+    id: number,
     name: String,
     code: String,
     palabra1: String,

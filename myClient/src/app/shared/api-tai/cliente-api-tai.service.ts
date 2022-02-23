@@ -101,6 +101,10 @@ export class ClienteApiOrdersService {
         return this.http.get<TaiResult[]>(url, { observe: 'response' });
     }
 
-    
+    deleteTai(idTai: number): Observable<HttpResponse<any>> {
+        let url = ClienteApiOrdersService.BASE_URI + "/" + idTai;
+        return this.http.delete(url, { observe: 'response', responseType: 'text' });
+    }
+
 
 }

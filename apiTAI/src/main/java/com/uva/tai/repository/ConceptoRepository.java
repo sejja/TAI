@@ -9,4 +9,5 @@ import com.uva.tai.model.Concepto;
 public interface ConceptoRepository extends JpaRepository<Concepto, Integer> {
     
     List<Concepto> findByTaiId(Integer taiId);
+    //void deleteByTaiId(Integer taiId);
 }

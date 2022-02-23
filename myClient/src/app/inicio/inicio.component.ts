@@ -18,7 +18,7 @@ export class InicioComponent implements OnInit {
   // Al pulsar en el boton List Users
   clickLogout() {
     this.clienteApiAuth.logout();
-    this.router.navigate(['login']);
+    //this.router.navigate(['login']);
   }
 
 }
