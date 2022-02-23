@@ -55,9 +55,7 @@ export class TaiEditarComponent implements OnInit {
 
   //Se ejecuta al realizar en el template la acción de enviar el formulario
   onTaiSubmit() {
-    
-    this.addEncuesta();
-    
+    this.addEncuesta(); 
   }
 
   clickCode(){

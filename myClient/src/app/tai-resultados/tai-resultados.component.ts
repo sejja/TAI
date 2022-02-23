@@ -15,6 +15,7 @@ const More = require('highcharts/highcharts-more');
 More(Highcharts);
 
 import Histogram from 'highcharts/modules/histogram-bellcurve';
+import { Tai } from '../shared/api-tai/app.tai-model';
 Histogram(Highcharts);
 
 const Exporting = require('highcharts/modules/exporting');
@@ -41,6 +42,8 @@ export class TaiResultadosComponent implements OnInit {
 
   resultado: TaiResult;
   resultados: TaiResult[];
+
+  tai: Tai;
 
   media: number;
 
@@ -125,9 +128,21 @@ export class TaiResultadosComponent implements OnInit {
     obj = this.ruta.snapshot.paramMap.get('id2');
     this.idResp = parseInt((obj == null) ? "null" : obj.toString());
 
+    this.getTai();
     this.getResult();
     this.getResults();
     
+  }
+
+  getTai() {
+    this.clienteApiRest.getTai(this.idTai).subscribe(
+      resp => {
+        if (resp.status < 400) { // Si no hay error en la respuesta
+          this.tai = resp.body as Tai; // Se obtiene la lista de users desde la respuesta
+          
+        }
+      }
+    );
   }
 
   getResult(){

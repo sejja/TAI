@@ -40,6 +40,7 @@ public class Tai {
     private List<Concepto> concepts;//OJO
 
     private Date created_at;
+    private boolean active;
 
     public Tai() {
         this.created_at = Date.valueOf(LocalDate.now());
@@ -122,6 +123,14 @@ public class Tai {
 
     public void setCreatedAt(Date created_at) {
         this.created_at = created_at;
+    }
+
+    public boolean getActive() {
+        return this.active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
     }
 
 }

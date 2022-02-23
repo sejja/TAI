@@ -23,19 +23,33 @@
     <div class="container">
         <div class="row">
             <div class="col"></div>
-            <div class="col">
+            <div class="col-lg-6 text-center">
                 <div *ngIf="resultado == null; then thenBlock else elseBlock"></div>
                 <ng-template #thenBlock>
                     <h1>Su test no es valido</h1>
                 </ng-template>
                 <ng-template #elseBlock>
-                    <ul>
-                        <li>Tiempo de respuesta medio del test 1: {{this.resultado.mb4}}</li>
-                        <li>Tiempo de respuesta medio del test 2: {{this.resultado.mb7}}</li>
-                        <li>Diferencia tiempos de respuesta: {{this.resultado.diff74}}</li>
-                        <li>D Score: {{this.resultado.dscore47}}</li>
-                        <li>Tiempo de respuesta medio global: {{this.media}}</li>
-                    </ul>
+                    <div class="shadow-lg p-3 mb-1 bg-white rounded">
+                        <p>Test 1: {{this.tai.imagen1}}-{{this.tai.palabra1}} y {{this.tai.imagen2}} {{this.tai.palabra2}}</p>
+                    </div>
+                    <div class="shadow-lg p-3 mb-1 bg-white rounded">
+                        <p>Test 2: {{this.tai.imagen2}}-{{this.tai.palabra1}} y {{this.tai.imagen1}} {{this.tai.palabra2}}</p>
+                    </div>
+                    <div class="shadow-lg p-3 mb-1 bg-white rounded">
+                        <p>Tiempo de respuesta medio del test 1: {{this.resultado.mb4}}</p>
+                    </div>
+                    <div class="shadow-lg p-3 mb-1 bg-white rounded">
+                        <p>Tiempo de respuesta medio del test 2: {{this.resultado.mb7}}</p>
+                    </div>
+                    <div class="shadow-lg p-3 mb-1 bg-white rounded">
+                        <p>Diferencia tiempos de respuesta: {{this.resultado.diff74}}</p>
+                    </div>
+                    <div class="shadow-lg p-3 mb-1 bg-white rounded">
+                        <p>D Score: {{this.resultado.dscore47}}</p>
+                    </div>
+                    <div class="shadow-lg p-3 mb-1 bg-white rounded">
+                        <p>Tiempo de respuesta medio global: {{this.media}}</p>
+                    </div>
                 </ng-template>
             </div>
             <div class="col"></div>

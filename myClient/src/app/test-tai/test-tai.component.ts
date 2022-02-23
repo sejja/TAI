@@ -28,7 +28,7 @@ export class TestTAIComponent implements OnInit {
   ifase = 0;
   nfase = 20;//son 19 reaes
   ironda = 0;
-  nronda = 5;//son 20 reales
+  nronda = 20;//son 20 reales
 
   id = 0;
 
@@ -170,22 +170,22 @@ export class TestTAIComponent implements OnInit {
     this.conceptTest = aux[this.randomIntFromInterval(0, aux.length-1)]
   }
 
-  @HostListener('document:keypress', ['$event'])
-  handleKeyboardEvent(event: KeyboardEvent) { 
 
-    console.log("Fase --> " + this.ifase);
-    console.log("Ronda --> " + this.ironda);
-    console.log("Ronda --> " + this.nerror);
+  clickF(){}
 
-    this.end = new Date();
+  clickJ(){}
 
-    this.trespuesta = this.end.getTime() - this.init.getTime();
-    console.log("TRespuesta", this.trespuesta);
+  clickSpace() {
 
+      console.log("Fase --> " + this.ifase);
+      console.log("Ronda --> " + this.ironda);
+      console.log("Ronda --> " + this.nerror);
 
-    if (event.key == this.keySig && event.target == document.body) {
-      event.preventDefault();
-      if (this.ifase < 5){
+      this.end = new Date();
+
+      this.trespuesta = this.end.getTime() - this.init.getTime();
+      console.log("TRespuesta", this.trespuesta);
+      if (this.ifase < 5) {
 
         this.timeLeft = this.time;
         this.error = false;
@@ -221,6 +221,26 @@ export class TestTAIComponent implements OnInit {
         this.randomConcept();
         this.ifase = (this.ifase + 1) % this.nfase;
       }
+
+    
+  }
+
+  @HostListener('document:keypress', ['$event'])
+  handleKeyboardEvent(event: KeyboardEvent) { 
+
+    console.log("Fase --> " + this.ifase);
+    console.log("Ronda --> " + this.ironda);
+    console.log("Ronda --> " + this.nerror);
+
+    this.end = new Date();
+
+    this.trespuesta = this.end.getTime() - this.init.getTime();
+    console.log("TRespuesta", this.trespuesta);
+
+
+    if (event.key == this.keySig && event.target == document.body) {
+      event.preventDefault();
+      this.clickSpace();
     }
 
 
