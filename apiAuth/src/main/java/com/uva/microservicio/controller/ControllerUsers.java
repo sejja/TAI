@@ -78,6 +78,7 @@ public class ControllerUsers {
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE, value = { "/{id}" })
     public Usuario getUsuarioById(@PathVariable int id) {
         Usuario usuario = repository.findById(id).orElseThrow(() -> new UsuarioException("Sin resultado"));
+        usuario.setPassword(null);
         return usuario;
     }
 
@@ -143,14 +144,20 @@ public class ControllerUsers {
      */
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public List<Usuario> getUsuarios(@RequestParam(required = false) Boolean enable,
-            @RequestParam(required = false) String email) {
+        @RequestParam(required = false) String email) {
+
+        List<Usuario> users;
         if (enable == null && email == null) {
-            return repository.findAll();
+            users = repository.findAll();
         } else if (enable != null) {
-            return repository.findByEnabled(enable);
+            users = repository.findByEnabled(enable);
         } else {
-            return repository.findByEmail(email);
+            users = repository.findByEmail(email);
         }
+        for (Usuario usuario : users) {
+            usuario.setPassword(null);
+        }
+        return users;
     }
 
     public Usuario getByEmail(String email) {

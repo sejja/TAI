@@ -24,6 +24,9 @@ import { JwtInterceptor } from './jwt.interceptor';
 // npm install highcharts --save
 // npm install highcharts-angular --save
 import { HighchartsChartModule } from 'highcharts-angular';
+
+// npm install --save export-to-csv
+//import { ExportToCsv } from 'export-to-csv';
 import { AdminComponent } from './admin/admin.component';
 
 
@@ -44,7 +47,8 @@ import { AdminComponent } from './admin/admin.component';
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    HighchartsChartModule
+    HighchartsChartModule,
+    //ExportToCsv
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

@@ -1,7 +1,6 @@
 package com.uva.tai.model;
 
 import java.sql.Date;
-import java.time.LocalDate;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -43,7 +42,8 @@ public class Resultado {
 
 
     public Resultado() {
-        this.created_at = Date.valueOf(LocalDate.now());
+        java.util.Date date = new java.util.Date();
+        this.created_at = new Date(date.getTime());
     }
 
     public Resultado(Integer idResp, Integer idTai, Integer mb3, Integer mb4, Integer mb6, Integer mb7, Integer mb36, Integer mb47, 
@@ -64,11 +64,8 @@ public class Resultado {
         this.std36 = std36;
         this.std47 = std47;
 
-
-
-
-
-        this.created_at = Date.valueOf(LocalDate.now());
+        java.util.Date date = new java.util.Date();
+        this.created_at = new Date(date.getTime());
     }
 
     public Integer getId() {

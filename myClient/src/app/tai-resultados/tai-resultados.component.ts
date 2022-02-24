@@ -139,7 +139,6 @@ export class TaiResultadosComponent implements OnInit {
       resp => {
         if (resp.status < 400) { // Si no hay error en la respuesta
           this.tai = resp.body as Tai; // Se obtiene la lista de users desde la respuesta
-          
         }
       }
     );

@@ -81,7 +81,8 @@
                     <th scope="col">id</th>
                     <th scope="col">Name</th>
                     <th scope="col">Code</th>
-                    <th scope="col">Accion</th>
+                    <th scope="col">Seleccionar</th>
+                    <th scope="col">Eliminar</th>
                 </tr>
             </thead>
             <tbody *ngFor="let tai of tais; let i = index">
@@ -90,26 +91,29 @@
                     <td>{{tai.name}}</td>
                     <td>{{tai.code}}</td>
                     <td>
-                        <div class="row">
-                            <div class="col">
-                                <button type="button" class="btn btn-primary"
-                                    (click)="getResults(tai.id)">
-                                    Resultados
-                                </button>
-                            </div>
-                            <div class="col">
-                                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modalDelete"
-                                (click)="idTai = tai.id">
-                                    Eliminar
-                                </button>
-                            </div>
-                        </div>
+                        <button type="button" class="btn btn-primary" (click)="getResults(tai.id)">
+                            Resultados
+                        </button>
+                    </td>
+                    <td>
+                        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modalDelete"
+                            (click)="idTai = tai.id">
+                            Eliminar
+                        </button>
                     </td>
                 </tr>
             </tbody>
         </table>
     </div>
-    <button type="button" class="btn btn-primary" [routerLink]="['/tai/new']">Nuevo Tai</button>
+    <div class="row">
+        <div class="col">
+            <button type="button" class="btn btn-primary" [routerLink]="['/tai/new']">Nuevo Tai</button>
+        </div>
+        <div class="col">
+            <button type="button" class="btn btn-primary" [disabled]="this.resultados.length == 0" (click)="getCSV()">
+                Descargar Resultados</button>
+        </div>
+    </div>
     <div class="row">
         <table class="table table-borderless">
             <thead>
