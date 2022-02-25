@@ -131,7 +131,6 @@ export class TestTAIComponent implements OnInit {
   getLists(){
 
     this.tai.concepts.forEach(element => {
-      console.log("Status --> " +element.status);
       switch(element.status){
         case "Imagen1": {
           this.imagenes1.push(element)
@@ -179,7 +178,7 @@ export class TestTAIComponent implements OnInit {
   clickF() {
     console.log("Fase --> " + this.ifase);
     console.log("Ronda --> " + this.ironda);
-    console.log("Ronda --> " + this.nerror);
+    console.log("Errores --> " + this.nerror);
     this.end = new Date();
     this.trespuesta = this.end.getTime() - this.init.getTime();
     console.log("TRespuesta", this.trespuesta);
@@ -312,7 +311,7 @@ export class TestTAIComponent implements OnInit {
   clickJ(){
     console.log("Fase --> " + this.ifase);
     console.log("Ronda --> " + this.ironda);
-    console.log("Ronda --> " + this.nerror);
+    console.log("Errores --> " + this.nerror);
     this.end = new Date();
     this.trespuesta = this.end.getTime() - this.init.getTime();
     console.log("TRespuesta", this.trespuesta);
@@ -451,7 +450,7 @@ export class TestTAIComponent implements OnInit {
 
       console.log("Fase --> " + this.ifase);
       console.log("Ronda --> " + this.ironda);
-      console.log("Ronda --> " + this.nerror);
+      console.log("Errores --> " + this.nerror);
       this.end = new Date();
       this.trespuesta = this.end.getTime() - this.init.getTime();
       console.log("TRespuesta", this.trespuesta);
@@ -550,7 +549,6 @@ export class TestTAIComponent implements OnInit {
         console.log(this.init);
         this.aux = false;
         this.timeLeft = 0;
-        console.log(this.response.resp.toString());
       }
     }, 1)
   }

@@ -19,7 +19,7 @@ const routes: Routes = [
   { path: 'tai', component: TaiListarComponent},
   { path: 'tai/new', component: TaiEditarComponent, canActivate: [LoggedGuard]},
   { path: 'tai/:id/test', component: TestTAIComponent },
-  { path: 'tai/:id/resultados/:id2', component: TaiResultadosComponent },
+  { path: 'tai/:id/resultados/:id2', component: TaiResultadosComponent, canActivate: [LoggedGuard] },
   { path: '**', redirectTo:'inicio', pathMatch:'full'}
 ];
 

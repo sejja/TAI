@@ -239,7 +239,7 @@
           <p>Clasificar con J</p>
         </div>
       </div>
-      <div class="row mt-3">
+      <div class="row mt-3 layer">
         <div class="col bg-secondary">
           <h2>Instrucciones</h2>
           <!--<p>En este caso, se le mostrarán palabras de la categoría {{tai.palabra1}} o {{tai.palabra2}}. Trate de
@@ -252,11 +252,11 @@
           QUE APAREZCA LA SIGUIENTE IMAGEN. EN CASO DE NO SUPERAR ESTA FASE, TENDRÁ QUE REPETIRLA.
         </p>
           <p>Pulse espacio para continuar</p>
-          <div class="row mt-5 justify-content-center movil">
-            <div class="col shadow-lg p-5 text-center bg-dark rounded" (click)="clickSpace()">
-              <h1>Espacio</h1>
-            </div>
-          </div>
+        </div>
+      </div>
+      <div class="row mt-5 justify-content-center movil">
+        <div class="col shadow-lg p-5 text-center bg-dark rounded" (click)="clickSpace()">
+          <h1>Espacio</h1>
         </div>
       </div>
     </div>
@@ -274,12 +274,21 @@
           <h2>{{tai.palabra2}}</h2>
         </div>
       </div>
-      <div class="row mt-3">
+      <div class="row mt-3 layer">
         <div *ngIf="timeLeft == 0 && !error" class="col mt-2 bg-secondary">
           <h2>{{conceptTest.name}}</h2>
         </div>
         <div *ngIf="timeLeft == 0 && error" class="col mt-2 bg-secondary">
           <h2 class="text-danger">{{conceptTest.name}}</h2>
+        </div>
+      </div>
+      <div class="row mt-5 justify-content-center">
+        <div class="col-4 shadow-lg m-1 p-5 text-center bg-dark rounded movil" (click)="clickF()">
+          <h1>F</h1>
+        </div>
+        <div class="col-2"></div>
+        <div class="col-4 shadow-lg m-1 p-5 text-center bg-dark rounded movil" (click)="clickJ()">
+          <h1>J</h1>
         </div>
       </div>
     </div>

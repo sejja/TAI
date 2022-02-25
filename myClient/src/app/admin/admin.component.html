@@ -136,6 +136,7 @@
                     <th scope="col">diff63</th>
                     <th scope="col">dscore47</th>
                     <th scope="col">dscore36</th>
+                    <th scope="col">Accion</th>
                 </tr>
             </thead>
             <tbody *ngFor="let resultado of resultados; let i = index">
@@ -158,6 +159,9 @@
                     <td>{{resultado.diff63}}</td>
                     <td>{{resultado.dscore47}}</td>
                     <td>{{resultado.dscore36}}</td>
+                    <td><button type="button" class="btn btn-primary" [disabled]="this.resultados.length == 0"
+                        [routerLink]='["/tai/" + this.tai.id + "/resultados/" + resultado.idResp]'>
+                        Ver</button></td>
                 </tr>
             </tbody>
         </table>
