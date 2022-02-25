@@ -176,86 +176,17 @@ export class TestTAIComponent implements OnInit {
   }
 
 
-  clickF(){}
-
-  clickJ(){}
-
-  clickSpace() {
-
-      console.log("Fase --> " + this.ifase);
-      console.log("Ronda --> " + this.ironda);
-      console.log("Ronda --> " + this.nerror);
-
-      this.end = new Date();
-
-      this.trespuesta = this.end.getTime() - this.init.getTime();
-      console.log("TRespuesta", this.trespuesta);
-    if (this.caminos[this.c][this.ifase] < 5) {
-
-        this.timeLeft = this.time;
-        this.error = false;
-        this.ifase = (this.ifase + 1) % this.nfase;
-    } else if (this.caminos[this.c][this.ifase] == 5) {
-
-        this.timeLeft = this.time;
-        this.error = false;
-        this.randomImagen();
-        this.ifase = (this.ifase + 1) % this.nfase;
-    } else if (this.caminos[this.c][this.ifase] == 7) {
-
-        this.timeLeft = this.time;
-        this.error = false;
-        this.randomPalabra();
-        this.ifase = (this.ifase + 1) % this.nfase;
-    } else if (this.caminos[this.c][this.ifase] == 9 || 
-      this.caminos[this.c][this.ifase] == 11) {
-
-        this.timeLeft = this.time;
-        this.error = false;
-        this.randomConcept();
-        this.ifase = (this.ifase + 1) % this.nfase;
-    } else if (this.caminos[this.c][this.ifase] == 13) {
-
-        this.timeLeft = this.time;
-        this.error = false;
-        this.randomImagen();
-        this.ifase = (this.ifase + 1) % this.nfase;
-    } else if (this.caminos[this.c][this.ifase] == 15 || 
-      this.caminos[this.c][this.ifase] == 17) {
-
-        this.timeLeft = this.time;
-        this.error = false;
-        this.randomConcept();
-        this.ifase = (this.ifase + 1) % this.nfase;
-      }
-
-    
-  }
-
-  @HostListener('document:keypress', ['$event'])
-  handleKeyboardEvent(event: KeyboardEvent) { 
-
+  clickF() {
     console.log("Fase --> " + this.ifase);
     console.log("Ronda --> " + this.ironda);
     console.log("Ronda --> " + this.nerror);
-
     this.end = new Date();
-
     this.trespuesta = this.end.getTime() - this.init.getTime();
     console.log("TRespuesta", this.trespuesta);
-
-
-    if (event.key == this.keySig && event.target == document.body) {
-      event.preventDefault();
-      this.clickSpace();
-    }
-
-
-
-    if (event.key == this.keyIzq && event.target == document.body && this.timeLeft == 0) {
+    if (this.timeLeft == 0){
       this.end = new Date();
-      if (this.caminos[this.c][this.ifase] == 6 && this.conceptTest.status == "Imagen1"){
-        if (this.error || this.trespuesta > this.maxT || this.trespuesta < this.minT){
+      if (this.caminos[this.c][this.ifase] == 6 && this.conceptTest.status == "Imagen1") {
+        if (this.error || this.trespuesta > this.maxT || this.trespuesta < this.minT) {
           this.nerror++;
         }
         this.timeLeft = this.time;
@@ -263,7 +194,7 @@ export class TestTAIComponent implements OnInit {
         this.randomImagen();
         this.ironda++;
         if (this.ironda == this.nronda) {
-          if(this.nerror > this.limit){
+          if (this.nerror > this.limit) {
             this.ifase = (this.ifase - 1) % this.nfase;
           } else {
             this.ifase = (this.ifase + 1) % this.nfase;
@@ -288,14 +219,14 @@ export class TestTAIComponent implements OnInit {
           this.nerror = 0;
           this.ironda = 0;
         }
-      } else if (this.caminos[this.c][this.ifase] == 10 && 
+      } else if (this.caminos[this.c][this.ifase] == 10 &&
         (this.conceptTest.status == "Palabra1" || this.conceptTest.status == "Imagen1")) {
 
         this.element.correcta = !this.error;
         this.element.tiempo = this.end.getTime() - this.init.getTime();
         this.element.tipo = 'Bloque3';
         this.response.resp.push(this.element);
-        this.element = <Element>{tipo: "",correcta: true,tiempo: 0};
+        this.element = <Element>{ tipo: "", correcta: true, tiempo: 0 };
 
         this.timeLeft = this.time;
         this.error = false;
@@ -334,7 +265,7 @@ export class TestTAIComponent implements OnInit {
           this.ifase = (this.ifase + 1) % this.nfase;
           this.ironda = 0;
         }
-      } else if (this.caminos[this.c][this.ifase] == 16 && 
+      } else if (this.caminos[this.c][this.ifase] == 16 &&
         (this.conceptTest.status == "Imagen2" || this.conceptTest.status == "Palabra1")) {
 
         this.element.correcta = !this.error;
@@ -368,15 +299,24 @@ export class TestTAIComponent implements OnInit {
           this.ifase = (this.ifase + 1) % this.nfase;
           this.ironda = 0;
         }
-      }  
+      }
       else {
         this.error = true;
       }
     }
+    if (this.caminos[this.c][this.ifase] == 19) {
+      this.enviarRespuesta();
+    }
+  }
 
-
-
-    if (event.key == this.keyDch && event.target == document.body && this.timeLeft == 0) {
+  clickJ(){
+    console.log("Fase --> " + this.ifase);
+    console.log("Ronda --> " + this.ironda);
+    console.log("Ronda --> " + this.nerror);
+    this.end = new Date();
+    this.trespuesta = this.end.getTime() - this.init.getTime();
+    console.log("TRespuesta", this.trespuesta);
+    if (this.timeLeft == 0) {
       this.end = new Date();
       if (this.caminos[this.c][this.ifase] == 6 && this.conceptTest.status == "Imagen2") {
         if (this.error || this.trespuesta > this.maxT || this.trespuesta < this.minT) {
@@ -499,11 +439,81 @@ export class TestTAIComponent implements OnInit {
         }
       } else {
         this.error = true;
-       }
+      }
+    
     }
-    if (this.caminos[this.c][this.ifase] == 19){
+    if (this.caminos[this.c][this.ifase] == 19) {
       this.enviarRespuesta();
     }
+  }
+
+  clickSpace() {
+
+      console.log("Fase --> " + this.ifase);
+      console.log("Ronda --> " + this.ironda);
+      console.log("Ronda --> " + this.nerror);
+      this.end = new Date();
+      this.trespuesta = this.end.getTime() - this.init.getTime();
+      console.log("TRespuesta", this.trespuesta);
+
+    if (this.caminos[this.c][this.ifase] < 5) {
+
+        this.timeLeft = this.time;
+        this.error = false;
+        this.ifase = (this.ifase + 1) % this.nfase;
+    } else if (this.caminos[this.c][this.ifase] == 5) {
+
+        this.timeLeft = this.time;
+        this.error = false;
+        this.randomImagen();
+        this.ifase = (this.ifase + 1) % this.nfase;
+    } else if (this.caminos[this.c][this.ifase] == 7) {
+
+        this.timeLeft = this.time;
+        this.error = false;
+        this.randomPalabra();
+        this.ifase = (this.ifase + 1) % this.nfase;
+    } else if (this.caminos[this.c][this.ifase] == 9 || 
+      this.caminos[this.c][this.ifase] == 11) {
+
+        this.timeLeft = this.time;
+        this.error = false;
+        this.randomConcept();
+        this.ifase = (this.ifase + 1) % this.nfase;
+    } else if (this.caminos[this.c][this.ifase] == 13) {
+
+        this.timeLeft = this.time;
+        this.error = false;
+        this.randomImagen();
+        this.ifase = (this.ifase + 1) % this.nfase;
+    } else if (this.caminos[this.c][this.ifase] == 15 || 
+      this.caminos[this.c][this.ifase] == 17) {
+
+        this.timeLeft = this.time;
+        this.error = false;
+        this.randomConcept();
+        this.ifase = (this.ifase + 1) % this.nfase;
+      }
+
+    
+  }
+
+  @HostListener('document:keypress', ['$event'])
+  handleKeyboardEvent(event: KeyboardEvent) { 
+
+    if (event.key == this.keySig && event.target == document.body) {
+      event.preventDefault();
+      this.clickSpace();
+    }
+
+    if (event.key == this.keyIzq && event.target == document.body) {
+      this.clickF();
+    }
+
+    if (event.key == this.keyDch && event.target == document.body) {
+      this.clickJ();
+    }
+
   }
 
   enviarRespuesta(){
