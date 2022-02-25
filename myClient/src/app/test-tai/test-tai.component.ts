@@ -25,6 +25,11 @@ export class TestTAIComponent implements OnInit {
   keyIzq = "f";
   keyDch = "j";
 
+  camino1 = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19];
+  camino2 = [0,1,2,3,4,13,14,7,8,15,16,17,18,5,6,9,10,11,12,19];
+  caminos = [this.camino1, this.camino2];
+  c = this.randomIntFromInterval(0,1);
+
   ifase = 0;
   nfase = 20;//son 19 reaes
   ironda = 0;
@@ -162,12 +167,12 @@ export class TestTAIComponent implements OnInit {
 
   randomImagen() {
     let aux = this.imagenes1.concat(this.imagenes2);
-    this.conceptTest = aux[this.randomIntFromInterval(0,aux.length-1)]
+    this.conceptTest = aux[this.randomIntFromInterval(0,aux.length - 1)]
   }
 
   randomPalabra() {
     let aux = this.palabras1.concat(this.palabras2);
-    this.conceptTest = aux[this.randomIntFromInterval(0, aux.length-1)]
+    this.conceptTest = aux[this.randomIntFromInterval(0, aux.length - 1)]
   }
 
 
@@ -185,36 +190,38 @@ export class TestTAIComponent implements OnInit {
 
       this.trespuesta = this.end.getTime() - this.init.getTime();
       console.log("TRespuesta", this.trespuesta);
-      if (this.ifase < 5) {
+    if (this.caminos[this.c][this.ifase] < 5) {
 
         this.timeLeft = this.time;
         this.error = false;
         this.ifase = (this.ifase + 1) % this.nfase;
-      } else if (this.ifase == 5) {
+    } else if (this.caminos[this.c][this.ifase] == 5) {
 
         this.timeLeft = this.time;
         this.error = false;
         this.randomImagen();
         this.ifase = (this.ifase + 1) % this.nfase;
-      } else if (this.ifase == 7) {
+    } else if (this.caminos[this.c][this.ifase] == 7) {
 
         this.timeLeft = this.time;
         this.error = false;
         this.randomPalabra();
         this.ifase = (this.ifase + 1) % this.nfase;
-      } else if (this.ifase == 9 || this.ifase == 11) {
+    } else if (this.caminos[this.c][this.ifase] == 9 || 
+      this.caminos[this.c][this.ifase] == 11) {
 
         this.timeLeft = this.time;
         this.error = false;
         this.randomConcept();
         this.ifase = (this.ifase + 1) % this.nfase;
-      } else if (this.ifase == 13) {
+    } else if (this.caminos[this.c][this.ifase] == 13) {
 
         this.timeLeft = this.time;
         this.error = false;
         this.randomImagen();
         this.ifase = (this.ifase + 1) % this.nfase;
-      } else if (this.ifase == 15 || this.ifase == 17) {
+    } else if (this.caminos[this.c][this.ifase] == 15 || 
+      this.caminos[this.c][this.ifase] == 17) {
 
         this.timeLeft = this.time;
         this.error = false;
@@ -247,7 +254,7 @@ export class TestTAIComponent implements OnInit {
 
     if (event.key == this.keyIzq && event.target == document.body && this.timeLeft == 0) {
       this.end = new Date();
-      if (this.ifase == 6 && this.conceptTest.status == "Imagen1"){
+      if (this.caminos[this.c][this.ifase] == 6 && this.conceptTest.status == "Imagen1"){
         if (this.error || this.trespuesta > this.maxT || this.trespuesta < this.minT){
           this.nerror++;
         }
@@ -264,7 +271,7 @@ export class TestTAIComponent implements OnInit {
           this.nerror = 0;
           this.ironda = 0;
         }
-      } else if (this.ifase == 8 && this.conceptTest.status == "Palabra1") {
+      } else if (this.caminos[this.c][this.ifase] == 8 && this.conceptTest.status == "Palabra1") {
         if (this.error || this.trespuesta > this.maxT || this.trespuesta < this.minT) {
           this.nerror++;
         }
@@ -281,7 +288,7 @@ export class TestTAIComponent implements OnInit {
           this.nerror = 0;
           this.ironda = 0;
         }
-      } else if (this.ifase == 10 && 
+      } else if (this.caminos[this.c][this.ifase] == 10 && 
         (this.conceptTest.status == "Palabra1" || this.conceptTest.status == "Imagen1")) {
 
         this.element.correcta = !this.error;
@@ -298,7 +305,7 @@ export class TestTAIComponent implements OnInit {
           this.ifase = (this.ifase + 1) % this.nfase;
           this.ironda = 0;
         }
-      } else if (this.ifase == 12 &&
+      } else if (this.caminos[this.c][this.ifase] == 12 &&
         (this.conceptTest.status == "Palabra1" || this.conceptTest.status == "Imagen1")) {
 
         this.element.correcta = !this.error;
@@ -315,7 +322,7 @@ export class TestTAIComponent implements OnInit {
           this.ifase = (this.ifase + 1) % this.nfase;
           this.ironda = 0;
         }
-      } else if (this.ifase == 14 && this.conceptTest.status == "Imagen2") {
+      } else if (this.caminos[this.c][this.ifase] == 14 && this.conceptTest.status == "Imagen2") {
         if (this.error || this.trespuesta > this.maxT || this.trespuesta < this.minT) {
           this.nerror++;
         }
@@ -327,7 +334,7 @@ export class TestTAIComponent implements OnInit {
           this.ifase = (this.ifase + 1) % this.nfase;
           this.ironda = 0;
         }
-      } else if (this.ifase == 16 && 
+      } else if (this.caminos[this.c][this.ifase] == 16 && 
         (this.conceptTest.status == "Imagen2" || this.conceptTest.status == "Palabra1")) {
 
         this.element.correcta = !this.error;
@@ -344,7 +351,7 @@ export class TestTAIComponent implements OnInit {
           this.ifase = (this.ifase + 1) % this.nfase;
           this.ironda = 0;
         }
-      } else if (this.ifase == 18 &&
+      } else if (this.caminos[this.c][this.ifase] == 18 &&
         (this.conceptTest.status == "Imagen2" || this.conceptTest.status == "Palabra1")) {
 
         this.element.correcta = !this.error;
@@ -358,7 +365,6 @@ export class TestTAIComponent implements OnInit {
         this.randomConcept();
         this.ironda++;
         if (this.ironda == this.nronda) {
-          this.enviarRespuesta();
           this.ifase = (this.ifase + 1) % this.nfase;
           this.ironda = 0;
         }
@@ -372,7 +378,7 @@ export class TestTAIComponent implements OnInit {
 
     if (event.key == this.keyDch && event.target == document.body && this.timeLeft == 0) {
       this.end = new Date();
-      if (this.ifase == 6 && this.conceptTest.status == "Imagen2") {
+      if (this.caminos[this.c][this.ifase] == 6 && this.conceptTest.status == "Imagen2") {
         if (this.error || this.trespuesta > this.maxT || this.trespuesta < this.minT) {
           this.nerror++;
         }
@@ -389,7 +395,7 @@ export class TestTAIComponent implements OnInit {
           this.nerror = 0;
           this.ironda = 0;
         }
-      } else if (this.ifase == 8 && this.conceptTest.status == "Palabra2") {
+      } else if (this.caminos[this.c][this.ifase] == 8 && this.conceptTest.status == "Palabra2") {
         if (this.error || this.trespuesta > this.maxT || this.trespuesta < this.minT) {
           this.nerror++;
         }
@@ -406,7 +412,7 @@ export class TestTAIComponent implements OnInit {
           this.nerror = 0;
           this.ironda = 0;
         }
-      } else if (this.ifase == 10 &&
+      } else if (this.caminos[this.c][this.ifase] == 10 &&
         (this.conceptTest.status == "Palabra2" || this.conceptTest.status == "Imagen2")) {
 
         this.element.correcta = !this.error;
@@ -423,7 +429,7 @@ export class TestTAIComponent implements OnInit {
           this.ifase = (this.ifase + 1) % this.nfase;
           this.ironda = 0;
         }
-      } else if (this.ifase == 12 &&
+      } else if (this.caminos[this.c][this.ifase] == 12 &&
         (this.conceptTest.status == "Palabra2" || this.conceptTest.status == "Imagen2")) {
 
         this.element.correcta = !this.error;
@@ -440,7 +446,7 @@ export class TestTAIComponent implements OnInit {
           this.ifase = (this.ifase + 1) % this.nfase;
           this.ironda = 0;
         }
-      } else if (this.ifase == 14 && this.conceptTest.status == "Imagen1") {
+      } else if (this.caminos[this.c][this.ifase] == 14 && this.conceptTest.status == "Imagen1") {
         if (this.error || this.trespuesta > this.maxT || this.trespuesta < this.minT) {
           this.nerror++;
         }
@@ -457,7 +463,7 @@ export class TestTAIComponent implements OnInit {
           this.nerror = 0;
           this.ironda = 0;
         }
-      } else if (this.ifase == 16 &&
+      } else if (this.caminos[this.c][this.ifase] == 16 &&
         (this.conceptTest.status == "Imagen1" || this.conceptTest.status == "Palabra2")) {
 
         this.element.correcta = !this.error;
@@ -474,7 +480,7 @@ export class TestTAIComponent implements OnInit {
           this.ifase = (this.ifase + 1) % this.nfase;
           this.ironda = 0;
         }
-      } else if (this.ifase == 18 &&
+      } else if (this.caminos[this.c][this.ifase] == 18 &&
         (this.conceptTest.status == "Imagen1" || this.conceptTest.status == "Palabra2")) {
 
         this.element.correcta = !this.error;
@@ -488,13 +494,15 @@ export class TestTAIComponent implements OnInit {
         this.randomConcept();
         this.ironda++;
         if (this.ironda == this.nronda) {
-          this.enviarRespuesta();
           this.ifase = (this.ifase + 1) % this.nfase;
           this.ironda = 0;
         }
       } else {
         this.error = true;
        }
+    }
+    if (this.caminos[this.c][this.ifase] == 19){
+      this.enviarRespuesta();
     }
   }
 

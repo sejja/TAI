@@ -2,12 +2,12 @@
   <!-- Test TAI -->
 
   <!-- FASE 0-->
-  <section class="bg-primary bg-secondary text-white" [hidden]="ifase != 0">
+  <section class="bg-primary bg-secondary text-white" [hidden]="this.caminos[this.c][this.ifase] != 0">
     <div class="container text-center">
-      <div class="row mt-2">
+      <div class="row">
         <div class="col bg-secondary">
-          <h2>Instruciones</h2>
-          <p>A continuación, va a realizar un test de asociación implícita. Este test consiste en realizar tareas de
+          <h2>Instrucciones</h2>
+          <!--<p>A continuación, va a realizar un test de asociación implícita. Este test consiste en realizar tareas de
             clasificación de imágenes y palabras lo más rápido posible, para estudiar si existe alguna asociación entre dos conceptos.
             La clasificación se realizará mediante el uso de las letras F y J del teclado. Si la imagen o la palabra que
             pretende clasificar pertenece a la categoría que se presente a la izquierda, se calsificará con la tecla F, por el
@@ -15,6 +15,19 @@
             clasificación será con la tecla J. La clasificación debe realizarse lo más rápido posible, y en caso de que exista algún error, no podrá
             avanzar hasta que no pulse la letra de la categoría correspondiente. Mantenga las manos en el teclado sobre las letras F y J
             cuando comience el test, y pulse espacio para avanzar.
+          </p>-->
+          <p>A CONTINUACIÓN, VA A REALIZAR UN TEST DE ASOCIACIÓN IMPLÍCITA (TAI). ESTE TEST CONSISTE EN REALIZAR TAREAS DE
+            CLASIFICACIÓN
+            DE IMÁGENES Y PALABRAS LO MÁS RÁPIDO POSIBLE, PARA ESTUDIAR SI EXISTE ALGUNA ASOCIACIÓN ENTRE DOS CONCEPTOS. LA
+            CLASIFICACIÓN SE REALIZARÁ MEDIANTE EL USO DE LAS LETRAS F Y J DEL TECLADO. SI LA IMAGEN O LA PALABRA QUE PRETENDE
+            CLASIFICAR PERTENECE A LA CATEGORÍA QUE SE PRESENTE A LA IZQUIERDA, SE CALSIFICARÁ CON LA TECLA F, POR EL CONTRARIO,
+            EN EL CASO DE QUE LA IMAGEN O LA PALABRA PERTENEZCA A LA CATEGORÍA QUE SE PRESENTE A LA DERECHA, SU CLASIFICACIÓN SERÁ
+            CON LA TECLA J.
+            LA CLASIFICACIÓN DEBE REALIZARSE LO MÁS RÁPIDO POSIBLE, Y EN CASO DE QUE EXISTA ALGÚN ERROR, NO PODRÁ AVANZAR HASTA
+            QUE
+            NO PULSE LA LETRA DE LA CATEGORÍA CORRESPONDIENTE. MANTENGA LAS MANOS EN EL TECLADO SOBRE LAS LETRAS F Y J CUANDO
+            COMIENCE
+            EL TEST, Y PULSE ESPACIO PARA AVANZAR.
           </p>
           <p>Pulse espacio para continuar</p>
         </div>
@@ -23,7 +36,7 @@
   </section>
 
   <!-- FASE 1-->
-  <section class="bg-primary bg-secondary text-white" [hidden]="ifase != 1">
+  <section class="bg-primary bg-secondary text-white" [hidden]="this.caminos[this.c][this.ifase] != 1">
     <div class="container text-center">
       <div class="row mt-2">
         <div class="col bg-secondary">
@@ -45,7 +58,7 @@
   </section>
 
   <!-- FASE 2-->
-  <section class="bg-primary bg-secondary text-white" [hidden]="ifase != 2">
+  <section class="bg-primary bg-secondary text-white" [hidden]="this.caminos[this.c][this.ifase] != 2">
     <div class="container text-center">
       <div class="row mt-2">
         <div class="col bg-secondary">
@@ -68,7 +81,7 @@
 
 
   <!-- FASE 3-->
-  <section class="bg-primary bg-secondary text-white" [hidden]="ifase != 3">
+  <section class="bg-primary bg-secondary text-white" [hidden]="this.caminos[this.c][this.ifase] != 3">
     <div class="container text-center">
       <div class="row mt-2">
         <div class="col bg-secondary">
@@ -90,7 +103,7 @@
   </section>
 
   <!-- FASE 4-->
-  <section class="bg-primary bg-secondary text-white" [hidden]="ifase != 4">
+  <section class="bg-primary bg-secondary text-white" [hidden]="this.caminos[this.c][this.ifase] != 4">
     <div class="container text-center">
       <div class="row mt-2">
         <div class="col bg-secondary">
@@ -113,7 +126,7 @@
 
   <!--Instrucciones cartegorizar Imagenes-->
   <!-- FASE 5-->
-  <section class="bg-primary bg-secondary text-white" [hidden]="ifase != 5">
+  <section class="bg-primary bg-secondary text-white" [hidden]="this.caminos[this.c][this.ifase] != 5">
     <div class="container text-center">
       <div class="row mt-2">
         <div class="col bg-secondary">
@@ -127,10 +140,16 @@
       </div>
       <div class="row mt-3">
         <div class="col bg-secondary">
-          <h2>Instruciones</h2>
-          <p>A continuación se le mostrarán imágenes de la categoría {{tai.imagen1}} o {{tai.imagen2}}. Trate de
+          <h2>Instrucciones</h2>
+          <!--<p>A continuación se le mostrarán imágenes de la categoría {{tai.imagen1}} o {{tai.imagen2}}. Trate de
             clasificarlas lo más rápido posible sin equivocarse, si lo hiciera, se marcará en rojo y tendrá que clasificarla correctamente
             para avanzar y que aparezca la siguiente imagen. En caso de no superar esta fase, tendrá que repetirla.
+          </p>-->
+          <p>A CONTINUACIÓN SE LE MOSTRARÁN IMÁGENES DE LA CATEGORÍA {{tai.imagen1}} O {{tai.imagen2}}. TRATE DE CLASIFICARLAS LO
+            MÁS
+            RÁPIDO POSIBLE SIN EQUIVOCARSE, SI LO HICIERA, SE MARCARÁ EN ROJO Y TENDRÁ QUE CLASIFICARLA CORRECTAMENTE PARA AVANZAR
+            Y
+            QUE APAREZCA LA SIGUIENTE IMAGEN. EN CASO DE NO SUPERAR ESTA FASE, TENDRÁ QUE REPETIRLA.
           </p>
           <p>Pulse espacio para continuar</p>
         </div>
@@ -141,7 +160,7 @@
 
   <!--cartegorizar Imagenes-->
   <!-- FASE 6-->
-  <section class="bg-primary bg-secondary text-white" [hidden]="ifase != 6">
+  <section class="bg-primary bg-secondary text-white" [hidden]="this.caminos[this.c][this.ifase] != 6">
     <div class="container text-center">
       <div class="row mt-2">
         <div class="col bg-secondary">
@@ -164,7 +183,7 @@
 
   <!--Instrucciones cartegorizar palabras-->
   <!-- FASE 7-->
-  <section class="bg-primary bg-secondary text-white" [hidden]="ifase != 7">
+  <section class="bg-primary bg-secondary text-white" [hidden]="this.caminos[this.c][this.ifase] != 7">
     <div class="container text-center">
       <div class="row mt-2">
         <div class="col bg-secondary">
@@ -178,11 +197,16 @@
       </div>
       <div class="row mt-3">
         <div class="col-sm-12 my-2 bg-secondary">
-          <h2>Instruciones</h2>
-          <p>En este caso, se le mostrarán palabras de la categoría {{tai.palabra1}} o {{tai.palabra2}}. Trate de
+          <h2>Instrucciones</h2>
+          <!--<p>En este caso, se le mostrarán palabras de la categoría {{tai.palabra1}} o {{tai.palabra2}}. Trate de
             clasificarlas lo más rápido posible sin equivocarse, si lo hiciera, se marcará en rojo y tendrá que clasificarla correctamente
             para avanzar y que aparezca la siguiente imagen. En caso de no superar esta fase, tendrá que repetirla.
-          </p>
+          </p>-->
+          <p>EN ESTE CASO, SE LE MOSTRARÁN PALABRAS DE LAS CATEGORÍAS {{tai.palabra1}}, {{tai.palabra2}}. TRATE DE CLASIFICARLAS LO
+          MÁS
+          RÁPIDO POSIBLE SIN EQUIVOCARSE, SI LO HICIERA, SE MARCARÁ EN ROJO Y TENDRÁ QUE CLASIFICARLA CORRECTAMENTE PARA AVANZAR Y
+          QUE APAREZCA LA SIGUIENTE IMAGEN. EN CASO DE NO SUPERAR ESTA FASE, TENDRÁ QUE REPETIRLA.
+        </p>
           <p>Pulse espacio para continuar</p>
         </div>
       </div>
@@ -207,7 +231,7 @@
 
   <!--cartegorizar Palabras-->
   <!-- FASE 8-->
-  <section class="bg-primary bg-secondary text-white" [hidden]="ifase != 8">
+  <section class="bg-primary bg-secondary text-white" [hidden]="this.caminos[this.c][this.ifase] != 8">
     <div class="container text-center">
       <div class="row mt-2">
         <div class="col bg-secondary">
@@ -230,7 +254,7 @@
 
   <!--Instrucciones test 1-->
   <!-- FASE 9-->
-  <section class="bg-primary bg-secondary text-white" [hidden]="ifase != 9">
+  <section class="bg-primary bg-secondary text-white" [hidden]="this.caminos[this.c][this.ifase] != 9">
     <div class="container px-4 text-center">
       <div class="row mt-2">
         <div class="col bg-secondary">
@@ -246,10 +270,14 @@
       </div>
       <div class="row mt-3">
         <div class="col bg-secondary">
-          <h2>Instruciones</h2>
-          <p>Ahora, se mostrará una palabra de las categorías {{tai.palabra1}}, {{tai.palabra2}} o una imagen de las
+          <h2>Instrucciones</h2>
+          <!--<p>Ahora, se mostrará una palabra de las categorías {{tai.palabra1}}, {{tai.palabra2}} o una imagen de las
             categorías {{tai.imagen1}}, {{tai.imagen2}}. Debe clasificarlas en el lado de la pantalla correspondiente a la
             categoría a la que pertenecen, de igual forma que en las fases anteriores.
+          </p>-->
+          <p>AHORA, SE MOSTRARÁ UNA PALABRA DE LAS CATEGORÍAS {{tai.palabra1}}, {{tai.palabra2}} O UNA IMAGEN DE LAS CATEGORÍAS
+            {{tai.imagen1}}, {{tai.imagen2}}. DEBE CLASIFICARLAS EN EL LADO DE LA PANTALLA CORRESPONDIENTE A LA CATEGORÍA A LA QUE
+            PERTENECEN, DE IGUAL FORMA QUE EN LAS FASES ANTERIORES.
           </p>
           <p>Pulse espacio para continuar</p>
         </div>
@@ -259,7 +287,7 @@
 
   <!--Instrucciones test 1-->
   <!-- FASE 11-->
-  <section class="bg-primary bg-secondary text-white" [hidden]="ifase != 11">
+  <section class="bg-primary bg-secondary text-white" [hidden]="this.caminos[this.c][this.ifase] != 11">
     <div class="container text-center">
       <div class="row mt-2">
         <div class="col bg-secondary">
@@ -275,10 +303,16 @@
       </div>
       <div class="row mt-3">
         <div class="col bg-secondary">
-          <h2>Instruciones</h2>
-          <p>De la misma forma que la fase anterior, se mostrará una palabra de las categorías {{tai.palabra1}},
+          <h2>Instrucciones</h2>
+          <!--<p>De la misma forma que la fase anterior, se mostrará una palabra de las categorías {{tai.palabra1}},
             {{tai.palabra2}} o una imagen de las categorías {{tai.imagen1}}, {{tai.imagen2}}. Debe clasificarlas en el lado de la pantalla
             correspondiente a la categoría a la que pertenecen, de igual forma que en las fases anteriores.
+          </p>-->
+          <p>DE LA MISMA FORMA QUE LA FASE ANTERIOR, SE LE MOSTRARÁ UNA PALABRA DE LAS CATEGORÍAS {{tai.palabra1}},
+            {{tai.palabra2}} O
+            UNA IMAGEN DE LAS CATEGORÍAS {{tai.imagen1}}, {{tai.imagen2}}. DEBE CLASIFICARLAS EN EL LADO DE LA PANTALLA
+            CORRESPONDIENTE
+            A LA CATEGORÍA A LA QUE PERTENECEN, DE IGUAL FORMA QUE EN LAS FASES ANTERIORES.
           </p>
           <p>Pulse espacio para continuar</p>
         </div>
@@ -288,7 +322,7 @@
 
   <!--Test 1-->
   <!-- FASE 10 y 12-->
-  <section class="bg-primary bg-secondary text-white" [hidden]="ifase != 10 && ifase != 12">
+  <section class="bg-primary bg-secondary text-white" [hidden]="this.caminos[this.c][this.ifase] != 10 && this.caminos[this.c][this.ifase] != 12">
     <div class="container text-center">
       <div class="row mt-2">
         <div class="col bg-secondary">
@@ -338,7 +372,7 @@
   <!-- istruccions cambio de imagenes -->
   <!--Instrucciones cartegorizar Imagenes-->
   <!-- FASE 13-->
-  <section class="bg-primary bg-secondary text-white" [hidden]="ifase != 13">
+  <section class="bg-primary bg-secondary text-white" [hidden]="this.caminos[this.c][this.ifase] != 13">
     <div class="container text-center">
       <div class="row mt-2">
         <div class="col bg-secondary">
@@ -352,10 +386,16 @@
       </div>
       <div class="row mt-2">
         <div class="col bg-secondary">
-          <h2>Instruciones</h2>
-          <p>A continuación se le mostrarán imágenes de la categoría {{tai.imagen2}} o {{tai.imagen1}}. Trate de
+          <h2>Instrucciones</h2>
+          <!--<p>A continuación se le mostrarán imágenes de la categoría {{tai.imagen2}} o {{tai.imagen1}}. Trate de
             clasificarlas lo más rápido posible sin equivocarse, si lo hiciera, se marcará en rojo y tendrá que clasificarla correctamente
             para que avanzar y que aparezca la siguiente imagen. En caso de no superar esta fase, tendrá que repetirla.
+          </p>-->
+          <p>A CONTINUACIÓN SE LE MOSTRARÁN IMÁGENES DE LA CATEGORÍA {{tai.imagen2}} O {{tai.imagen1}}. TRATE DE CLASIFICARLAS LO
+            MÁS
+            RÁPIDO POSIBLE SIN EQUIVOCARSE, SI LO HICIERA, SE MARCARÁ EN ROJO Y TENDRÁ QUE CLASIFICARLA CORRECTAMENTE PARA AVANZAR
+            Y
+            QUE APAREZCA LA SIGUIENTE IMAGEN. EN CASO DE NO SUPERAR ESTA FASE, TENDRÁ QUE REPETIRLA.
           </p>
           <p>Pulse espacio para continuar</p>
         </div>
@@ -365,7 +405,7 @@
 
   <!--cartegorizar Imagenes-->
   <!-- FASE 14-->
-  <section class="bg-primary bg-secondary text-white" [hidden]="ifase != 14">
+  <section class="bg-primary bg-secondary text-white" [hidden]="this.caminos[this.c][this.ifase] != 14">
     <div class="container px-4 text-center">
       <div class="row mt-2">
         <div class="col-sm-6 bg-secondary">
@@ -388,7 +428,7 @@
 
   <!--Instrucciones reconocimieto 2-->
   <!-- FASE 15-->
-  <section class="bg-primary bg-secondary text-white" [hidden]="ifase != 15">
+  <section class="bg-primary bg-secondary text-white" [hidden]="this.caminos[this.c][this.ifase] != 15">
     <div class="container px-4 text-center">
       <div class="row mt-2">
         <div class="col bg-secondary">
@@ -402,10 +442,14 @@
       </div>
       <div class="row mt-3">
         <div class="col bg-secondary">
-          <h2>Instruciones</h2>
-          <p>Ahora, se mostrará una palabra de las categorías {{tai.palabra1}}, {{tai.palabra2}} o una imagen de las
+          <h2>Instrucciones</h2>
+          <!--<p>Ahora, se mostrará una palabra de las categorías {{tai.palabra1}}, {{tai.palabra2}} o una imagen de las
             categorías {{tai.imagen1}}, {{tai.imagen2}}. Debe clasificarlas en el lado de la pantalla correspondiente a la
             categoría a la que pertenecen, de igual forma que en las fases anteriores.
+          </p>-->
+          <p>AHORA, SE MOSTRARÁ UNA PALABRA DE LAS CATEGORÍAS {{tai.palabra1}}, {{tai.palabra2}} O UNA IMAGEN DE LAS CATEGORÍAS
+            {{tai.imagen1}}, {{tai.imagen2}}. DEBE CLASIFICARLAS EN EL LADO DE LA PANTALLA CORRESPONDIENTE A LA CATEGORÍA A LA QUE
+            PERTENECEN, DE IGUAL FORMA QUE EN LAS FASES ANTERIORES.
           </p>
           <p>Pulse espacio para continuar</p>
         </div>
@@ -415,7 +459,7 @@
 
   <!--Instrucciones test 2-->
   <!-- FASE 17-->
-  <section class="bg-primary bg-secondary text-white" [hidden]="ifase != 17">
+  <section class="bg-primary bg-secondary text-white" [hidden]="this.caminos[this.c][this.ifase] != 17">
     <div class="container px-4 text-center">
       <div class="row mt2">
         <div class="col bg-secondary">
@@ -430,9 +474,15 @@
       <div class="row mt-3">
         <div class="col-sm-12 my-2 bg-secondary">
           <h2>Instruciones</h2>
-          <p>Igual que en la fase anterior, se mostrará una palabra de las categorías {{tai.palabra1}}, {{tai.palabra2}}
+          <!--<p>Igual que en la fase anterior, se mostrará una palabra de las categorías {{tai.palabra1}}, {{tai.palabra2}}
             o una imagen de las categorías {{tai.imagen1}}, {{tai.imagen2}}. Debe clasificarlas en el lado de la pantalla
             correspondiente a la categoría a la que pertenecen.
+          </p>-->
+          <p>DE LA MISMA FORMA QUE LA FASE ANTERIOR, SE LE MOSTRARÁ UNA PALABRA DE LAS CATEGORÍAS {{tai.palabra1}},
+            {{tai.palabra2}} O
+            UNA IMAGEN DE LAS CATEGORÍAS {{tai.imagen1}}, {{tai.imagen2}}. DEBE CLASIFICARLAS EN EL LADO DE LA PANTALLA
+            CORRESPONDIENTE
+            A LA CATEGORÍA A LA QUE PERTENECEN, DE IGUAL FORMA QUE EN LAS FASES ANTERIORES.
           </p>
         </div>
       </div>
@@ -442,7 +492,7 @@
 
   <!--test 2-->
   <!-- FASE 16 y 18-->
-  <section class="bg-primary bg-secondary text-white" [hidden]="ifase != 16 && ifase != 18">
+  <section class="bg-primary bg-secondary text-white" [hidden]="this.caminos[this.c][this.ifase] != 16 && this.caminos[this.c][this.ifase] != 18">
     <div class="container text-center">
       <div class="row mt-2">
         <div class="col bg-secondary">
@@ -487,7 +537,7 @@
     </div>
   </section>
 
-  <section class="bg-primary bg-secondary text-white" [hidden]="ifase != 19">
+  <section class="bg-primary bg-secondary text-white" [hidden]="this.caminos[this.c][this.ifase] != 19">
     <div class="container px-4 text-center">
       <div class="row">
         <div class="col-sm-12 my-2 bg-secondary">
