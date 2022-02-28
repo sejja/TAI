@@ -524,7 +524,7 @@ export class TestTAIComponent implements OnInit {
         console.log("String: "+str);
         console.log("TAI: ", this.tai.id);
         console.log("TAI: ", this.tai.id.toString());
-        this.router.navigate(["tai/" + this.tai.id + "/resultados/" + str]);
+        this.router.navigate(["/tai/"]);
       },
       err => {
         console.log("Error al enviar: " + err.message);

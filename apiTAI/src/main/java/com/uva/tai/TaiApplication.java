@@ -29,7 +29,7 @@ public class TaiApplication {
 
 		@Override
 		public void addResourceHandlers(ResourceHandlerRegistry registry) { 
-			registry.addResourceHandler("/uploads/**").addResourceLocations("classpath:/uploads/")
+			registry.addResourceHandler("/uploads/**").addResourceLocations("file:///uploads/")//modificacion para Docker
 					.setCacheControl(CacheControl.maxAge(2, TimeUnit.HOURS).cachePublic());
 		}
 	}

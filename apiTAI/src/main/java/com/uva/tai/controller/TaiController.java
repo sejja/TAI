@@ -56,14 +56,29 @@ public class TaiController {
     private final ResultadoRepository resultadoRepository;
     private final ConceptoRepository conceptoRepository;
 
+    private static final Logger logger = Logger.getLogger(TaiController.class.getName());
+    String url = "uploads";
+    private final Path root = Paths.get(url);
+
     TaiController(TaiRepository taiRepository, RespuestaRepository respuestaRepository,
             ElementoRepository elementoRepository, ResultadoRepository resultadoRepository,
             ConceptoRepository conceptoRepository) {
+
         this.taiRepository = taiRepository;
         this.respuestaRepository = respuestaRepository;
         this.elementoRepository = elementoRepository;
         this.resultadoRepository = resultadoRepository;
         this.conceptoRepository = conceptoRepository;
+
+        System.out.println("Ruta: " + root.toString());
+        
+        if (!Files.exists(root)) {
+            try {
+                Files.createDirectory(root);
+            } catch (IOException e) {
+                throw new RuntimeException("Could not initialize folder for upload!");
+            }
+        }
     }
 
     /**
@@ -93,10 +108,6 @@ public class TaiController {
         }
     }
 
-
-    private static final Logger logger = Logger.getLogger(TaiController.class.getName());
-    String url = "apiTAI/src/main/resources/uploads";
-    private final Path root = Paths.get(url);
     /**
      * Almacena una imagen apartir de una peticion POST:/tai/upload/:code
      * mediante el archivo recibido
