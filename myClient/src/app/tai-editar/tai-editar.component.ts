@@ -7,6 +7,7 @@ import { Concept } from '../shared/api-tai/app.concept-model';
 import { ClienteApiOrdersService } from '../shared/api-tai/cliente-api-tai.service';
 import { HttpEventType, HttpResponse } from '@angular/common/http';
 import { ClienteApiAuthService } from '../shared/api-auth/cliente-api-auth.service';
+import { enableDebugTools } from '@angular/platform-browser';
 
 
 @Component({
@@ -30,8 +31,8 @@ export class TaiEditarComponent implements OnInit {
     palabra2: "",
     imagen1: "",
     imagen2: "",
-    concepts: []
-
+    concepts: [],
+    enable: false
   };
 
   tai = this.newTai as Tai;  // Hay que darle valor inicial, si no salta una
@@ -45,6 +46,7 @@ export class TaiEditarComponent implements OnInit {
 
   concept = this.newConcept as Concept;  // Hay que darle valor inicial, si no salta una
   form:any
+  valid: boolean = false;
 
   constructor(private ruta: ActivatedRoute, private router: Router,
     private clienteApiRest: ClienteApiOrdersService, private clienteApiAuth: ClienteApiAuthService) { }
@@ -87,6 +89,18 @@ export class TaiEditarComponent implements OnInit {
     )
   }
 
+  haveConcept(): boolean{
+    var aux: Array<String> = [];
+
+    this.tai.concepts.forEach(concept => {
+      var i = aux.indexOf(concept.status);
+      if (i == -1) {
+        aux.push(concept.status);
+      }
+    });
+    return aux.length == 4;
+  }
+
 
   onImagenSubmit() {
 
@@ -100,6 +114,7 @@ export class TaiEditarComponent implements OnInit {
       name: "",
       status: ""
     };
+    this.valid = this.haveConcept();
   }
 
   onChange(event:Event) {
@@ -125,11 +140,13 @@ export class TaiEditarComponent implements OnInit {
       name: "",
       status: ""
     };
+    this.valid = this.haveConcept();
     //this.selectedFiles = undefined;
   }
 
   deleteConcept(i: number) {
     this.tai.concepts.splice(i, 1);
+    this.valid = this.haveConcept();
   }
 
   clickLogout() {

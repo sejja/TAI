@@ -9,6 +9,7 @@ export interface Tai {
     palabra2: String,
     imagen1: String,
     imagen2: String,
-    concepts: Concept[]
+    concepts: Concept[],
+    enable: Boolean
 
 }

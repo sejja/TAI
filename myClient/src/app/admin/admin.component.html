@@ -81,6 +81,7 @@
                     <th scope="col">id</th>
                     <th scope="col">Name</th>
                     <th scope="col">Code</th>
+                    <th scope="col">Activar</th>
                     <th scope="col">Seleccionar</th>
                     <th scope="col">Eliminar</th>
                 </tr>
@@ -90,6 +91,11 @@
                     <td>{{tai.id}}</td>
                     <td>{{tai.name}}</td>
                     <td>{{tai.code}}</td>
+                    <td>
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" [checked]="tai.enable" (click)="sendEnable(tai)">
+                        </div>
+                    </td>
                     <td>
                         <button type="button" class="btn btn-primary" (click)="getResults(tai.id)">
                             Resultados

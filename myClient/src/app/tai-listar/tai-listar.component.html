@@ -30,12 +30,11 @@
                 </tr>
               </thead>
               <tbody *ngFor="let tai of tais; let i = index">
-                <tr>
+                <tr *ngIf="tai.enable">
                   <td>{{tai.id}}</td>
                   <td>{{tai.name}}</td>
                   <td>{{tai.code}}</td>
-                  <td><a id="editButton" class="btn btn-primary mb-2 btn-block"
-                      [routerLink]="['/tai/', tai.id, 'test']">Ir</a></td>
+                  <td><a id="editButton" class="btn btn-primary mb-2 btn-block" [routerLink]="['/tai/', tai.id, 'test']">Ir</a></td>
                 </tr>
               </tbody>
             </table>

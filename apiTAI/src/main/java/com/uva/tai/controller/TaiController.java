@@ -31,6 +31,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -150,6 +151,16 @@ public class TaiController {
         }
 
         return new ResponseEntity<String>(originalName, HttpStatus.OK);
+    }
+
+    @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE, value = "/{id}/enable")
+    public String enableTai(@RequestBody Boolean enable, @PathVariable int id) {
+
+        Tai tai = this.getTai(id).get();
+        tai.setEnable(enable);
+        taiRepository.saveAndFlush(tai);
+
+        return id+":"+tai.getEnable();
     }
 
     /**

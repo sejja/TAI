@@ -42,8 +42,8 @@
                 <input type="text" class="form-control" [(ngModel)]="tai.imagen1"
                     placeholder="¿Cual va a ser el nombre del primer concepto?" required name="imagen1" />
                 <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modalImagen"
-                    (click)="concept.status = 'Imagen1'">
-                    Añadir imagen del concepto
+                    (click)="concept.status = 'Imagen1'" [disabled]="tai.imagen1 == ''">
+                    Añadir imagen de CATEGORÍA
                 </button>
             </fieldset>
             <div class="col-1"></div>
@@ -52,8 +52,8 @@
                 <input type="text" class="form-control" [(ngModel)]="tai.palabra1"
                     placeholder="¿Cual va a ser la palabra asociada a lo positivo?" required name="palabra1" />
                 <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modalPalabra"
-                    (click)="concept.status = 'Palabra1'">
-                    Añadir palabra de la categoria
+                    (click)="concept.status = 'Palabra1'" [disabled]="tai.palabra1 == ''">
+                    Añadir palabra de CUALIDAD
                 </button>
             </fieldset>
         </div>
@@ -64,8 +64,8 @@
                 <input type="text" class="form-control" [(ngModel)]="tai.imagen2"
                     placeholder="¿Cual va a ser el nombre del segundo concepto?" required name="imagen2" />
                 <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modalImagen"
-                    (click)="concept.status = 'Imagen2'">
-                    Añadir imagen del concepto
+                    (click)="concept.status = 'Imagen2'" [disabled]="tai.imagen2 == ''">
+                    Añadir imagen de CATEGORÍA
                 </button>
             </fieldset>
             <div class="col-1"></div>
@@ -74,8 +74,8 @@
                 <input type="text" class="form-control" [(ngModel)]="tai.palabra2"
                     placeholder="¿Cual va a ser la palabra asociada a lo negativo?" required name="palabra2" />
                 <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modalPalabra"
-                    (click)="concept.status = 'Palabra2'">
-                    Añadir palabra de la categoria
+                    (click)="concept.status = 'Palabra2'" [disabled]="tai.palabra2 == ''">
+                    Añadir palabra de CUALIDAD
                 </button>
             </fieldset>
         </div>
@@ -94,8 +94,10 @@
     
                     <tr *ngFor="let palabra of tai.concepts; let j = index">
                         <td><i>{{palabra.name}}</i></td>
-                        <td><i>{{palabra.status}}</i></td>
-    
+                        <td *ngIf="palabra.status == 'Palabra1'"><i>{{tai.palabra1}}</i></td>
+                        <td *ngIf="palabra.status == 'Palabra2'"><i>{{tai.palabra2}}</i></td>
+                        <td *ngIf="palabra.status == 'Imagen1'"><i>{{tai.imagen1}}</i></td>
+                        <td *ngIf="palabra.status == 'Imagen2'"><i>{{tai.imagen2}}</i></td>
                         <td>
                             <button type="button" class="btn btn-danger" (click)="deleteConcept(j)">
                                 Delete
@@ -109,7 +111,7 @@
     
         <fieldset class="form-group ps-4 pt-3 col-sm-3">
             <div class="col-sm-offset-2 col-sm-12">
-                <button type="submit" class="btn btn-primary" [disabled]="!orderForm.form.valid"> Enviar </button>
+                <button type="submit" class="btn btn-primary" [disabled]="!orderForm.form.valid || !this.valid"> Enviar </button>
             </div>
         </fieldset>
     </form>

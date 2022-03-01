@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { Tai } from './app.tai-model';
 import { TaiResponse } from './app.response-model';
 import { TaiResult } from './app.result-model';
+import { enableDebugTools } from '@angular/platform-browser';
 
 @Injectable({
     providedIn: 'root'
@@ -106,5 +107,9 @@ export class ClienteApiOrdersService {
         return this.http.delete(url, { observe: 'response', responseType: 'text' });
     }
 
+    sendEnable(idTai: number, enable: Boolean): Observable<HttpResponse<String>>{
+        let url = ClienteApiOrdersService.BASE_URI + "/" + idTai + "/enable";
+        return this.http.put(url, enable, { observe: 'response', responseType: 'text' });
+    }
 
 }

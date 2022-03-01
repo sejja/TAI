@@ -183,6 +183,12 @@ export class AdminComponent implements OnInit {
     );
   }
 
+  sendEnable(tai:Tai){
+    tai.enable = !tai.enable;
+    console.log(tai.enable);
+    this.clienteApiRest.sendEnable(tai.id, tai.enable).subscribe();
+  }
+
   clickLogout() {
     this.clienteApiAuth.logout();
     this.router.navigate(['inicio']);
