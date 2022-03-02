@@ -78,7 +78,7 @@ export class ClienteApiAuthService {
      * @param user Usuario modificado
      * @returns Respuesta http 
      */
-    updateUser(id: String, user: User): Observable<HttpResponse<any>> {
+    updateUser(id: Number, user: User): Observable<HttpResponse<any>> {
         let url = ClienteApiAuthService.BASE_URI_USERS + "/" + id;
         return this.http.put(url, user, { observe: 'response', responseType: 'text' });
     }

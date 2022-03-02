@@ -39,7 +39,7 @@
             <button class="btn btn-primary mt-3" (click)="userAdd=newUser">Limpiar</button>
         </div>
         <div class="col-sm m-3">
-            <form (ngSubmit)="nuevo()" #userForm="ngForm">
+            <form (ngSubmit)="onSubmit()" #userForm="ngForm">
 
                 <div class="row">
                     <input placeholder="name" type="text" class="form-control" required [(ngModel)]="userAdd.name" name="name" />

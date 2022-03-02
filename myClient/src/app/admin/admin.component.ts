@@ -129,9 +129,28 @@ export class AdminComponent implements OnInit {
   }
 
   onSubmit(){
-    if(this.userAdd.id == 0){
+    if (this.userAdd == this.newUser){
       this.nuevo();
+    }else{
+      this.editar();
     }
+
+  }
+
+  editar() {
+    this.clienteApiAuth.updateUser(this.userAdd.id,this.userAdd).subscribe(
+      resp => {
+        if (resp.status < 400) { // Si no hay error en la respuesta
+          //this.users = resp.body as User[]; // Se obtiene la lista de users desde la respuesta
+          this.getUsers();
+        }
+      },
+      err => {
+        console.log("Error al traer la lista de users: " + err.message);
+        throw err;
+      }
+    );
+
   }
 
 
