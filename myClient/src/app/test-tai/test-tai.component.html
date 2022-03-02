@@ -1,12 +1,12 @@
-<body class="pt-5 bg-secondary">
+<body class="pt-1 bg-secondary">
   <!-- Test TAI -->
 
   <!-- FASE 0-->
   <div class="bg-secondary text-white" [hidden]="this.caminos[this.c][this.ifase] != 0">
     <div class="container text-center">
-      <div class="row mt-1">
+      <div class="row mt-2">
         <div class="col bg-secondary">
-          <h2>Instrucciones</h2>
+          <h3>Instrucciones</h3>
           <!--<p>A continuación, va a realizar un test de asociación implícita. Este test consiste en realizar tareas de
             clasificación de imágenes y palabras lo más rápido posible, para estudiar si existe alguna asociación entre dos conceptos.
             La clasificación se realizará mediante el uso de las letras F y J del teclado. Si la imagen o la palabra que
@@ -30,12 +30,10 @@
             EL TEST, Y PULSE ESPACIO PARA AVANZAR.
           </p>
           <p>Pulse espacio para continuar</p>
-          <div class="row justify-content-center movil">
-            <div class="col shadow-lg p-5 text-center bg-dark rounded" (click)="clickSpace()">
-              <h1>Espacio</h1>
-            </div>
-          </div>
         </div>
+      </div>
+      <div class="row justify-content-center shadow-lg text-center bg-dark rounded layer movil" (click)="clickSpace()">
+        <h1>Espacio</h1>
       </div>
     </div>
   </div>
@@ -43,28 +41,23 @@
   <!-- FASE 1-->
   <div class="bg-primary bg-secondary text-white" [hidden]="this.caminos[this.c][this.ifase] != 1">
     <div class="container text-center">
-      <div class="row mt-1">
+      <div class="row layer">
         <div class="col bg-secondary">
-          <h2>Estas son las imagenes de la categoria {{tai.imagen1}}</h2>
+          <h3>Estas son las imagenes de la categoria {{tai.imagen1}}</h3>
+          
         </div>
       </div>
 
-      <div class="row mt-3">
+      <div class="row">
         <div class="col bg-secondary" *ngFor="let imagen of imagenes1; let i = index">
-          <img class="card-img m-1" src={{getUrl(imagen)}} alt={{imagen.name}}>
+          <img class="card-img" src={{getUrl(imagen)}} alt={{imagen.name}}>
         </div>
-      </div>
-
-      <div class="row mt-3">
         <p>Pulse espacio para continuar</p>
       </div>
 
-      <div class="row justify-content-center movil">
-        <div class="col shadow-lg p-5 text-center bg-dark rounded" (click)="clickSpace()">
-          <h1>Espacio</h1>
-        </div>
+      <div class="row justify-content-center shadow-lg text-center bg-dark rounded layer movil" (click)="clickSpace()">
+        <h1>Espacio</h1>
       </div>
-      
 
     </div>
   </div>
@@ -72,85 +65,70 @@
   <!-- FASE 2-->
   <div class="bg-primary bg-secondary text-white" [hidden]="this.caminos[this.c][this.ifase] != 2">
     <div class="container text-center">
-      <div class="row mt-1">
+      <div class="row layer">
         <div class="col bg-secondary">
-          <h2>Estas son las imagenes de la categoria {{tai.imagen2}}</h2>
+          <h3>Estas son las imagenes de la categoria {{tai.imagen2}}</h3>
         </div>
       </div>
-
-      <div class="row mt-3">
+    
+      <div class="row">
         <div class="col bg-secondary" *ngFor="let imagen of imagenes2; let i = index">
-          <img class="card-img m-1" src={{getUrl(imagen)}} alt={{imagen.name}}>
+          <img class="card-img" src={{getUrl(imagen)}} alt={{imagen.name}}>
         </div>
-      </div>
-
-      <div class="row mt-3">
         <p>Pulse espacio para continuar</p>
       </div>
-
-      <div class="row justify-content-center movil">
-        <div class="col shadow-lg p-5 text-center bg-dark rounded" (click)="clickSpace()">
-          <h1>Espacio</h1>
-        </div>
+    
+      <div class="row justify-content-center shadow-lg text-center bg-dark rounded layer movil" (click)="clickSpace()">
+        <h1>Espacio</h1>
       </div>
-
+    
     </div>
   </div>
 
 
   <!-- FASE 3-->
   <div class="bg-primary bg-secondary text-white" [hidden]="this.caminos[this.c][this.ifase] != 3">
-    <div class="container text-center">
-      <div class="row mt-1">
-        <div class="col bg-secondary">
-          <h2>Estas son las palabras de la categoria {{tai.palabra1}}</h2>
+        <div class="container text-center">
+          <div class="row layer">
+            <div class="col bg-secondary">
+              <h3>Estas son las imagenes de la categoria {{tai.palabra1}}</h3>
+            </div>
+          </div>
+        
+          <div class="row">
+            <div class="col bg-secondary" *ngFor="let palabra of palabras1; let i = index">
+              <h3>{{palabra.name}}</h3>
+            </div>
+            <p>Pulse espacio para continuar</p>
+          </div>
+        
+          <div class="row justify-content-center shadow-lg text-center bg-dark rounded layer movil" (click)="clickSpace()">
+            <h1>Espacio</h1>
+          </div>
+        
         </div>
-      </div>
-
-      <div class="row mt-5">
-        <div class="col bg-secondary" *ngFor="let palabra of palabras1; let i = index">
-          <h2>{{palabra.name}}</h2>
-        </div>
-      </div>
-
-      <div class="row mt-3">
-        <p>Pulse espacio para continuar</p>
-      </div>
-
-      <div class="row mt-5 justify-content-center movil">
-        <div class="col shadow-lg p-5 text-center bg-dark rounded" (click)="clickSpace()">
-          <h1>Espacio</h1>
-        </div>
-      </div>
-
-    </div>
   </div>
 
   <!-- FASE 4-->
   <div class="bg-primary bg-secondary text-white" [hidden]="this.caminos[this.c][this.ifase] != 4">
     <div class="container text-center">
-      <div class="row mt-1">
+      <div class="row layer">
         <div class="col bg-secondary">
-          <h2>Estas son las palabras de la categoria {{tai.palabra2}}</h2>
+          <h3>Estas son las imagenes de la categoria {{tai.palabra2}}</h3>
         </div>
       </div>
-
-      <div class="row mt-5">
+    
+      <div class="row">
         <div class="col bg-secondary" *ngFor="let palabra of palabras2; let i = index">
-          <h2>{{palabra.name}}</h2>
+          <h3>{{palabra.name}}</h3>
         </div>
-      </div>
-
-      <div class="row mt-3">
         <p>Pulse espacio para continuar</p>
       </div>
-
-      <div class="row mt-5 justify-content-center movil">
-        <div class="col shadow-lg p-5 text-center bg-dark rounded" (click)="clickSpace()">
-          <h1>Espacio</h1>
-        </div>
+    
+      <div class="row justify-content-center shadow-lg text-center bg-dark rounded layer movil" (click)="clickSpace()">
+        <h1>Espacio</h1>
       </div>
-
+    
     </div>
   </div>
 
@@ -158,19 +136,19 @@
   <!-- FASE 5-->
   <div class="bg-primary bg-secondary text-white" [hidden]="this.caminos[this.c][this.ifase] != 5">
     <div class="container text-center">
-      <div class="row mt-1">
+      <div class="row mt-2">
         <div class="col bg-secondary">
-          <h2>{{tai.imagen1}}</h2>
+          <h3>{{tai.imagen1}}</h3>
           <p>Clasificar con F</p>
         </div>
         <div class="col bg-secondary">
-          <h2>{{tai.imagen2}}</h2>
+          <h3>{{tai.imagen2}}</h3>
           <p>Clasificar con J</p>
         </div>
       </div>
       <div class="row mt-3 layer">
         <div class="col bg-secondary">
-          <h2>Instrucciones</h2>
+          <h3>Instrucciones</h3>
           <!--<p>A continuación se le mostrarán imágenes de la categoría {{tai.imagen1}} o {{tai.imagen2}}. Trate de
             clasificarlas lo más rápido posible sin equivocarse, si lo hiciera, se marcará en rojo y tendrá que clasificarla correctamente
             para avanzar y que aparezca la siguiente imagen. En caso de no superar esta fase, tendrá que repetirla.
@@ -184,10 +162,8 @@
           <p>Pulse espacio para continuar</p>
         </div>
       </div>
-      <div class="row mt-5 justify-content-center movil">
-        <div class="col shadow-lg p-5 text-center bg-dark rounded" (click)="clickSpace()">
-          <h1>Espacio</h1>
-        </div>
+      <div class="row justify-content-center shadow-lg text-center bg-dark rounded layer movil" (click)="clickSpace()">
+        <h1>Espacio</h1>
       </div>
     </div>
   </div>
@@ -197,28 +173,27 @@
   <!-- FASE 6-->
   <div class="bg-primary bg-secondary text-white" [hidden]="this.caminos[this.c][this.ifase] != 6">
     <div class="container text-center">
-      <div class="row mt-1">
+      <div class="row mt-2">
         <div class="col bg-secondary">
-          <h2>{{tai.imagen1}}</h2>
+          <h3>{{tai.imagen1}}</h3>
         </div>
         <div class="col bg-secondary">
-          <h2>{{tai.imagen2}}</h2>
+          <h3>{{tai.imagen2}}</h3>
         </div>
       </div>
-      <div class="row mt-3 layer">
-        <div *ngIf="timeLeft == 0 && !error" class="col m-3 bg-secondary">
+      <div class="row mt-3 layer-test">
+        <div *ngIf="timeLeft == 0 && !error" class="col   bg-secondary">
           <img class="card-img p-1 border border-secondary border-5" src={{getUrl(conceptTest)}} alt={{conceptTest.name}}>
         </div>
-        <div *ngIf="timeLeft == 0 && error" class="col m-3 bg-secondary">
+        <div *ngIf="timeLeft == 0 && error" class="col   bg-secondary">
           <img class="card-img p-1 border border-danger border-5" src={{getUrl(conceptTest)}} alt={{conceptTest.name}}>
         </div>
       </div>
-      <div class="row mt-5 justify-content-center">
-        <div class="col-4 shadow-lg m-1 p-5 text-center bg-dark rounded movil" (click)="clickF()">
+      <div class="row justify-content-center text-center layer">
+         <div class="col shadow-lg justify-content-center shadow-lg text-center bg-dark rounded movil layer" (click)="clickF()">
           <h1>F</h1>
-        </div>
-        <div class="col-2"></div>
-        <div class="col-4 shadow-lg m-1 p-5 text-center bg-dark rounded movil" (click)="clickJ()">
+        </div> <div class="col-1"></div>
+        <div class="col shadow-lg justify-content-center shadow-lg text-center bg-dark rounded movil layer" (click)="clickJ()">
           <h1>J</h1>
         </div>
       </div>
@@ -229,19 +204,19 @@
   <!-- FASE 7-->
   <div class="bg-primary bg-secondary text-white" [hidden]="this.caminos[this.c][this.ifase] != 7">
     <div class="container text-center">
-      <div class="row mt-1">
+      <div class="row mt-2">
         <div class="col bg-secondary">
-          <h2>{{tai.palabra1}}</h2>
+          <h3>{{tai.palabra1}}</h3>
           <p>Clasificar con F</p>
         </div>
         <div class="col bg-secondary">
-          <h2>{{tai.palabra2}}</h2>
+          <h3>{{tai.palabra2}}</h3>
           <p>Clasificar con J</p>
         </div>
       </div>
       <div class="row mt-3 layer">
         <div class="col bg-secondary">
-          <h2>Instrucciones</h2>
+          <h3>Instrucciones</h3>
           <!--<p>En este caso, se le mostrarán palabras de la categoría {{tai.palabra1}} o {{tai.palabra2}}. Trate de
             clasificarlas lo más rápido posible sin equivocarse, si lo hiciera, se marcará en rojo y tendrá que clasificarla correctamente
             para avanzar y que aparezca la siguiente imagen. En caso de no superar esta fase, tendrá que repetirla.
@@ -254,10 +229,8 @@
           <p>Pulse espacio para continuar</p>
         </div>
       </div>
-      <div class="row mt-5 justify-content-center movil">
-        <div class="col shadow-lg p-5 text-center bg-dark rounded" (click)="clickSpace()">
-          <h1>Espacio</h1>
-        </div>
+      <div class="row justify-content-center shadow-lg text-center bg-dark rounded layer movil" (click)="clickSpace()">
+        <h1>Espacio</h1>
       </div>
     </div>
   </div>
@@ -266,28 +239,27 @@
   <!-- FASE 8-->
   <div class="bg-primary bg-secondary text-white" [hidden]="this.caminos[this.c][this.ifase] != 8">
     <div class="container text-center">
-      <div class="row mt-1">
+      <div class="row mt-2">
         <div class="col bg-secondary">
-          <h2>{{tai.palabra1}}</h2>
+          <h3>{{tai.palabra1}}</h3>
         </div>
         <div class="col bg-secondary">
-          <h2>{{tai.palabra2}}</h2>
+          <h3>{{tai.palabra2}}</h3>
         </div>
       </div>
-      <div class="row mt-3 layer">
-        <div *ngIf="timeLeft == 0 && !error" class="col mt-1 bg-secondary">
-          <h2>{{conceptTest.name}}</h2>
+      <div class="row mt-3 layer-test">
+        <div *ngIf="timeLeft == 0 && !error" class="col mt-2 bg-secondary">
+          <h3>{{conceptTest.name}}</h3>
         </div>
-        <div *ngIf="timeLeft == 0 && error" class="col mt-1 bg-secondary">
-          <h2 class="text-danger">{{conceptTest.name}}</h2>
+        <div *ngIf="timeLeft == 0 && error" class="col mt-2 bg-secondary">
+          <h3 class="text-danger">{{conceptTest.name}}</h3>
         </div>
       </div>
-      <div class="row mt-5 justify-content-center">
-        <div class="col-4 shadow-lg m-1 p-5 text-center bg-dark rounded movil" (click)="clickF()">
+      <div class="row justify-content-center text-center layer">
+         <div class="col shadow-lg justify-content-center shadow-lg text-center bg-dark rounded movil layer" (click)="clickF()">
           <h1>F</h1>
-        </div>
-        <div class="col-2"></div>
-        <div class="col-4 shadow-lg m-1 p-5 text-center bg-dark rounded movil" (click)="clickJ()">
+        </div> <div class="col-1"></div>
+        <div class="col shadow-lg justify-content-center shadow-lg text-center bg-dark rounded movil layer" (click)="clickJ()">
           <h1>J</h1>
         </div>
       </div>
@@ -298,21 +270,21 @@
   <!-- FASE 9-->
   <div class="bg-primary bg-secondary text-white" [hidden]="this.caminos[this.c][this.ifase] != 9">
     <div class="container text-center">
-      <div class="row mt-1">
+      <div class="row mt-2">
         <div class="col bg-secondary">
-          <h2>{{tai.imagen1}}</h2>
-          <h2>{{tai.palabra1}}</h2>
+          <h3>{{tai.imagen1}}</h3>
+          <h3>{{tai.palabra1}}</h3>
           <p>Clasificar con F</p>
         </div>
         <div class="col bg-secondary">
-          <h2>{{tai.imagen2}}</h2>
-          <h2>{{tai.palabra2}}</h2>
+          <h3>{{tai.imagen2}}</h3>
+          <h3>{{tai.palabra2}}</h3>
           <p>Clasificar con J</p>
         </div>
       </div>
       <div class="row mt-3">
         <div class="col bg-secondary">
-          <h2>Instrucciones</h2>
+          <h3>Instrucciones</h3>
           <!--<p>Ahora, se mostrará una palabra de las categorías {{tai.palabra1}}, {{tai.palabra2}} o una imagen de las
             categorías {{tai.imagen1}}, {{tai.imagen2}}. Debe clasificarlas en el lado de la pantalla correspondiente a la
             categoría a la que pertenecen, de igual forma que en las fases anteriores.
@@ -322,12 +294,10 @@
             PERTENECEN, DE IGUAL FORMA QUE EN LAS FASES ANTERIORES.
           </p>
           <p>Pulse espacio para continuar</p>
-          <div class="row mt-5 justify-content-center movil">
-            <div class="col shadow-lg p-5 text-center bg-dark rounded" (click)="clickSpace()">
-              <h1>Espacio</h1>
-            </div>
-          </div>
         </div>
+      </div>
+      <div class="row justify-content-center shadow-lg text-center bg-dark rounded layer movil" (click)="clickSpace()">
+        <h1>Espacio</h1>
       </div>
     </div>
   </div>
@@ -336,21 +306,21 @@
   <!-- FASE 11-->
   <div class="bg-primary bg-secondary text-white" [hidden]="this.caminos[this.c][this.ifase] != 11">
     <div class="container text-center">
-      <div class="row mt-1">
+      <div class="row mt-2">
         <div class="col bg-secondary">
-          <h2>{{tai.imagen1}}</h2>
-          <h2>{{tai.palabra1}}</h2>
+          <h3>{{tai.imagen1}}</h3>
+          <h3>{{tai.palabra1}}</h3>
           <p>Clasificar con F</p>
         </div>
         <div class="col bg-secondary">
-          <h2>{{tai.imagen2}}</h2>
-          <h2>{{tai.palabra2}}</h2>
+          <h3>{{tai.imagen2}}</h3>
+          <h3>{{tai.palabra2}}</h3>
           <p>Clasificar con J</p>
         </div>
       </div>
       <div class="row mt-3">
         <div class="col bg-secondary">
-          <h2>Instrucciones</h2>
+          <h3>Instrucciones</h3>
           <!--<p>De la misma forma que la fase anterior, se mostrará una palabra de las categorías {{tai.palabra1}},
             {{tai.palabra2}} o una imagen de las categorías {{tai.imagen1}}, {{tai.imagen2}}. Debe clasificarlas en el lado de la pantalla
             correspondiente a la categoría a la que pertenecen, de igual forma que en las fases anteriores.
@@ -362,12 +332,10 @@
             A LA CATEGORÍA A LA QUE PERTENECEN, DE IGUAL FORMA QUE EN LAS FASES ANTERIORES.
           </p>
           <p>Pulse espacio para continuar</p>
-          <div class="row mt-5 justify-content-center movil">
-            <div class="col shadow-lg p-5 text-center bg-dark rounded" (click)="clickSpace()">
-              <h1>Espacio</h1>
-            </div>
-          </div>
         </div>
+      </div>
+      <div class="row justify-content-center shadow-lg text-center bg-dark rounded layer movil" (click)="clickSpace()">
+        <h1>Espacio</h1>
       </div>
     </div>
   </div>
@@ -376,24 +344,24 @@
   <!-- FASE 10 y 12-->
   <div class="bg-primary bg-secondary text-white" [hidden]="this.caminos[this.c][this.ifase] != 10 && this.caminos[this.c][this.ifase] != 12">
     <div class="container text-center">
-      <div class="row mt-1">
+      <div class="row mt-2">
         <div class="col bg-secondary">
-          <h2>{{tai.imagen1}}</h2>
-          <h2>{{tai.palabra1}}</h2>
+          <h3>{{tai.imagen1}}</h3>
+          <h3>{{tai.palabra1}}</h3>
         </div>
         <div class="col bg-secondary">
-          <h2>{{tai.imagen2}}</h2>
-          <h2>{{tai.palabra2}}</h2>
+          <h3>{{tai.imagen2}}</h3>
+          <h3>{{tai.palabra2}}</h3>
         </div>
       </div>
-      <div class="row mt-3 layer">
+      <div class="row mt-3 layer-test">
         <div *ngIf="timeLeft == 0 && !error">
           <div
             *ngIf="conceptTest.status == 'Palabra1' || conceptTest.status == 'Palabra2'; then thenBlock else elseBlock">
           </div>
           <ng-template #thenBlock>
             <div class="col text-center bg-secondary">
-              <h2>{{conceptTest.name}}</h2>
+              <h3>{{conceptTest.name}}</h3>
             </div>
           </ng-template>
           <ng-template #elseBlock>
@@ -408,7 +376,7 @@
           </div>
           <ng-template #thenBlock>
             <div class="col text-center bg-secondary">
-              <h2 class="text-danger">{{conceptTest.name}}</h2>
+              <h3 class="text-danger">{{conceptTest.name}}</h3>
             </div>
           </ng-template>
           <ng-template #elseBlock>
@@ -418,12 +386,11 @@
           </ng-template>
         </div>
       </div>
-      <div class="row mt-5 justify-content-center">
-        <div class="col-4 shadow-lg m-1 p-5 text-center bg-dark rounded movil" (click)="clickF()">
+      <div class="row justify-content-center text-center layer">
+          <div class="col shadow-lg justify-content-center shadow-lg text-center bg-dark rounded movil layer" (click)="clickF()">
           <h1>F</h1>
-        </div>
-        <div class="col-2"></div>
-        <div class="col-4 shadow-lg m-1 p-5 text-center bg-dark rounded movil" (click)="clickJ()">
+        </div> <div class="col-1"></div>
+        <div class="col shadow-lg justify-content-center shadow-lg text-center bg-dark rounded movil layer" (click)="clickJ()">
           <h1>J</h1>
         </div>
       </div>
@@ -435,19 +402,19 @@
   <!-- FASE 13-->
   <div class="bg-primary bg-secondary text-white" [hidden]="this.caminos[this.c][this.ifase] != 13">
     <div class="container text-center">
-      <div class="row mt-1">
+      <div class="row mt-2">
         <div class="col bg-secondary">
-          <h2>{{tai.imagen2}}</h2>
+          <h3>{{tai.imagen2}}</h3>
           <p>Clasificar con F</p>
         </div>
         <div class="col bg-secondary">
-          <h2>{{tai.imagen1}}</h2>
+          <h3>{{tai.imagen1}}</h3>
           <p>Clasificar con J</p>
         </div>
       </div>
       <div class="row mt-3 layer">
         <div class="col bg-secondary">
-          <h2>Instrucciones</h2>
+          <h3>Instrucciones</h3>
           <!--<p>A continuación se le mostrarán imágenes de la categoría {{tai.imagen1}} o {{tai.imagen2}}. Trate de
                 clasificarlas lo más rápido posible sin equivocarse, si lo hiciera, se marcará en rojo y tendrá que clasificarla correctamente
                 para avanzar y que aparezca la siguiente imagen. En caso de no superar esta fase, tendrá que repetirla.
@@ -463,10 +430,8 @@
           <p>Pulse espacio para continuar</p>
         </div>
       </div>
-      <div class="row mt-5 justify-content-center movil">
-        <div class="col shadow-lg p-5 text-center bg-dark rounded" (click)="clickSpace()">
-          <h1>Espacio</h1>
-        </div>
+      <div class="row justify-content-center shadow-lg text-center bg-dark rounded layer movil" (click)="clickSpace()">
+        <h1>Espacio</h1>
       </div>
     </div>
   </div>
@@ -474,29 +439,28 @@
   <!--cartegorizar Imagenes-->
   <!-- FASE 14-->
   <div class="bg-primary bg-secondary text-white" [hidden]="this.caminos[this.c][this.ifase] != 14">
-    <div class="container px-4 text-center">
-      <div class="row mt-1">
-        <div class="col-sm-6 bg-secondary">
-          <h2>{{tai.imagen2}}</h2>
+    <div class="container text-center">
+      <div class="row mt-2">
+        <div class="col bg-secondary">
+          <h3>{{tai.imagen2}}</h3>
         </div>
-        <div class="col-sm-6 bg-secondary">
-          <h2>{{tai.imagen1}}</h2>
+        <div class="col bg-secondary">
+          <h3>{{tai.imagen1}}</h3>
         </div>
       </div>
-      <div class="row mt-3 layer">
-        <div *ngIf="timeLeft == 0 && !error" class="col m-3 bg-secondary">
+      <div class="row mt-3 layer-test">
+        <div *ngIf="timeLeft == 0 && !error" class="col   bg-secondary">
           <img class="card-img p-1 border border-secondary border-5" src={{getUrl(conceptTest)}} alt={{conceptTest.name}}>
         </div>
-        <div *ngIf="timeLeft == 0 && error" class="col m-3 bg-secondary">
+        <div *ngIf="timeLeft == 0 && error" class="col   bg-secondary">
           <img class="card-img p-1 border border-danger border-5" src={{getUrl(conceptTest)}} alt={{conceptTest.name}}>
         </div>
       </div>
-      <div class="row mt-5 justify-content-center">
-        <div class="col-4 shadow-lg m-1 p-5 text-center bg-dark rounded movil" (click)="clickF()">
+      <div class="row justify-content-center text-center layer">
+          <div class="col shadow-lg justify-content-center shadow-lg text-center bg-dark rounded movil layer" (click)="clickF()">
           <h1>F</h1>
-        </div>
-        <div class="col-2"></div>
-        <div class="col-4 shadow-lg m-1 p-5 text-center bg-dark rounded movil" (click)="clickJ()">
+        </div> <div class="col-1"></div>
+        <div class="col shadow-lg justify-content-center shadow-lg text-center bg-dark rounded movil layer" (click)="clickJ()">
           <h1>J</h1>
         </div>
       </div>
@@ -506,20 +470,20 @@
   <!--Instrucciones reconocimieto 2-->
   <!-- FASE 15-->
   <div class="bg-primary bg-secondary text-white" [hidden]="this.caminos[this.c][this.ifase] != 15">
-    <div class="container px-4 text-center">
-      <div class="row mt-1">
+    <div class="container text-center">
+      <div class="row mt-2">
         <div class="col bg-secondary">
-          <h2>{{tai.imagen2}}</h2>
-          <h2>{{tai.palabra1}}</h2>
+          <h3>{{tai.imagen2}}</h3>
+          <h3>{{tai.palabra1}}</h3>
         </div>
         <div class="col bg-secondary">
-          <h2>{{tai.imagen1}}</h2>
-          <h2>{{tai.palabra2}}</h2>
+          <h3>{{tai.imagen1}}</h3>
+          <h3>{{tai.palabra2}}</h3>
         </div>
       </div>
       <div class="row mt-3">
         <div class="col bg-secondary">
-          <h2>Instrucciones</h2>
+          <h3>Instrucciones</h3>
           <!--<p>Ahora, se mostrará una palabra de las categorías {{tai.palabra1}}, {{tai.palabra2}} o una imagen de las
             categorías {{tai.imagen1}}, {{tai.imagen2}}. Debe clasificarlas en el lado de la pantalla correspondiente a la
             categoría a la que pertenecen, de igual forma que en las fases anteriores.
@@ -529,12 +493,10 @@
             PERTENECEN, DE IGUAL FORMA QUE EN LAS FASES ANTERIORES.
           </p>
           <p>Pulse espacio para continuar</p>
-          <div class="row mt-5 justify-content-center movil">
-            <div class="col shadow-lg p-5 text-center bg-dark rounded" (click)="clickSpace()">
-              <h1>Espacio</h1>
-            </div>
-          </div>
         </div>
+      </div>
+      <div class="row justify-content-center shadow-lg text-center bg-dark rounded layer movil" (click)="clickSpace()">
+        <h1>Espacio</h1>
       </div>
     </div>
   </div>
@@ -542,20 +504,20 @@
   <!--Instrucciones test 2-->
   <!-- FASE 17-->
   <div class="bg-primary bg-secondary text-white" [hidden]="this.caminos[this.c][this.ifase] != 17">
-    <div class="container px-4 text-center">
-      <div class="row mt2">
+    <div class="container text-center">
+      <div class="row mt-2">
         <div class="col bg-secondary">
-          <h2>{{tai.imagen2}}</h2>
-          <h2>{{tai.palabra1}}</h2>
+          <h3>{{tai.imagen2}}</h3>
+          <h3>{{tai.palabra1}}</h3>
         </div>
         <div class="col bg-secondary">
-          <h2>{{tai.imagen1}}</h2>
-          <h2>{{tai.palabra2}}</h2>
+          <h3>{{tai.imagen1}}</h3>
+          <h3>{{tai.palabra2}}</h3>
         </div>
       </div>
       <div class="row mt-3">
         <div class="col bg-secondary">
-          <h2>Instruciones</h2>
+          <h3>Instruciones</h3>
           <!--<p>Igual que en la fase anterior, se mostrará una palabra de las categorías {{tai.palabra1}}, {{tai.palabra2}}
             o una imagen de las categorías {{tai.imagen1}}, {{tai.imagen2}}. Debe clasificarlas en el lado de la pantalla
             correspondiente a la categoría a la que pertenecen.
@@ -567,12 +529,10 @@
             A LA CATEGORÍA A LA QUE PERTENECEN, DE IGUAL FORMA QUE EN LAS FASES ANTERIORES.
           </p>
           <p>Pulse espacio para continuar</p>
-          <div class="row mt-5 justify-content-center movil">
-            <div class="col shadow-lg p-5 text-center bg-dark rounded" (click)="clickSpace()">
-              <h1>Espacio</h1>
-            </div>
-          </div>
         </div>
+      </div>
+      <div class="row justify-content-center shadow-lg text-center bg-dark rounded layer movil" (click)="clickSpace()">
+        <h1>Espacio</h1>
       </div>
     </div>
   </div>
@@ -582,23 +542,23 @@
   <!-- FASE 16 y 18-->
   <div class="bg-primary bg-secondary text-white" [hidden]="this.caminos[this.c][this.ifase] != 16 && this.caminos[this.c][this.ifase] != 18">
     <div class="container text-center">
-      <div class="row mt-1">
+      <div class="row mt-2">
         <div class="col bg-secondary">
-          <h2>{{tai.imagen2}}</h2>
-          <h2>{{tai.palabra1}}</h2>
+          <h3>{{tai.imagen2}}</h3>
+          <h3>{{tai.palabra1}}</h3>
         </div>
         <div class="col bg-secondary">
-          <h2>{{tai.imagen1}}</h2>
-          <h2>{{tai.palabra2}}</h2>
+          <h3>{{tai.imagen1}}</h3>
+          <h3>{{tai.palabra2}}</h3>
         </div>
       </div>
-      <div class="row mt-3 layer">
+      <div class="row mt-3 layer-test">
         <div *ngIf="timeLeft == 0 && !error">
           <div *ngIf="conceptTest.status == 'Palabra1' || conceptTest.status == 'Palabra2'; then thenBlock else elseBlock">
           </div>
           <ng-template #thenBlock>
             <div class="col text-center bg-secondary">
-              <h2>{{conceptTest.name}}</h2>
+              <h3>{{conceptTest.name}}</h3>
             </div>
           </ng-template>
           <ng-template #elseBlock>
@@ -612,7 +572,7 @@
           </div>
           <ng-template #thenBlock>
             <div class="col text-center bg-secondary">
-              <h2 class="text-danger">{{conceptTest.name}}</h2>
+              <h3 class="text-danger">{{conceptTest.name}}</h3>
             </div>
           </ng-template>
           <ng-template #elseBlock>
@@ -622,12 +582,11 @@
           </ng-template>
         </div>
       </div>
-      <div class="row mt-5 justify-content-center">
-        <div class="col-4 shadow-lg m-1 p-5 text-center bg-dark rounded movil" (click)="clickF()">
+      <div class="row justify-content-center text-center layer">
+         <div class="col shadow-lg justify-content-center shadow-lg text-center bg-dark rounded movil layer" (click)="clickF()">
           <h1>F</h1>
-        </div>
-        <div class="col-2"></div>
-        <div class="col-4 shadow-lg m-1 p-5 text-center bg-dark rounded movil" (click)="clickJ()">
+        </div> <div class="col-1"></div>
+        <div class="col shadow-lg justify-content-center shadow-lg text-center bg-dark rounded movil layer" (click)="clickJ()">
           <h1>J</h1>
         </div>
       </div>
@@ -638,7 +597,7 @@
     <div class="container text-center">
       <div class="row">
         <div class="col-sm-12 my-2 bg-secondary">
-          <h2>Enviando resultados</h2>
+          <h3>Enviando resultados</h3>
         </div>
       </div>
     </div>
