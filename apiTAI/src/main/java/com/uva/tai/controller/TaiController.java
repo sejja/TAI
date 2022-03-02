@@ -232,13 +232,18 @@ public class TaiController {
     public String newRespuesta(@RequestBody Respuesta newRespuesta) {
 
         try {
-            List<Elemento> resp = newRespuesta.getResp();
-            for (Elemento element : resp)
-                element.setResp(newRespuesta);
-            respuestaRepository.saveAndFlush(newRespuesta);
-            Respuesta respuesta = respuestaRepository.findTopByOrderByIdDesc();
-            generateResult(respuesta);
-            return respuesta.getId().toString();//devualve el id de la respuesta
+            
+            if(getTai(newRespuesta.getIdTai()).get().getEnable()){
+                List<Elemento> resp = newRespuesta.getResp();
+                for (Elemento element : resp)
+                    element.setResp(newRespuesta);
+                respuestaRepository.saveAndFlush(newRespuesta);
+                Respuesta respuesta = respuestaRepository.findTopByOrderByIdDesc();
+                generateResult(respuesta);
+                return respuesta.getId().toString();// devualve el id de la respuesta
+            }else {
+                return "tai no activo";
+            }
         } catch (Exception e) {
             // Se deja esta parte comentada como alternativa a la gestion de errores
             // propuesta
