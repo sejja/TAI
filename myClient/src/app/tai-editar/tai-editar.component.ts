@@ -72,6 +72,10 @@ export class TaiEditarComponent implements OnInit {
     );
   }
 
+  focus(){
+    document.getElementById("palabra")!.focus();
+  }
+
   // Agrega un nuevo pedido
   addEncuesta() {
     this.files.forEach(file => {
@@ -80,7 +84,7 @@ export class TaiEditarComponent implements OnInit {
     
     this.clienteApiRest.addOrder(this.tai).subscribe(
       resp => {
-        this.router.navigate(['tai']);
+        this.router.navigate(['admin']);
       },
       err => {
         console.log("Error al editar: " + err.message);
