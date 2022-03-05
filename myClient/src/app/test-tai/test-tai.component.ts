@@ -124,7 +124,7 @@ export class TestTAIComponent implements OnInit {
   }
 
   getUrl(imagen: Concept):String{
-    let url = "http://localhost:8080/uploads/";
+    let url = "http://"+location.hostname+":8080/uploads/";
     return url + this.tai.code + imagen.name;
   }
 
