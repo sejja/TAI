@@ -9,8 +9,8 @@ import { User } from './app.user-model';
 })
 export class ClienteApiAuthService {
 
-    private static readonly BASE_URI = 'http://'+location.hostname+':8081/login';
-    private static readonly BASE_URI_USERS = 'http://'+location.hostname+':8081/users';
+    private static readonly BASE_URI = 'http://localhost:8081/login';
+    private static readonly BASE_URI_USERS = 'http://localhost:8081/users';
     private static readonly UPDATE_ENABLE_URI = ClienteApiAuthService.BASE_URI_USERS + '/enable';
 
     constructor(private http: HttpClient) { } // inyectamos el servicio HttpClient
