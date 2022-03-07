@@ -23,17 +23,19 @@ public class Tai {
     @Id
     @GeneratedValue
     private Integer id;
-    @Size(max = 50)
+    @Size(max = 100)
     private String name;
+    @Size(max = 100)
+    private String grupo;
     @Size(max = 10)
     private String code;
     @Size(max = 50)
     private String palabra1;
     @Size(max = 50) // si no se pone esta anotación lo creo por defecto con size=255
     private String palabra2;
-    @Size(max = 50) // si no se pone esta anotación lo creo por defecto con size=255
+    @Size(max = 100) // si no se pone esta anotación lo creo por defecto con size=255
     private String imagen1;
-    @Size(max = 50) // si no se pone esta anotación lo creo por defecto con size=255
+    @Size(max = 100) // si no se pone esta anotación lo creo por defecto con size=255
     private String imagen2;
  
     @OneToMany(mappedBy = "tai", fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
@@ -46,9 +48,10 @@ public class Tai {
         this.created_at = Date.valueOf(LocalDate.now());
     }
 
-    Tai(String name, List<Concepto> concepts, boolean enable) {
+    Tai(String name, String grupo, List<Concepto> concepts, boolean enable) {
 
         this.name = name;
+        this.grupo = grupo;
         this.concepts = concepts;
         this.enable = enable;
         this.created_at = Date.valueOf(LocalDate.now());
@@ -68,6 +71,14 @@ public class Tai {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getGrupo() {
+        return this.grupo;
+    }
+
+    public void getGrupo(String grupo) {
+        this.grupo = grupo;
     }
 
     public String getCode() {

@@ -18,6 +18,9 @@ import { ClienteApiAuthService } from '../shared/api-auth/cliente-api-auth.servi
 export class TaiListarComponent implements OnInit {
 
   tais: Array<Tai> = [];
+  inGroups = true;
+  group: String;
+  groups: Array<String> = [];
 
   //constructor() { }
   constructor(private ruta: ActivatedRoute, private router: Router,
@@ -34,6 +37,7 @@ export class TaiListarComponent implements OnInit {
       resp => {
         if (resp.status < 400) { // Si no hay error en la respuesta
           this.tais = resp.body as Tai[]; // Se obtiene la lista de users desde la respuesta
+          this.getGroups();
         }
       },
       err => {
@@ -41,6 +45,19 @@ export class TaiListarComponent implements OnInit {
         throw err;
       }
     )
+  }
+
+  getGroups() {
+    this.tais.forEach(element => {
+      if(!this.groups.includes(element.grupo)){
+        this.groups.push(element.grupo);
+      }
+    });
+  }
+
+  click(group: String){
+    this.inGroups = false;
+    this.group = group
   }
 
 }

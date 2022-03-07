@@ -27,6 +27,7 @@ export class TaiEditarComponent implements OnInit {
     id: 0,
     name: "",
     code: "",
+    grupo: "",
     palabra1: "",
     palabra2: "",
     imagen1: "",
