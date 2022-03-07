@@ -7,7 +7,7 @@ FROM openjdk:11-jdk
 VOLUME /tmp
 ARG JAR_FILE=/app/target/*.jar
 COPY --from=MAVEN_BUILD ${JAR_FILE} app.jar
-ENV PORT 8080
+ENV PORT 8082
 EXPOSE $PORT
 ENTRYPOINT ["java", "-jar", "/app.jar"]
 # For Spring-Boot project, use the entrypoint below to reduce Tomcat startup time.

@@ -11,7 +11,7 @@ import { enableDebugTools } from '@angular/platform-browser';
 })
 export class ClienteApiOrdersService {
 
-    private static readonly BASE_URI = 'http://localhost:8080/tai';
+    private static readonly BASE_URI = 'http://'+location.hostname+':8082/tai';
 
     constructor(private http: HttpClient) { }
 
