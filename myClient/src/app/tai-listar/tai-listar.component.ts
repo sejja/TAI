@@ -49,7 +49,7 @@ export class TaiListarComponent implements OnInit {
 
   getGroups() {
     this.tais.forEach(element => {
-      if(!this.groups.includes(element.grupo)){
+      if(!this.groups.includes(element.grupo) && element.enable){
         this.groups.push(element.grupo);
       }
     });
