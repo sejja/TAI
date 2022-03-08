@@ -82,6 +82,6 @@ services:
       dockerfile: ./Dockerfile
     restart: unless-stopped
     ports:
-      - 80:80
+      - 8080:80
     networks: # Networks to join
       - kong-net
