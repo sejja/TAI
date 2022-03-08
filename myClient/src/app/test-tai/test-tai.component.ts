@@ -22,8 +22,10 @@ export class TestTAIComponent implements OnInit {
   time = 150;
 
   keySig = " ";
-  keyIzq = "f"||"F";
-  keyDch = "j"||"J";
+  keyIzq = "f";
+  keyDch = "j";
+  keyMIzq = "F";
+  keyMDch = "J";
 
   camino1 = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19];
   camino2 = [0,1,2,3,4,13,14,7,8,15,16,17,18,5,6,9,10,11,12,19];
@@ -510,11 +512,11 @@ export class TestTAIComponent implements OnInit {
       this.clickSpace();
     }
 
-    if (event.key == this.keyIzq && event.target == document.body) {
+    if ((event.key == this.keyIzq || event.key == this.keyMIzq) && event.target == document.body) {
       this.clickF();
     }
 
-    if (event.key == this.keyDch && event.target == document.body) {
+    if ((event.key == this.keyDch || event.key == this.keyMDch) && event.target == document.body) {
       this.clickJ();
     }
 
