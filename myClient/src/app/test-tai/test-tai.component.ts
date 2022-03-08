@@ -22,8 +22,8 @@ export class TestTAIComponent implements OnInit {
   time = 150;
 
   keySig = " ";
-  keyIzq = "f";
-  keyDch = "j";
+  keyIzq = "f"||"F";
+  keyDch = "j"||"J";
 
   camino1 = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19];
   camino2 = [0,1,2,3,4,13,14,7,8,15,16,17,18,5,6,9,10,11,12,19];
@@ -261,7 +261,12 @@ export class TestTAIComponent implements OnInit {
         this.randomImagen();
         this.ironda++;
         if (this.ironda == this.nronda) {
-          this.ifase = (this.ifase + 1) % this.nfase;
+          if (this.nerror > this.limit) {
+            this.ifase = (this.ifase - 1) % this.nfase;
+          } else {
+            this.ifase = (this.ifase + 1) % this.nfase;
+          }
+          this.nerror = 0;
           this.ironda = 0;
         }
       } else if (this.caminos[this.c][this.ifase] == 16 &&

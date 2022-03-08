@@ -24,8 +24,8 @@
               <table class="table table-borderless">
                 <thead>
                   <tr>
-                    <th scope="col">Name</th>
-                    <th scope="col">Accion</th>
+                    <th scope="col">Título</th>
+                    <th scope="col"></th>
                   </tr>
                 </thead>
                 <tbody *ngFor="let group of groups; let i = index">
@@ -38,22 +38,18 @@
             </div>
           </ng-template>
           <ng-template #elseBlock>
-            <button id="editButton" class="btn btn-primary mb-2 btn-block" (click)="inGroups = true">Atras</button>
+            <button id="editButton" class="btn btn-primary mb-2 btn-block" (click)="inGroups = true">Atrás</button>
             <div class="row row mb-4">
               <table class="table table-borderless">
                 <thead>
                   <tr>
-                    <th scope="col">id</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Code</th>
-                    <th scope="col">Accion</th>
+                    <th scope="col">Test</th>
+                    <th scope="col"></th>
                   </tr>
                 </thead>
                 <tbody *ngFor="let tai of tais; let i = index">
                   <tr *ngIf="tai.enable && tai.grupo == group">
-                    <td>{{tai.id}}</td>
                     <td>{{tai.name}}</td>
-                    <td>{{tai.code}}</td>
                     <td><a id="editButton" class="btn btn-primary mb-2 btn-block" [routerLink]="['/tai/', tai.id, 'test']">Ir</a></td>
                   </tr>
                 </tbody>
