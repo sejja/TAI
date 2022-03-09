@@ -9,3 +9,9 @@
 2022/03/09 16:40:07 [notice] 9392#8132: signal process started
 2022/03/09 16:42:20 [notice] 6416#9196: signal process started
 2022/03/09 16:42:20 [error] 6416#9196: CreateFile() "C:\Users\Jose\Documents\Sociograph\tai\nginx-1.21.6/logs/nginx.pid" failed (2: El sistema no puede encontrar el archivo especificado)
+2022/03/09 17:01:32 [notice] 12252#7024: signal process started
+2022/03/09 17:01:32 [error] 12252#7024: CreateFile() "C:\Users\Jose\Documents\Sociograph\tai\nginx-1.21.6/logs/nginx.pid" failed (2: El sistema no puede encontrar el archivo especificado)
+2022/03/09 21:21:54 [notice] 6204#14064: signal process started
+2022/03/09 21:21:54 [error] 6204#14064: OpenEvent("Global\ngx_quit_12940") failed (2: El sistema no puede encontrar el archivo especificado)
+2022/03/09 21:24:01 [notice] 5568#7064: signal process started
+2022/03/09 21:24:01 [error] 5568#7064: OpenEvent("Global\ngx_quit_3156") failed (2: El sistema no puede encontrar el archivo especificado)
