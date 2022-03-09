@@ -1,0 +1,10 @@
+com\uva\microservicio\model\Usuario.class
+com\uva\microservicio\UsersApplication.class
+com\uva\microservicio\security\JWTAuthorizationFilter.class
+com\uva\microservicio\controller\ControllerAuth.class
+com\uva\microservicio\UsersApplication$WebSecurityConfig.class
+com\uva\microservicio\model\Auth.class
+com\uva\microservicio\controller\ControllerUsers.class
+com\uva\microservicio\exception\AuthException.class
+com\uva\microservicio\exception\UsuarioException.class
+com\uva\microservicio\repository\UsuarioRepository.class

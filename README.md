@@ -14,6 +14,10 @@ Guía para la instalación:
 Se recomienda usar Docker para el despliege, mediande el comando $docker-compose up en el directorio raiz del proyecto.
 Tambien es posible su ejecución entrando en los directorios apiAuth, apiTAI, y myClient e iniciarlos uno por uno.
 
+Para instalar en windows 10 sin docker se requiere windows x64 y la creadion de una conaxion mySQL de administración con nombre de usuario "root" y contraseña "root". Esto puede supener un problema de seguridad en fase de produción que habría que solventar.
+
+La ejecución se realizará mediante en archivo run.bat, en caso de aparecer ventanas de administración para la conficuración de la red, es imprescindible permitir todo para que los usuarios de la red puedan acceder al programa y el firewall no bloque las conexiones de los demas usuarios
+
 Funcionamiento:
 Inicialmente la aplicación no continen ningún test, para crear uno se debera inicar sesión como administrador en el sitio web. Las sesiones de administración caducan a la hora de haberse logeado. Al arrancar la aplicación por primera vez se creará un usuario "root@root.com" con contraseña "root", este es el usuario por defecto y se recomienda borrarlo o edirar su contraseña en cuanto sea posible.
 

@@ -1,0 +1,11 @@
+2022/03/09 15:58:44 [error] 6964#12008: *13 directory index of "C:\Users\Jose\Documents\Sociograph\tai\nginx-1.21.6/html/" is forbidden, client: 127.0.0.1, server: localhost, request: "GET / HTTP/1.1", host: "localhost", referrer: "http://localhost/inicio"
+2022/03/09 15:58:46 [error] 6964#12008: *13 directory index of "C:\Users\Jose\Documents\Sociograph\tai\nginx-1.21.6/html/" is forbidden, client: 127.0.0.1, server: localhost, request: "GET / HTTP/1.1", host: "localhost", referrer: "http://localhost/inicio"
+2022/03/09 15:58:49 [error] 6964#12008: *13 directory index of "C:\Users\Jose\Documents\Sociograph\tai\nginx-1.21.6/html/" is forbidden, client: 127.0.0.1, server: localhost, request: "GET / HTTP/1.1", host: "localhost"
+2022/03/09 16:01:25 [error] 6964#12008: *15 rewrite or internal redirection cycle while internally redirecting to "/index.html", client: 127.0.0.1, server: localhost, request: "GET /inicio HTTP/1.1", host: "localhost"
+2022/03/09 16:01:32 [error] 6964#12008: *18 rewrite or internal redirection cycle while internally redirecting to "/index.html", client: 127.0.0.1, server: localhost, request: "GET /inicio HTTP/1.1", host: "localhost"
+2022/03/09 16:23:22 [notice] 13524#13656: signal process started
+2022/03/09 16:25:15 [notice] 13920#13420: signal process started
+2022/03/09 16:25:15 [error] 13920#13420: CreateFile() "C:\Users\Jose\Documents\Sociograph\tai\nginx-1.21.6/logs/nginx.pid" failed (2: El sistema no puede encontrar el archivo especificado)
+2022/03/09 16:40:07 [notice] 9392#8132: signal process started
+2022/03/09 16:42:20 [notice] 6416#9196: signal process started
+2022/03/09 16:42:20 [error] 6416#9196: CreateFile() "C:\Users\Jose\Documents\Sociograph\tai\nginx-1.21.6/logs/nginx.pid" failed (2: El sistema no puede encontrar el archivo especificado)

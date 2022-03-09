@@ -8,6 +8,6 @@ RUN npm run build
 FROM nginx:alpine AS prod-stage
 COPY --from=build /app/dist/* /usr/share/nginx/html
 COPY ./nginx-custom.conf /etc/nginx/conf.d/default.conf
-ENV PORT 4200
+ENV PORT 80
 EXPOSE $PORT
 CMD ["nginx", "-g", "daemon off;"]

@@ -6,7 +6,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "DBCS-Cliente-alferna-josborg": {
+    "myClient": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:application": {
@@ -20,7 +20,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/DBCS-Cliente-alferna-josborg",
+            "outputPath": "dist/myClient",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -77,10 +77,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "DBCS-Cliente-alferna-josborg:build:production"
+              "browserTarget": "myClient:build:production"
             },
             "development": {
-              "browserTarget": "DBCS-Cliente-alferna-josborg:build:development"
+              "browserTarget": "myClient:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -88,7 +88,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "DBCS-Cliente-alferna-josborg:build"
+            "browserTarget": "myClient:build"
           }
         },
         "test": {
@@ -111,5 +111,5 @@
       }
     }
   },
-  "defaultProject": "DBCS-Cliente-alferna-josborg"
+  "defaultProject": "myClient"
 }

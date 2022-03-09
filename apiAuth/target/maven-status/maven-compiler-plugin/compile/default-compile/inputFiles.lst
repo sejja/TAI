@@ -1,0 +1,9 @@
+c:\Users\Jose\Documents\Sociograph\tai\apiAuth\src\main\java\com\uva\microservicio\UsersApplication.java
+c:\Users\Jose\Documents\Sociograph\tai\apiAuth\src\main\java\com\uva\microservicio\security\JWTAuthorizationFilter.java
+c:\Users\Jose\Documents\Sociograph\tai\apiAuth\src\main\java\com\uva\microservicio\model\Usuario.java
+c:\Users\Jose\Documents\Sociograph\tai\apiAuth\src\main\java\com\uva\microservicio\repository\UsuarioRepository.java
+c:\Users\Jose\Documents\Sociograph\tai\apiAuth\src\main\java\com\uva\microservicio\controller\ControllerAuth.java
+c:\Users\Jose\Documents\Sociograph\tai\apiAuth\src\main\java\com\uva\microservicio\exception\UsuarioException.java
+c:\Users\Jose\Documents\Sociograph\tai\apiAuth\src\main\java\com\uva\microservicio\exception\AuthException.java
+c:\Users\Jose\Documents\Sociograph\tai\apiAuth\src\main\java\com\uva\microservicio\controller\ControllerUsers.java
+c:\Users\Jose\Documents\Sociograph\tai\apiAuth\src\main\java\com\uva\microservicio\model\Auth.java
