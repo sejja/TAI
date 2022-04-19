@@ -21,3 +21,18 @@
 2022/04/05 11:20:57 [error] 3000#8112: OpenEvent("Global\ngx_quit_2044") failed (2: El sistema no puede encontrar el archivo especificado)
 2022/04/19 09:22:03 [notice] 11388#7436: signal process started
 2022/04/19 09:22:03 [error] 11388#7436: OpenEvent("Global\ngx_quit_2144") failed (2: El sistema no puede encontrar el archivo especificado)
+2022/04/19 09:55:30 [notice] 13684#2116: signal process started
+2022/04/19 09:55:30 [error] 13684#2116: OpenEvent("Global\ngx_quit_2832") failed (2: El sistema no puede encontrar el archivo especificado)
+2022/04/19 10:04:19 [notice] 3008#7568: signal process started
+2022/04/19 10:05:59 [error] 7368#12084: *1 rewrite or internal redirection cycle while internally redirecting to "/index.html", client: 127.0.0.1, server: localhost, request: "GET /tai/31/test HTTP/1.1", host: "localhost"
+2022/04/19 10:06:01 [error] 7368#12084: *2 rewrite or internal redirection cycle while internally redirecting to "/index.html", client: 127.0.0.1, server: localhost, request: "GET /tai/31/test HTTP/1.1", host: "localhost"
+2022/04/19 10:07:57 [notice] 6708#9900: signal process started
+2022/04/19 10:07:57 [error] 6708#9900: CreateFile() "C:\Users\Jose\Documents\Sociograph\tai\nginx-1.21.6/logs/nginx.pid" failed (2: El sistema no puede encontrar el archivo especificado)
+2022/04/19 10:09:07 [notice] 8840#12404: signal process started
+2022/04/19 10:09:07 [error] 8840#12404: CreateFile() "C:\Users\Jose\Documents\Sociograph\tai\nginx-1.21.6/logs/nginx.pid" failed (2: El sistema no puede encontrar el archivo especificado)
+2022/04/19 10:12:28 [notice] 13540#8924: signal process started
+2022/04/19 10:12:28 [error] 13540#8924: OpenEvent("Global\ngx_quit_3440") failed (2: El sistema no puede encontrar el archivo especificado)
+2022/04/19 10:31:07 [notice] 5240#10492: signal process started
+2022/04/19 10:31:07 [error] 5240#10492: OpenEvent("Global\ngx_quit_1480") failed (2: El sistema no puede encontrar el archivo especificado)
+2022/04/19 10:38:19 [notice] 6436#12532: signal process started
+2022/04/19 10:38:19 [error] 6436#12532: OpenEvent("Global\ngx_quit_4776") failed (2: El sistema no puede encontrar el archivo especificado)

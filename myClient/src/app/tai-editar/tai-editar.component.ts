@@ -83,7 +83,7 @@ export class TaiEditarComponent implements OnInit {
       this.clienteApiRest.upload(file, this.tai.code).subscribe();
     });
     
-    this.clienteApiRest.addOrder(this.tai).subscribe(
+    this.clienteApiRest.addTai(this.tai).subscribe(
       resp => {
         this.router.navigate(['admin']);
       },
