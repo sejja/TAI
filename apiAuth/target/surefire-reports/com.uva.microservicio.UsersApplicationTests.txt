@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: com.uva.microservicio.UsersApplicationTests
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 5.98 s - in com.uva.microservicio.UsersApplicationTests
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 6.319 s - in com.uva.microservicio.UsersApplicationTests
