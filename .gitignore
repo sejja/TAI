@@ -1,2 +1,4 @@
 uploads/*
 ProgramasDependientes/*
+nginx-1.21.6/logs/*
+nginx-1.21.6/html/*
