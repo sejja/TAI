@@ -20,6 +20,7 @@ export class AdminComponent implements OnInit {
   tais: Array<Tai> = [];
   resultados: TaiResult[];
   idTai: number = 0;
+  taiName:string = "";
 
 
   newTai = {
@@ -216,6 +217,23 @@ export class AdminComponent implements OnInit {
     );
   }
 
+  cloneTai(){
+    this.clienteApiRest.cloneTai(this.idTai, this.taiName).subscribe(
+      resp => {
+        if (resp.status < 400) { // Si no hay error en la respuesta
+          //this.users = resp.body as User[]; // Se obtiene la lista de users desde la respuesta
+          this.getTais();
+          this.idTai=0;
+        }
+      },
+      err => {
+        console.log("Error al traer la lista de users: " + err.message);
+        throw err;
+      }
+    );
+  }
+
+
   sendEnable(tai:Tai){
     tai.enable = !tai.enable;
     console.log(tai.enable);
@@ -227,6 +245,5 @@ export class AdminComponent implements OnInit {
     this.router.navigate(['inicio']);
   }
 
-  onDeleteTaiSubmit(){}
 
 }

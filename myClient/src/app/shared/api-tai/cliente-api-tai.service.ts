@@ -118,6 +118,11 @@ export class ClienteApiOrdersService {
         return this.http.delete(url, { observe: 'response', responseType: 'text' });
     }
 
+    cloneTai(idTai: number, name: string): Observable<HttpResponse<any>> {
+        let url = ClienteApiOrdersService.BASE_URI + "/" + idTai + "/clone";
+        return this.http.post(url, name, { observe: 'response', responseType: 'text' });
+    }
+
     /**
      * Envia el estados de activacion de un tai
      * @param idTai

@@ -107,6 +107,12 @@
                             Eliminar
                         </button>
                     </td>
+                    <td>
+                        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modalClonar"
+                            (click)="idTai = tai.id">
+                            Clonar
+                        </button>
+                    </td>
                 </tr>
             </tbody>
         </table>
@@ -179,8 +185,33 @@
 </div>
 
 <!-- Modal -->
+<form class="modal fade" id="modalClonar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"
+    #cloneForm="ngForm">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title" id="exampleModalLabel">Clone TAI</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body container">
+                <p>Esta funcion creara una replieca de este Tai en el mismo grupo con el nombre deseado
+                </p>
+                <div class="row">
+                    <input placeholder="name" type="text" class="form-control" required [(ngModel)]="taiName" name="name" />
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button type="submit" class="btn btn-danger" data-bs-dismiss="modal" (click)="cloneTai()"
+                    [disabled]="!cloneForm.form.valid">Clonar</button>
+            </div>
+        </div>
+    </div>
+</form>
+
+<!-- Modal -->
 <form class="modal fade" id="modalDelete" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"
-    (ngSubmit)="onDeleteTaiSubmit()" #preguntaForm="ngForm">
+    #deleteForm="ngForm">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
@@ -195,7 +226,7 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
                 <button type="submit" class="btn btn-danger" data-bs-dismiss="modal" (click)="deleteTai()"
-                    [disabled]="!preguntaForm.form.valid">ELIMINAR</button>
+                    [disabled]="!deleteForm.form.valid">ELIMINAR</button>
             </div>
         </div>
     </div>

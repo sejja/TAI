@@ -77,7 +77,7 @@ public class Tai {
         return this.grupo;
     }
 
-    public void getGrupo(String grupo) {
+    public void setGrupo(String grupo) {
         this.grupo = grupo;
     }
 

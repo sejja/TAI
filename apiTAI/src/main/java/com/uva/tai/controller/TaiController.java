@@ -4,6 +4,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.FileFilter;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -461,6 +463,64 @@ public class TaiController {
         });
         for (File archivo : archivos)
             archivo.delete();
+    }
+
+    public static File[] getPorPrefijo(String path, final String prefix){
+        File[] archivos = new File(path).listFiles(new FileFilter() {
+            public boolean accept(File archivo) {
+                if (archivo.isFile())
+                    return archivo.getName().startsWith(prefix);
+                return false;
+            }
+        });
+        return archivos;
+    }
+
+
+
+    @PostMapping("/{id}/clone")
+    public String cloneTai(@PathVariable int id, @RequestBody String name) {
+        Tai tai = taiRepository.findById(id).get();
+        String code = getCode().getCode();
+        File[] files = getPorPrefijo(url, tai.getCode());
+        System.out.println("Numero de fortos: "+files.length);
+        for (File file : files) {
+            try {
+                FileInputStream input = new FileInputStream(file);
+                String fileName = file.getName().substring(4);
+                System.out.println("file name: "+code+fileName);
+                Files.copy(input, this.root.resolve(code+fileName));
+                System.out.println(this.root.resolve(code+fileName));
+            } catch (Exception e) {
+                throw new RuntimeException("Could not store the file. Error: " + e.getMessage());
+            }
+        }
+
+        try {
+            tai.setName(name);
+            tai.setCode(code);
+            tai.setConcepts(null);
+            tai.setId(0);
+            taiRepository.saveAndFlush(tai);
+            Tai taiClone = taiRepository.findTopByOrderByIdDesc();
+            List<Concepto> concepts = conceptoRepository.findByTaiId(id);
+            for (Concepto concept : concepts) {
+                concept.setSku(0);
+                concept.setTai(taiClone);
+            }
+            taiClone.setConcepts(concepts);
+            taiRepository.saveAndFlush(taiClone);
+            return "Nuevo registro creado";
+        } catch (Exception e) {
+            // Se deja esta parte comentada como alternativa a la gestion de errores
+            // propuesta
+            // throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY, "Error al
+            // crear el nuevo registro.");
+            // Se usa este sistema de gestión de errores porque es mas sencillo hacer que el
+            // cliente reciba el mensaje de error
+            e.printStackTrace();
+            throw new TaiException("Error al crear el nuevo registro.");
+        }   
     }
 
 }
