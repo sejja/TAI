@@ -120,6 +120,9 @@
                 Descargar Resultados</button>
         </div>
     </div>
+    <!--<div class="row">
+        <p>b3 y b4 = {{tai.imagen1}} y {{tai.palabra1}} vs {{tai.imagen2}} y {{tai.palabra2}} : b6 y b7 = {{tai.imagen1}} y {{tai.palabra2}} vs {{tai.imagen2}} y {{tai.palabra1}}</p>
+    </div>-->
     <div class="row">
         <table class="table table-borderless">
             <thead>
@@ -165,7 +168,8 @@
                     <td>{{resultado.diff63}}</td>
                     <td>{{resultado.dscore47}}</td>
                     <td>{{resultado.dscore36}}</td>
-                    <td><button type="button" class="btn btn-primary" [disabled]="this.resultados.length == 0"
+                    <td>
+                        <button type="button" class="btn btn-primary" [disabled]="this.resultados.length == 0"
                         [routerLink]='["/tai/" + this.tai.id + "/resultados/" + resultado.idResp]'>
                         Ver</button></td>
                 </tr>

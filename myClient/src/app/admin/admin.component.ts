@@ -20,7 +20,21 @@ export class AdminComponent implements OnInit {
   tais: Array<Tai> = [];
   resultados: TaiResult[];
   idTai: number = 0;
-  tai: Tai;
+
+
+  newTai = {
+    id: 0,
+    name: "",
+    code: "",
+    grupo: "",
+    palabra1: "",
+    palabra2: "",
+    imagen1: "",
+    imagen2: "",
+    concepts: [],
+    enable: false
+  };
+  tai = this.newTai as Tai;
   
   newUser = {
     id: 0,
@@ -56,13 +70,13 @@ export class AdminComponent implements OnInit {
   getCSV(){
     //CSV OPTIONS
     var options = {
-      filename: <string>this.tai.code + "-" + this.tai.imagen1 + "-vs-" + this.tai.imagen2 + "-" + this.tai.palabra1 + "-vs-" + this.tai.palabra2,
+      filename: <string>this.tai.code + "-b3+b4-" + this.tai.imagen1 + "-y-" + this.tai.palabra1 + "-vs-" + this.tai.imagen2 + "-y-" + this.tai.palabra2 + "-b6+b7-" + this.tai.imagen2 + "-y-" + this.tai.palabra1 + "-vs-" + this.tai.imagen1 + "-y-" + this.tai.palabra2,
       fieldSeparator: ',',
       quoteStrings: '"',
       decimalSeparator: '.',
       showLabels: true,
       showTitle: true,
-      title: <string>this.tai.code + "-" + this.tai.imagen1 + "-vs-" + this.tai.imagen2 + "-" + this.tai.palabra1 + "-vs-" + this.tai.palabra2,
+      title: <string>this.tai.code + "-b3+b4-" + this.tai.imagen1 + "-y-" + this.tai.palabra1 + "-vs-" + this.tai.imagen2 + "-y-" + this.tai.palabra2 + "-b6+b7-" + this.tai.imagen2 + "-y-" + this.tai.palabra1 + "-vs-" + this.tai.imagen1 + "-y-" + this.tai.palabra2,
       useTextFile: false,
       useBom: true,
       useKeysAsHeaders: true,
@@ -107,6 +121,7 @@ export class AdminComponent implements OnInit {
       resp => {
         if (resp.status < 400) { // Si no hay error en la respuesta
           this.tai = resp.body as Tai; // Se obtiene la lista de users desde la respuesta
+          
         }
       },
       err => {
@@ -134,7 +149,6 @@ export class AdminComponent implements OnInit {
     }else{
       this.editar();
     }
-
   }
 
   editar() {

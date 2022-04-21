@@ -44,7 +44,7 @@ public class TaiApplication {
 
 			http.cors().and().csrf().disable()
 					.addFilterAfter(new JWTAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class)
-					.authorizeRequests()
+					.authorizeRequests().antMatchers(HttpMethod.POST, "/login").permitAll()
 					.antMatchers(HttpMethod.GET, "/tai/code").permitAll()
 					.antMatchers(HttpMethod.GET, "/tai").permitAll()
 					.antMatchers(HttpMethod.GET, "/tai/{id}").permitAll()
@@ -56,7 +56,6 @@ public class TaiApplication {
 					.antMatchers(HttpMethod.DELETE, "/**").authenticated()
 					.antMatchers(HttpMethod.OPTIONS, "/**").authenticated()
 					.anyRequest().authenticated();
-
 		}
 	}
 

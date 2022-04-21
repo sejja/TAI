@@ -1,3 +1,4 @@
+com\uva\tai\controller\ControllerUsers.class
 com\uva\tai\model\Concepto.class
 com\uva\tai\exception\TaiException.class
 com\uva\tai\controller\TaiController.class
@@ -6,13 +7,19 @@ com\uva\tai\model\Resultado.class
 com\uva\tai\repository\RespuestaRepository.class
 com\uva\tai\model\Tipo.class
 com\uva\tai\TaiApplication.class
+com\uva\tai\repository\UsuarioRepository.class
+com\uva\tai\model\Usuario.class
+com\uva\tai\security\JWTAuthorizationFilter.class
+com\uva\tai\TaiApplication$WebConfiguration.class
+com\uva\tai\TaiApplication$WebSecurityConfig.class
+com\uva\tai\controller\ControllerAuth.class
+com\uva\tai\model\Auth.class
+com\uva\tai\exception\AuthException.class
 com\uva\tai\repository\ConceptoRepository.class
 com\uva\tai\repository\ResultadoRepository.class
 com\uva\tai\model\Elemento.class
 com\uva\tai\model\Respuesta.class
 com\uva\tai\model\Tai.class
+com\uva\tai\exception\UsuarioException.class
 com\uva\tai\repository\TaiRepository.class
-com\uva\tai\security\JWTAuthorizationFilter.class
 com\uva\tai\controller\TaiController$1.class
-com\uva\tai\TaiApplication$WebConfiguration.class
-com\uva\tai\TaiApplication$WebSecurityConfig.class
