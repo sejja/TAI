@@ -84,6 +84,7 @@
                     <th scope="col">Activar</th>
                     <th scope="col">Seleccionar</th>
                     <th scope="col">Eliminar</th>
+                    <th scope="col">Clonar</th>
                 </tr>
             </thead>
             <tbody *ngFor="let tai of tais; let i = index">
@@ -108,7 +109,7 @@
                         </button>
                     </td>
                     <td>
-                        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modalClonar"
+                        <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#modalClonar"
                             (click)="idTai = tai.id">
                             Clonar
                         </button>
@@ -202,7 +203,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                <button type="submit" class="btn btn-danger" data-bs-dismiss="modal" (click)="cloneTai()"
+                <button type="submit" class="btn btn-warning" data-bs-dismiss="modal" (click)="cloneTai()"
                     [disabled]="!cloneForm.form.valid">Clonar</button>
             </div>
         </div>
