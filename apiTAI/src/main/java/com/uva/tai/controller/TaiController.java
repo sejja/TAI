@@ -5,7 +5,6 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.File;
 import java.io.FileFilter;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -155,6 +154,12 @@ public class TaiController {
         return new ResponseEntity<String>(originalName, HttpStatus.OK);
     }
 
+    /**
+     * Cambia el estado de un tai
+     * @param enable
+     * @param id
+     * @return
+     */
     @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE, value = "/{id}/enable")
     public String enableTai(@RequestBody Boolean enable, @PathVariable int id) {
 
@@ -166,7 +171,7 @@ public class TaiController {
     }
 
     /**
-     * Devuelve un codigo apartir de una peticion GET:/tai/code
+     * Devuelve un código único apartir de una petición GET:/tai/code
      * 
      * @param newTai
      * @return
@@ -182,7 +187,7 @@ public class TaiController {
     }
 
     /**
-     * Genera un codigo de 4 caracteres en mayusculas
+     * Genera un código de 4 letras en mayusculas
      * @return
      */
 
@@ -208,7 +213,7 @@ public class TaiController {
     }
 
     /**
-     * Devuelve el tai con GET:/tai/:id
+     * Devuelve el tai con id especificado mediante la perticion GET:/tai/:id
      * 
      * @param id
      * @return
@@ -241,7 +246,10 @@ public class TaiController {
                     element.setResp(newRespuesta);
                 respuestaRepository.saveAndFlush(newRespuesta);
                 Respuesta respuesta = respuestaRepository.findTopByOrderByIdDesc();
-                generateResult(respuesta);
+                Resultado resultado = createResult(newRespuesta);
+                if(resultado != null){
+                    resultadoRepository.saveAndFlush(resultado);
+                }
                 return respuesta.getId().toString();// devualve el id de la respuesta
             }else {
                 return "tai no activo";
@@ -260,10 +268,10 @@ public class TaiController {
     }
 
     /**
-     * Calculo de resultados
+     * Cálculo de resultados apartir de una respuesta y devuelve los resultados calculados
      * @param newRespuesta
      */
-    void generateResult(Respuesta newRespuesta){//Hay que refactorizar esto
+    Resultado createResult(Respuesta newRespuesta){//Hay que refactorizar esto
 
         List<Elemento> elementos = newRespuesta.getResp();
         HashMap<String, Integer> map = new HashMap<>();
@@ -387,10 +395,10 @@ public class TaiController {
 
                 Resultado resultado = new Resultado(newRespuesta.getId(), newRespuesta.getIdTai(),  mb3,  mb4,  mb6,  mb7, mb36,  mb47, 
                     std3, std4, std6, std7, std36, std47);
-
-                resultadoRepository.saveAndFlush(resultado);
+                    return resultado;
             }
         }
+        return null;
     }
 
     /**
@@ -415,6 +423,11 @@ public class TaiController {
     }
 
 
+    /**
+     * Elimina todos los datos asociados a un tai includas la respuestas y los resultados
+     * @param id
+     * @return
+     */
     @DeleteMapping("/{id}")
     public String deleteTai(@PathVariable int id) {
         Tai tai = taiRepository.findById(id).get();
@@ -478,6 +491,15 @@ public class TaiController {
 
 
 
+    /**
+     * Clona el tai con id especificado, creando un nuevo tai con el nombre especifica en el mismo grupo
+     * sin nungunda respuesta ni resultado, prero con las mismas cagorias, imagenes, conceptos...
+     * 
+     * El borrado de un tai clonado es independiente a cualquiera de sus clones, includo el original
+     * @param id
+     * @param name
+     * @return
+     */
     @PostMapping("/{id}/clone")
     public String cloneTai(@PathVariable int id, @RequestBody String name) {
         Tai tai = taiRepository.findById(id).get();

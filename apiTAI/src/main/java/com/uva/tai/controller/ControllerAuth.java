@@ -39,6 +39,12 @@ class ControllerAuth {
         this.repository = repository;
     }
 
+    /**
+     * Recibe una autenticacion con los compos email, password y token, este ultimo vacio y devuelve la misma aultentacion sin contraseña
+     * pero con el tocken jwt que se uasará para autneticarse en el sistema
+     * @param auth
+     * @return
+     */
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     public Auth newUsuario(@RequestBody Auth auth) {
         if (repository.existsUsuarioByEmail(auth.getEmail())) {
@@ -57,6 +63,11 @@ class ControllerAuth {
     }
 
 
+    /**
+     * Devuelve un token jwt valido para la autenticacion
+     * @param username
+     * @return
+     */
     private String getJWTToken(String username) {
         String secretKey = SECRET;
         List<GrantedAuthority> grantedAuthorities = AuthorityUtils
