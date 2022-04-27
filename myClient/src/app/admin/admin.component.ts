@@ -68,23 +68,23 @@ export class AdminComponent implements OnInit {
     window.location.reload();
   }
 
-  getCSV(){
+  getCSV(tai:Tai, resultados: TaiResult[]){
     //CSV OPTIONS
     var options = {
-      filename: <string>this.tai.code + "-b3+b4-" + this.tai.imagen1 + "-y-" + this.tai.palabra1 + "-vs-" + this.tai.imagen2 + "-y-" + this.tai.palabra2 + "-b6+b7-" + this.tai.imagen2 + "-y-" + this.tai.palabra1 + "-vs-" + this.tai.imagen1 + "-y-" + this.tai.palabra2,
+      filename: <string>tai.code+ "-"+ tai.grupo +"-"+ tai.name + "-b3+b4-" + tai.imagen1 + "-y-" + tai.palabra1 + "-vs-" + tai.imagen2 + "-y-" + tai.palabra2 + "-b6+b7-" + tai.imagen2 + "-y-" + tai.palabra1 + "-vs-" + tai.imagen1 + "-y-" + tai.palabra2,
       fieldSeparator: ',',
       quoteStrings: '"',
       decimalSeparator: '.',
       showLabels: true,
-      showTitle: true,
-      title: <string>this.tai.code + "-b3+b4-" + this.tai.imagen1 + "-y-" + this.tai.palabra1 + "-vs-" + this.tai.imagen2 + "-y-" + this.tai.palabra2 + "-b6+b7-" + this.tai.imagen2 + "-y-" + this.tai.palabra1 + "-vs-" + this.tai.imagen1 + "-y-" + this.tai.palabra2,
+      showTitle: false,
+      title: <string>tai.code+ "-"+ tai.grupo +"-"+ tai.name + "-b3+b4-" + tai.imagen1 + "-y-" + tai.palabra1 + "-vs-" + tai.imagen2 + "-y-" + tai.palabra2 + "-b6+b7-" + tai.imagen2 + "-y-" + tai.palabra1 + "-vs-" + tai.imagen1 + "-y-" + tai.palabra2,
       useTextFile: false,
       useBom: true,
       useKeysAsHeaders: true,
       // headers: ['Column 1', 'Column 2', etc...] <-- Won't work with useKeysAsHeaders present!
     };
     var csvExporter = new ExportToCsv(options);
-    csvExporter.generateCsv(this.resultados);
+    csvExporter.generateCsv(resultados);
   }
 
   // Obtiene la lista de users
@@ -142,6 +142,20 @@ export class AdminComponent implements OnInit {
         }
       }
     );
+  }
+
+  downloadAllResults() {
+    this.tais.forEach(tai => {
+      this.clienteApiRest.getResults(tai.id).subscribe(
+        resp => {
+          if (resp.status < 400) { // Si no hay error en la respuesta
+            var resultados: TaiResult[];
+            resultados = resp.body as TaiResult[]; // Se obtiene la lista de users desde la respuesta
+            this.getCSV(tai, resultados);
+          }
+        }
+      );
+    });
   }
 
   onSubmit(){
