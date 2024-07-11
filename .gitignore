@@ -3,3 +3,9 @@ ProgramasDependientes64bits/*
 Documentacion/*
 nginx-1.21.6/logs/*
 nginx-1.21.6/html/*
+myClient/package-lock.json
+myClient/package-lock.json
+ProgramasDependientes32bits/jdk-8u221-windows-i586.exe
+ProgramasDependientes32bits/mysql-installer-web-community-8.0.28.0.msi
+ProgramasDependientes32bits/node-v12.20.1-x86.msi
+ProgramasDependientes32bits/OpenJDK11U-jdk_x86-32_windows_hotspot_11.0.14.1_1.msi

@@ -258,6 +258,4 @@ export class AdminComponent implements OnInit {
     this.clienteApiAuth.logout();
     this.router.navigate(['inicio']);
   }
-
-
 }
