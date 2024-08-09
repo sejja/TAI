@@ -9,7 +9,7 @@
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item"><a class="nav-link" (click)="clickLogout()">Logout</a></li>
                 <li class="nav-item"><a class="nav-link" [routerLink]="['/login']">Login</a></li>
-                <li class="nav-item"><a class="nav-link" [routerLink]="['/tai/new']">New IAT</a></li>
+                <li class="nav-item"><a class="nav-link" [routerLink]="['/tai/new']">Nuevo TAI</a></li>
             </ul>
         </div>
     </div>
@@ -66,11 +66,11 @@
                 <div class="row">
                     <p>Enable:<input class="form-check-input ms-2" type="checkbox" id="enableEdit" [(ngModel)]="userAdd.enabled" name="enabled" />
                 </div>
-            
+
                 <div class="row">
                     <button type="submit" class="btn btn-primary" [disabled]="!userForm.form.valid">Enviar</button>
                 </div>
-              
+
             </form>
         </div>
     </div>
@@ -83,6 +83,7 @@
                     <th scope="col">Grupo</th>
                     <th scope="col">Name</th>
                     <th scope="col">Activar</th>
+                    <th scope="col">Grupo</th>
                     <th scope="col">Seleccionar</th>
                     <th scope="col">Clonar</th>
                     <th scope="col">Eliminar</th>
@@ -97,6 +98,11 @@
                     <td>
                         <div class="form-check form-switch">
                             <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" [checked]="tai.enable" (click)="sendEnable(tai)">
+                        </div>
+                    </td>
+                    <td>
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" [checked]="tai.groupEnable" (click)="sendEnableGroups(tai)">
                         </div>
                     </td>
                     <td>

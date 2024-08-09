@@ -33,7 +33,8 @@ export class TaiEditarComponent implements OnInit {
     imagen1: "",
     imagen2: "",
     concepts: [],
-    enable: false
+    enable: false,
+    groupEnable: false
   };
 
   tai = this.newTai as Tai;  // Hay que darle valor inicial, si no salta una
@@ -62,7 +63,6 @@ export class TaiEditarComponent implements OnInit {
   }
 
   clickCode(){
-    console.log("Code: "+this.tai.code);
   }
 
   getCode(){
@@ -88,7 +88,6 @@ export class TaiEditarComponent implements OnInit {
         this.router.navigate(['admin']);
       },
       err => {
-        console.log("Error al editar: " + err.message);
         throw err;
       }
     )
@@ -126,7 +125,6 @@ export class TaiEditarComponent implements OnInit {
     const element = event.currentTarget as HTMLInputElement;
     let fileList: FileList | null = element.files;
     if (fileList) {
-      console.log("FileUpload -> files", fileList);
       Array.from(fileList).forEach(file => this.selectedFile = file);
     }
   }

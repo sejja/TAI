@@ -1,5 +1,3 @@
-version: '3.4'
-#version: '3.7'
 volumes:
   kong_data: {}
   tais_data: {}

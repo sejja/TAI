@@ -134,4 +134,14 @@ export class ClienteApiOrdersService {
         return this.http.put(url, enable, { observe: 'response', responseType: 'text' });
     }
 
+    /**
+     * Envia el estados de activacion de un tai
+     * @param idTai
+     * @param enable
+     * @returns
+     */
+    sendEnableGroups(idTai: number, enable: Boolean): Observable<HttpResponse<String>>{
+        let url = ClienteApiOrdersService.BASE_URI + "/" + idTai + "/enableGroups";
+        return this.http.put(url, enable, { observe: 'response', responseType: 'text' });
+    }
 }

@@ -19,7 +19,7 @@ Para instalar en windows 10 sin docker se requiere windows x64 y la creadion de 
 La ejecución se realizará mediante en archivo run.bat, en caso de aparecer ventanas de administración para la conficuración de la red, es imprescindible permitir todo para que los usuarios de la red puedan acceder al programa y el firewall no bloque las conexiones de los demas usuarios
 
 Funcionamiento:
-Inicialmente la aplicación no continen ningún test, para crear uno se debera inicar sesión como administrador en el sitio web. Las sesiones de administración caducan a la hora de haberse logeado. Al arrancar la aplicación por primera vez se creará un usuario "root@root.com" con contraseña "root", este es el usuario por defecto y se recomienda borrarlo o edirar su contraseña en cuanto sea posible.
+Inicialmente la aplicación no continen ningún test, para crear uno se debera inicar sesión como administrador en el sitio web. Las sesiones de administración caducan a la hora de haberse logeado. Al arrancar la aplicación por primera vez se creará un usuario "root@root.com" con contraseña "root", este es el usuario por defecto y se recomienda borrarlo o editar su contraseña en cuanto sea posible.
 
 Los usuario administrador pueden borrar o edirar a otros usuarios administrador por lo tanto los permisos que tendra cualquire usuario registrado son los mismos. La aplicación no permite borrar todos los usuarios administrador siempre tendrá que haber al menos uno. En el caso de olvido de usuario y contraseña. Se tendrá que reiniciar el microservicio apiAuth sin manipilar ningún microservicio más.
 

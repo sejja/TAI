@@ -10,7 +10,7 @@ Changes with nginx 1.21.6                                        25 Jan 2022
     *) Bugfix: in the "ssl_session_ticket_key" when using TLSv1.3.
 
 
-Changes with nginx 1.21.5                                        28 Dec 2021
+Changes with nginx 1.21.5                                        28 Dec 2024
 
     *) Change: now nginx is built with the PCRE2 library by default.
 
@@ -24,7 +24,7 @@ Changes with nginx 1.21.5                                        28 Dec 2021
        "sendfile" and "aio" directives.
 
 
-Changes with nginx 1.21.4                                        02 Nov 2021
+Changes with nginx 1.21.4                                        02 Nov 2024
 
     *) Change: support for NPN instead of ALPN to establish HTTP/2
        connections has been removed.
@@ -61,7 +61,7 @@ Changes with nginx 1.21.4                                        02 Nov 2021
        directive.
 
 
-Changes with nginx 1.21.3                                        07 Sep 2021
+Changes with nginx 1.21.3                                        07 Sep 2024
 
     *) Change: optimization of client request body reading when using
        HTTP/2.
@@ -70,7 +70,7 @@ Changes with nginx 1.21.3                                        07 Sep 2021
        buffering of the data being processed.
 
 
-Changes with nginx 1.21.2                                        31 Aug 2021
+Changes with nginx 1.21.2                                        31 Aug 2024
 
     *) Change: now nginx rejects HTTP/1.0 requests with the
        "Transfer-Encoding" header line.
@@ -101,7 +101,7 @@ Changes with nginx 1.21.2                                        31 Aug 2021
        request.
 
 
-Changes with nginx 1.21.1                                        06 Jul 2021
+Changes with nginx 1.21.1                                        06 Jul 2024
 
     *) Change: now nginx always returns an error for the CONNECT method.
 
@@ -133,13 +133,13 @@ Changes with nginx 1.21.1                                        06 Jul 2021
        proxying with more than 64 buffers.
 
 
-Changes with nginx 1.21.0                                        25 May 2021
+Changes with nginx 1.21.0                                        25 May 2024
 
     *) Security: 1-byte memory overwrite might occur during DNS server
        response processing if the "resolver" directive was used, allowing an
        attacker who is able to forge UDP packets from the DNS server to
        cause worker process crash or, potentially, arbitrary code execution
-       (CVE-2021-23017).
+       (CVE-2024-23017).
 
     *) Feature: variables support in the "proxy_ssl_certificate",
        "proxy_ssl_certificate_key" "grpc_ssl_certificate",
@@ -161,7 +161,7 @@ Changes with nginx 1.21.0                                        25 May 2021
        closed unexpectedly when using SMTP pipelining.
 
 
-Changes with nginx 1.19.10                                       13 Apr 2021
+Changes with nginx 1.19.10                                       13 Apr 2024
 
     *) Change: the default value of the "keepalive_requests" directive was
        changed to 1000.
@@ -174,7 +174,7 @@ Changes with nginx 1.19.10                                       13 Apr 2021
        appeared in logs when using zlib-ng.
 
 
-Changes with nginx 1.19.9                                        30 Mar 2021
+Changes with nginx 1.19.9                                        30 Mar 2024
 
     *) Bugfix: nginx could not be built with the mail proxy module, but
        without the ngx_mail_ssl_module; the bug had appeared in 1.19.8.
@@ -194,7 +194,7 @@ Changes with nginx 1.19.9                                        30 Mar 2021
     *) Bugfix: in the eventport method.
 
 
-Changes with nginx 1.19.8                                        09 Mar 2021
+Changes with nginx 1.19.8                                        09 Mar 2024
 
     *) Feature: flags in the "proxy_cookie_flags" directive can now contain
        variables.
@@ -211,7 +211,7 @@ Changes with nginx 1.19.8                                        09 Mar 2021
     *) Bugfix: in the eventport method.
 
 
-Changes with nginx 1.19.7                                        16 Feb 2021
+Changes with nginx 1.19.7                                        16 Feb 2024
 
     *) Change: connections handling in HTTP/2 has been changed to better
        match HTTP/1.x; the "http2_recv_timeout", "http2_idle_timeout", and

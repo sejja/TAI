@@ -27,19 +27,17 @@ public class ControllerUsers {
 
     private final UsuarioRepository repository;
     private Usuario defaulUser = new Usuario("root", "root", "root", "root@root.com", "root", true,
-            Date.valueOf("2021-11-28"), Date.valueOf("2021-11-28"));
+            Date.valueOf("2024-11-28"), Date.valueOf("2024-11-28"));
 
     ControllerUsers(UsuarioRepository repository) {
         this.repository = repository;
-        System.out.println("Antes de añadir defecto");
         this.postUsuario(defaulUser);// Añadir usuario por defecto
-        System.out.println("Antes de añadir defecto:");
     }
 
     /**
      * Crea una nuevo usuario apartir de una paricion POST a /users
      * mediante el json recibido
-     * 
+     *
      * @param newUsuario
      * @return
      */
@@ -71,7 +69,7 @@ public class ControllerUsers {
     /**
      * Devuelve el usuario con id param{id} apartir de una
      * peticion GET a /users/{id}
-     * 
+     *
      * @param id
      * @return
      */
@@ -85,7 +83,7 @@ public class ControllerUsers {
     /**
      * Edita el usuario con id param{id} apartir de una peticion PUT a
      * /users/{id} mediante el json recibido
-     * 
+     *
      * @param id
      * @return
      */
@@ -110,13 +108,13 @@ public class ControllerUsers {
     /**
      * Borra el usuario con id param{id} apartir de
      * una peticion DELETE a /users/{id}
-     * 
+     *
      * @param id
      * @return
      */
     @DeleteMapping("/{id}")
     public String deleteUsuario(@PathVariable Integer id) {
-        
+
         if(repository.findAll().size() > 1){
             try {
                 repository.deleteById(id);
@@ -137,7 +135,7 @@ public class ControllerUsers {
      * param{email} debolverá una lista vacia si no existe y una lista con el
      * usuario
      * con el mais espacifico en caso de existir
-     * 
+     *
      * @param enable
      * @param email
      * @return
@@ -172,7 +170,7 @@ public class ControllerUsers {
      * Edita los usuario con id contenido en la lista de enteros param{user_id}
      * apartir de una peticion PUT a /users/enable?user_id={user_id} mosdificando
      * el estado si esta activo seguirá activo si estaba inavtivo pasará a activo
-     * 
+     *
      * @param user_id
      * @return
      */

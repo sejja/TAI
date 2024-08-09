@@ -12,5 +12,5 @@ export interface Tai {
     imagen2: String,
     concepts: Concept[],
     enable: Boolean
-
+    groupEnable: Boolean
 }

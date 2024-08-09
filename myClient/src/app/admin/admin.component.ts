@@ -33,7 +33,8 @@ export class AdminComponent implements OnInit {
     imagen1: "",
     imagen2: "",
     concepts: [],
-    enable: false
+    enable: false,
+    groupEnable: false
   };
   tai = this.newTai as Tai;
   
@@ -252,6 +253,11 @@ export class AdminComponent implements OnInit {
     tai.enable = !tai.enable;
     console.log(tai.enable);
     this.clienteApiRest.sendEnable(tai.id, tai.enable).subscribe();
+  }
+
+  sendEnableGroups(tai:Tai) {
+    tai.groupEnable = !tai.groupEnable;
+    this.clienteApiRest.sendEnableGroups(tai.id, tai.groupEnable).subscribe();
   }
 
   clickLogout() {
