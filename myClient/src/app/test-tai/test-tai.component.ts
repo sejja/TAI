@@ -26,9 +26,9 @@ export class TestTAIComponent implements OnInit {
   keyDch = "j";
   keyMIzq = "F";
   keyMDch = "J";
+  camino1 = [0,64,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19];
+  camino2 = [0,64,1,2,3,4,13,14,7,8,15,16,17,18,5,6,9,10,11,12,19];
 
-  camino1 = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19];
-  camino2 = [0,1,2,3,4,13,14,7,8,15,16,17,18,5,6,9,10,11,12,19];
   caminos = [this.camino1, this.camino2];
   c = this.randomIntFromInterval(0,1);
 
@@ -56,8 +56,9 @@ export class TestTAIComponent implements OnInit {
     id: 0,
     codeEnc: "",
     idTai: 0,
-    resp: []
-
+    resp: [],
+    sex: "",
+    age: 0
   };
 
   response = this.newResponse as TaiResponse;  // Hay que darle valor inicial, si no salta una
@@ -84,7 +85,6 @@ export class TestTAIComponent implements OnInit {
     private clienteApiRest: ClienteApiOrdersService) { }
 
   ngOnInit() {
-
     // Elimina los query params.
     this.router.navigate([]);
 
@@ -181,6 +181,7 @@ export class TestTAIComponent implements OnInit {
     console.log("Fase --> " + this.ifase);
     console.log("Ronda --> " + this.ironda);
     console.log("Errores --> " + this.nerror);
+
     this.end = new Date();
     this.trespuesta = this.end.getTime() - this.init.getTime();
     console.log("TRespuesta", this.trespuesta);
@@ -454,13 +455,15 @@ export class TestTAIComponent implements OnInit {
   }
 
   clickSpace() {
+    if(!this.tai.groupEnable) {
+      this.camino1 = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19];
+      this.camino2 = [0,1,2,3,4,13,14,7,8,15,16,17,18,5,6,9,10,11,12,19];
+      this.caminos = [this.camino1, this.camino2];
+      this.c = this.randomIntFromInterval(0,1);
+    }
 
-      console.log("Fase --> " + this.ifase);
-      console.log("Ronda --> " + this.ironda);
-      console.log("Errores --> " + this.nerror);
-      this.end = new Date();
-      this.trespuesta = this.end.getTime() - this.init.getTime();
-      console.log("TRespuesta", this.trespuesta);
+    this.end = new Date();
+    this.trespuesta = this.end.getTime() - this.init.getTime();
 
     if (this.caminos[this.c][this.ifase] < 5) {
 
@@ -499,9 +502,13 @@ export class TestTAIComponent implements OnInit {
         this.error = false;
         this.randomConcept();
         this.ifase = (this.ifase + 1) % this.nfase;
-      }
+      } else {
 
-    
+
+        this.response.age = Number((document.getElementById('age') as HTMLInputElement).value);
+        this.response.sex = (document.getElementById('sex') as HTMLSelectElement).value;
+        this.ifase = (this.ifase + 1) % this.nfase;
+      }
   }
 
   @HostListener('document:keypress', ['$event'])
@@ -563,5 +570,4 @@ export class TestTAIComponent implements OnInit {
   pauseTimer() {
     clearInterval(this.interval);
   }
-
 }

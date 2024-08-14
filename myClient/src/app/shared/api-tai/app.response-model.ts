@@ -5,4 +5,6 @@ export interface TaiResponse {
     codeEnc: String,
     idTai: Number,
     resp:Element[]
+    sex: String,
+    age: Number
 }

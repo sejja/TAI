@@ -171,6 +171,22 @@ public class TaiController {
     }
 
     /**
+     * Cambia el estado de un tai
+     * @param enable
+     * @param id
+     * @return
+     */
+    @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE, value = "/{id}/enableGroups")
+    public String enableGroupsTai(@RequestBody Boolean enable, @PathVariable int id) {
+
+        Tai tai = this.getTai(id).get();
+        tai.setEnableGroup(enable);
+        taiRepository.saveAndFlush(tai);
+
+        return id+":"+tai.getGroupEnable();
+    }
+
+    /**
      * Devuelve un código único apartir de una petición GET:/tai/code
      * 
      * @param newTai
@@ -544,5 +560,4 @@ public class TaiController {
             throw new TaiException("Error al crear el nuevo registro.");
         }   
     }
-
 }

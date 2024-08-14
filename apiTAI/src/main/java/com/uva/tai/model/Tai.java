@@ -43,6 +43,7 @@ public class Tai {
 
     private Date created_at;
     private boolean enable;
+    private boolean groupEnable;
 
     public Tai() {
         this.created_at = Date.valueOf(LocalDate.now());
@@ -79,6 +80,10 @@ public class Tai {
 
     public void setGrupo(String grupo) {
         this.grupo = grupo;
+    }
+
+    public void setEnableGroup(boolean groupEnable) {
+        this.groupEnable = groupEnable;
     }
 
     public String getCode() {
@@ -145,4 +150,7 @@ public class Tai {
         this.enable = enable;
     }
 
+    public boolean getGroupEnable() {
+        return this.groupEnable;
+    }
 }

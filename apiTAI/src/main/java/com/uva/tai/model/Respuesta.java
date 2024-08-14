@@ -29,8 +29,9 @@ public class Respuesta {
  
     @OneToMany(mappedBy = "resp", fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     private List<Elemento> resp;//OJO
-
     private Date created_at;
+    private String sex;
+    private Integer age;
 
     public Respuesta() {
         this.created_at = Date.valueOf(LocalDate.now());
@@ -84,4 +85,19 @@ public class Respuesta {
         this.created_at = created_at;
     }
 
+    public void setAge(Integer age) {
+        this.age = age;
+    }
+
+    public Integer getAge() {
+        return this.age;
+    }
+
+    public void setSex(String sex) {
+        this.sex = sex;
+    }
+
+    public String getSex() {
+        return sex;
+    }
 }
