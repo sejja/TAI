@@ -3,12 +3,6 @@ steps:
 - name: 'gcr.io/cloud-builders/docker'
   args: ['compose', '-f', 'docker-compose.yml', 'build']
 
-- name: 'gcr.io/cloud-builders/docker'
-  args: ['compose', '-f', 'docker-compose.yml', 'push']
-
-- name: 'gcr.io/cloud-builders/docker'
-  args: ['compose', '-f', 'docker-compose.yml', 'up', '-d']
-
 images:
   - 'gcr.io/$PROJECT_ID/api-tai-image'
   - 'gcr.io/$PROJECT_ID/myclient-angular-image'
