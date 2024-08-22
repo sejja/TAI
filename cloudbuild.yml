@@ -3,9 +3,6 @@ steps:
 - name: 'gcr.io/cloud-builders/docker'
   args: ['compose', '-f', 'docker-compose.yml', 'build']
 
-images:
-  - 'gcr.io/$PROJECT_ID/api-tai-image'
-  - 'gcr.io/$PROJECT_ID/myclient-angular-image'
 
 options:
   logging: CLOUD_LOGGING_ONLY
