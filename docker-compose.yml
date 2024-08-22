@@ -1,3 +1,7 @@
+steps:
+- name: ‘docker/compose:1.19.0’
+  args: [‘up’, ‘-d’]
+
 volumes:
   kong_data: {}
   tais_data: {}
@@ -11,7 +15,7 @@ services:
     build:
       context: ./apiTAI
       dockerfile: ./Dockerfile
-    restart: unless-stopped
+    restart: always
     ports:
       - 8082:8082
     networks: # Networks to join
@@ -25,9 +29,11 @@ services:
     hostname: Tais-database
     cap_add:
       - SYS_NICE
-    restart: unless-stopped
+    restart: always
     ports:
       - "3308:3306"
+    expose:
+      - "3306"
     networks:
       - kong-net
     volumes:
@@ -43,7 +49,7 @@ services:
     build:
       context: ./myClient
       dockerfile: ./Dockerfile
-    restart: unless-stopped
+    restart: always
     ports:
       - 80:80
     networks: # Networks to join

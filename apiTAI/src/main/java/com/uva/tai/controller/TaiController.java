@@ -118,7 +118,7 @@ public class TaiController {
      * @return
      */
     @PostMapping("/upload/{code}")
-    public ResponseEntity<String> uploadData(@RequestParam("file") MultipartFile file, 
+    public ResponseEntity<String> uploadData(@RequestParam("file") MultipartFile file,
             @PathVariable String code) throws Exception {
         if (file == null) {
             throw new RuntimeException("You must select the a file for uploading");
